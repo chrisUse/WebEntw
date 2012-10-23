@@ -11,6 +11,15 @@ package data;
 public class DataStore {
 
     private String name;
+    private String vorName;
+
+    public String getVorName() {
+        return vorName;
+    }
+
+    public void setVorName(String vorName) {
+        this.vorName = vorName;
+    }
 
     public String getName() {
         return name;
