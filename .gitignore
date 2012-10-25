@@ -10,4 +10,5 @@ build.xml
 /dist/
 # Eclipse
 /.classpath
+/.project
 /.settings
