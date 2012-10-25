@@ -4,9 +4,10 @@
     Author     : christianlinde
 --%>
 
+<%@page import="java.util.Iterator"%>
 <%@page import="java.util.Map"%>
 
-<jsp:useBean id="user" class="Map<Integer,data.DataStore>" scope="session"/> 
+<jsp:useBean id="dataStore" class="java.util.HashMap" scope="session"/> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,11 +22,19 @@
         <jsp:setProperty name="mybean" property="name" /> --%>
         <h1>Hello#, 
         <%-- First methode for get session elementes. --%>
-         <jsp:getProperty name="user" property="name" />
+        <%--  <jsp:getProperty name="user" property="name" /> --%>
         !</h1>
         
         <%-- Second methode for get session elementes. --%>
-        Methode two: <%= user.get(123456).getName() %>
-        Methode two first name: <%= user.get(123456).getVorName() %>
+        Methode two: <%= ((data.DataStore)dataStore.get(123456)).getName() %>
+        Methode two first name: <%= ((data.DataStore)dataStore.get(123456)).getName() %>
+        
+        <%
+          Iterator<data.DataStore> iterDataStore = dataStore.values().iterator();
+          while ( iterDataStore.hasNext() ) {
+            data.DataStore tmpDataStoreElem = (data.DataStore)iterDataStore.next();
+            out.println ( "<br />Product name: " + tmpDataStoreElem.getName() + "<br />" );
+          }
+        %>
     </body>
 </html>

@@ -6,14 +6,14 @@
 
 <%@page import="java.util.Map"%>
         
-<jsp:useBean id="user" class="Map<Integer, data.DataStore>" scope="session"/>
+<jsp:useBean id="dataStore" class="java.util.HashMap" scope="session"/>
 <%-- First methode for set session elementes. --%>
 <%-- <jsp:setProperty name="user"  property="name" value="TestNameBean"/> -->
 <%-- Second methode for set session elementes. --%>
-<% 
+<% /*
    data.DataStore myStore = new data.DataStore();
-   myStore.setVorName("BeanFirstName");
-   user.put(123456, myStore); 
+   myStore.setName("BeanFirstName");
+   dataStore.put(123456, myStore); */
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
