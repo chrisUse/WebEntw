@@ -4,7 +4,9 @@
     Author     : christianlinde
 --%>
 
-<jsp:useBean id="user" class="data.DataStore" scope="session"/> 
+<%@page import="java.util.Map"%>
+
+<jsp:useBean id="user" class="Map<Integer,data.DataStore>" scope="session"/> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,7 +25,7 @@
         !</h1>
         
         <%-- Second methode for get session elementes. --%>
-        Methode two: <%= user.getName() %>
-        Methode two first name: <%= user.getVorName() %>
+        Methode two: <%= user.get(123456).getName() %>
+        Methode two first name: <%= user.get(123456).getVorName() %>
     </body>
 </html>

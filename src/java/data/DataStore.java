@@ -10,26 +10,53 @@ package data;
  */
 public class DataStore {
 
-    private String name;
-    private String vorName;
+  private String name;
+  private Double price;
+  private String description;
+  private Integer artNr;
+  private Integer count;
 
-    public String getVorName() {
-        return vorName;
-    }
+  public Double getPrice() {
+    return price;
+  }
 
-    public void setVorName(String vorName) {
-        this.vorName = vorName;
-    }
+  public void setPrice(Double price) {
+    this.price = price;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public DataStore() {
-        this.name = null;
-    }
+  public Integer getArtNr() {
+    return artNr;
+  }
+
+  public void setArtNr(Integer artNr) {
+    this.artNr = artNr;
+  }
+
+  public Integer getCount() {
+    return count;
+  }
+
+  public void setCount(Integer count) {
+    this.count = count;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public DataStore() {
+    this.name = null;
+  }
 }

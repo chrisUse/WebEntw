@@ -4,11 +4,17 @@
     Author     : christianlinde
 --%>
 
-<jsp:useBean id="user" class="data.DataStore" scope="session"/>
+<%@page import="java.util.Map"%>
+        
+<jsp:useBean id="user" class="Map<Integer, data.DataStore>" scope="session"/>
 <%-- First methode for set session elementes. --%>
-<jsp:setProperty name="user"  property="name" value="TestNameBean"/> 
+<%-- <jsp:setProperty name="user"  property="name" value="TestNameBean"/> -->
 <%-- Second methode for set session elementes. --%>
-<% user.setVorName("BeanFirstName"); %>
+<% 
+   data.DataStore myStore = new data.DataStore();
+   myStore.setVorName("BeanFirstName");
+   user.put(123456, myStore); 
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
