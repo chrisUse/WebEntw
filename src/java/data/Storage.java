@@ -57,6 +57,26 @@ public class Storage {
         }
         return res;
     }
+    
+    public void addProduct(Product p) {
+        p.setId(++autoIncProducts);
+
+        synchronized (Storage.class) {
+            products.put(p.getId(), p);
+        }
+    }
+
+    public Product getProductById(int id) {
+        synchronized (Storage.class) {
+            return new Product(products.get(id));
+        }
+    }
+
+    public void setProduct(Product u) {
+        synchronized (Storage.class) {
+            products.put(u.getId(), u);
+        }
+    }
 
     private Storage() {
         products = new HashMap<Integer, Product>();
