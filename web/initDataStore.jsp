@@ -8,6 +8,7 @@
 <jsp:useBean id="dataStore" class="java.util.HashMap" scope="session"/>
 
 <% 
+/*
    Integer tmpArtNr = 123456;
    data.DataStore myTmpStore = new data.DataStore();
    myTmpStore.setName("Kindle Fire HD");
@@ -36,6 +37,7 @@
                             +"innerorts 8,6 l/100km, außerorts 4,9 l/100km, kombiniert "
                             +"6,2 l/100km.CO2-Emission: 163 g/km; Effizienzklasse B");
    dataStore.put(tmpArtNr, myTmpStore); tmpArtNr++;
+   */
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

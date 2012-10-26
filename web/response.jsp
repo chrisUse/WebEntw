@@ -26,15 +26,16 @@
         !</h1>
         
         <%-- Second methode for get session elementes. --%>
-        Methode two: <%= ((data.DataStore)dataStore.get(123456)).getName() %>
-        Methode two first name: <%= ((data.DataStore)dataStore.get(123456)).getName() %>
+        Methode two: <%//= ((data.DataStore)dataStore.get(123456)).getName() %>
+        Methode two first name: <%//= ((data.DataStore)dataStore.get(123456)).getName() %>
         
         <%
+        /*
           Iterator<data.DataStore> iterDataStore = dataStore.values().iterator();
           while ( iterDataStore.hasNext() ) {
             data.DataStore tmpDataStoreElem = (data.DataStore)iterDataStore.next();
             out.println ( "<br />Product name: " + tmpDataStoreElem.getName() + "<br />" );
-          }
+          }*/
         %>
     </body>
 </html>
