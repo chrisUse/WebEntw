@@ -4,6 +4,7 @@
  */
 package data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,9 +13,25 @@ import java.util.List;
  */
 public class Storage {
     
+    /* should be thread safe too: http://www.theserverside.de/singleton-pattern-in-java/ */
+    private static Storage instance = new Storage();
+    
     private List<Product> products;
     private List<User> users;
+    
+    private void addDefaultData() {
+        //users.add(...);
+        //products.add(...);
+    }
 
-    public Storage() {
+    private Storage() {
+        products = new ArrayList<Product>();
+        users = new ArrayList<User>();
+        
+        addDefaultData();
+    }
+    
+    public static Storage getInstance() {
+        return instance;
     }
 }
