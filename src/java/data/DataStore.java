@@ -11,50 +11,52 @@ package data;
 public class DataStore {
 
   private String name;
-  private Double price;
+  private double price;
   private String description;
-  private Integer artNr;
-  private Integer count;
+  private int artNr;
+  private int count;
 
-  public Double getPrice() {
-    return price;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setPrice(Double price) {
-    this.price = price;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public double getPrice() {
+        return price;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-  public Integer getArtNr() {
-    return artNr;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public void setArtNr(Integer artNr) {
-    this.artNr = artNr;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public Integer getCount() {
-    return count;
-  }
+    public int getArtNr() {
+        return artNr;
+    }
 
-  public void setCount(Integer count) {
-    this.count = count;
-  }
+    public void setArtNr(int artNr) {
+        this.artNr = artNr;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public int getCount() {
+        return count;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+ 
 
   public DataStore() {
     this.name = null;
