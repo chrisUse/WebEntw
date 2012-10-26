@@ -11,25 +11,60 @@ import java.util.*;
  * @author christianlinde
  */
 public class Storage {
-    
+
     /* should be thread safe too: http://www.theserverside.de/singleton-pattern-in-java/ */
     private static Storage instance = new Storage();
-    
     private HashMap<Integer, Product> products;
+    private int autoIncProducts = 0;
     private HashMap<Integer, User> users;
-    
+    private int autoIncUsers = 0;
+
     private void addDefaultData() {
         //add some users
+        addUser(new User(true, "Admin", "password", "admin@example.com", "Admin Street", "Admin Town"));
+
         //add some products
+    }
+
+    public void addUser(User u) {
+        u.setId(++autoIncUsers);
+
+        synchronized (Storage.class) {
+            users.put(u.getId(), u);
+        }
+    }
+
+    public User getUserById(int id) {
+        synchronized (Storage.class) {
+            return new User(users.get(id));
+        }
+    }
+
+    public void setUser(User u) {
+        synchronized (Storage.class) {
+            users.put(u.getId(), u);
+        }
+    }
+
+    public List<Integer> getUsersByName(String name) {
+        List<Integer> res = new ArrayList<Integer>();
+        synchronized (Storage.class) {
+            for (Map.Entry<Integer, User> e : users.entrySet()) {
+                if (e.getValue().getName().toLowerCase().equals(name.toLowerCase())) {
+                    res.add(e.getKey());
+                }
+            }
+        }
+        return res;
     }
 
     private Storage() {
         products = new HashMap<Integer, Product>();
         users = new HashMap<Integer, User>();
-        
+
         addDefaultData();
     }
-    
+
     public static Storage getInstance() {
         return instance;
     }

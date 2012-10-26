@@ -9,7 +9,7 @@ package data;
  * @author delbertooo
  */
 public class User {
-    private int id;
+    private int id = 0;
     private boolean isAdmin;
     private String name;
     private String password;
@@ -17,6 +17,44 @@ public class User {
     private String street;
     private String city;
     
-    private WishList wishList;
-    private Cart cart;
+    private WishList wishList = new WishList();
+    private Cart cart = new Cart();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public User(boolean isAdmin, String name, String password, String mail, String street, String city) {
+        this.isAdmin = isAdmin;
+        this.name = name;
+        this.password = password;
+        this.mail = mail;
+        this.street = street;
+        this.city = city;
+    }
+    
+    public User(User u) {
+        this.id = u.id;
+        
+        this.isAdmin = u.isAdmin;
+        this.name = u.name;
+        this.password = u.password;
+        this.mail = u.mail;
+        this.street = u.street;
+        this.city = u.city;
+    }
+    
+    
 }
