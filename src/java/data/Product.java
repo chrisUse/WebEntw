@@ -16,7 +16,7 @@ public class Product {
     private float price;
     private String description;
     private String manufacturer;
-    
+
     private List<Comment> comments = new ArrayList<Comment>();
 
     public Product(String name, float price, String description, String manufacturer) {
@@ -42,7 +42,6 @@ public class Product {
     public void setId(int id) {
         this.id = id;
     }
-    
     
     
     
