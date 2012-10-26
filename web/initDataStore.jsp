@@ -8,6 +8,7 @@
 <jsp:useBean id="dataStore" class="java.util.HashMap" scope="session"/>
 
 <% 
+   /** @todo lol, das gehört hier aber nicht hin :) **/
    Integer tmpArtNr = 123456;
    data.DataStore myTmpStore = new data.DataStore();
    myTmpStore.setName("Kindle Fire HD");
