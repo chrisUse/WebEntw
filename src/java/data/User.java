@@ -9,6 +9,7 @@ package data;
  * @author delbertooo
  */
 public class User {
+    private int id;
     private boolean isAdmin;
     private String name;
     private String password;
