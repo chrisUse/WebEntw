@@ -55,9 +55,7 @@ public class Storage {
     public void addUser(User u) {
         u.setId(++autoIncUsers);
 
-        synchronized (Storage.class) {
-            users.put(u.getId(), u);
-        }
+        this.setUser(u);
     }
 
     public User getUserById(int id) {
@@ -68,7 +66,7 @@ public class Storage {
 
     public void setUser(User u) {
         synchronized (Storage.class) {
-            users.put(u.getId(), u);
+            users.put(u.getId(), new User(u));
         }
     }
 
@@ -87,9 +85,7 @@ public class Storage {
     public void addProduct(Product p) {
         p.setId(++autoIncProducts);
 
-        synchronized (Storage.class) {
-            products.put(p.getId(), p);
-        }
+        this.setProduct(p);
     }
 
     public Product getProductById(int id) {
@@ -98,9 +94,9 @@ public class Storage {
         }
     }
 
-    public void setProduct(Product u) {
+    public void setProduct(Product p) {
         synchronized (Storage.class) {
-            products.put(u.getId(), u);
+            products.put(p.getId(), new Product(p));
         }
     }
 
