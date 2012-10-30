@@ -4,11 +4,15 @@
  */
 package data;
 
+import exceptions.StorageException;
+import java.lang.reflect.Field;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author christianlinde
+ * @author christianlinde, delbertooo
  */
 public class Storage {
 
@@ -18,8 +22,17 @@ public class Storage {
     private int autoIncProducts = 0;
     private HashMap<Integer, User> users;
     private int autoIncUsers = 0;
+    
+    private HashMap<DataType, HashMap<Integer, IStorageData>> data;
+    
+    private HashMap<DataType, Integer> autoInc;
+    
+    public static class Data {
+        public static final DataType USERS = new DataType(0);
+        public static final DataType PRODUCTS = new DataType(1);
+    }
 
-    private void addDefaultData() {
+    private void addDefaultData() throws StorageException {
         //add some users
         addUser(new User(
                 true, 
@@ -51,60 +64,78 @@ public class Storage {
                 "JAGUAR"));
 
     }
-
-    public void addUser(User u) {
-        u.setId(++autoIncUsers);
-
-        this.setUser(u);
-    }
-
-    public User getUserById(int id) {
+    
+    private void addData(DataType type, IStorageData d) throws StorageException {
         synchronized (Storage.class) {
-            return new User(users.get(id));
+            int newId = autoInc.get(type) + 1;
+            autoInc.put(type, newId);
+            d.setId(newId);
+        }
+    }
+    
+    private void setData(DataType type, IStorageData d) {
+        synchronized (Storage.class) {
+            data.get(type).put(d.getId(), d.getCopy());
         }
     }
 
+    public void addUser(User u) throws StorageException {
+        addData(Storage.Data.USERS, u);
+    }
+    
     public void setUser(User u) {
-        synchronized (Storage.class) {
-            users.put(u.getId(), new User(u));
-        }
+        setData(Storage.Data.USERS, u);
     }
-
-    public List<Integer> getUsersByName(String name) {
-        List<Integer> res = new ArrayList<Integer>();
-        synchronized (Storage.class) {
-            for (Map.Entry<Integer, User> e : users.entrySet()) {
-                if (e.getValue().getName().toLowerCase().equals(name.toLowerCase())) {
-                    res.add(e.getKey());
-                }
-            }
-        }
-        return res;
+    
+    public void addProduct(Product p) throws StorageException {
+        addData(Storage.Data.PRODUCTS, p);
     }
-
-    public void addProduct(Product p) {
-        p.setId(++autoIncProducts);
-
-        this.setProduct(p);
-    }
-
-    public Product getProductById(int id) {
-        synchronized (Storage.class) {
-            return new Product(products.get(id));
-        }
-    }
-
+    
     public void setProduct(Product p) {
-        synchronized (Storage.class) {
-            products.put(p.getId(), new Product(p));
-        }
+        setData(Storage.Data.PRODUCTS, p);
     }
+
+//    public User getUserById(int id) {
+//        synchronized (Storage.class) {
+//            return new User(users.get(id));
+//        }
+//    }
+//    public Product getProductById(int id) {
+//        synchronized (Storage.class) {
+//            return new Product(products.get(id));
+//        }
+//    }
+//    public List<Integer> getUsersByName(String name) {
+//        List<Integer> res = new ArrayList<Integer>();
+//        synchronized (Storage.class) {
+//            for (Map.Entry<Integer, User> e : users.entrySet()) {
+//                if (e.getValue().getName().toLowerCase().equals(name.toLowerCase())) {
+//                    res.add(e.getKey());
+//                }
+//            }
+//        }
+//        return res;
+//    }
 
     private Storage() {
-        products = new HashMap<Integer, Product>();
-        users = new HashMap<Integer, User>();
-
-        addDefaultData();
+        
+        autoInc = new HashMap<DataType, Integer>();
+        Field[] fields = Storage.Data.class.getFields();
+        for (Field f : fields) {
+            try {
+                //System.out.println(f.getName() + " -> " + f.get(Storage.Data.class));
+                DataType key = (DataType)f.get(Storage.Data.class);
+                autoInc.put(key, 0);
+                data.put(key, new HashMap<Integer, IStorageData>());
+            } catch (Exception ex) {
+                throw new RuntimeException("Something in Storage went completely wrong.\n" + ex.getMessage());
+            }
+        }
+        try {
+            addDefaultData();
+        } catch (StorageException ex) {
+            throw new RuntimeException("Failed to initialize Data.\n" + ex.getMessage());
+        }
     }
 
     public static Storage getInstance() {

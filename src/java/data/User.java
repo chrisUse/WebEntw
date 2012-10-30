@@ -8,8 +8,7 @@ package data;
  *
  * @author delbertooo
  */
-public class User {
-    private int id = 0;
+public class User extends StorageData {
     private boolean isAdmin;
     private String name;
     private String password;
@@ -20,13 +19,6 @@ public class User {
     private WishList wishList = new WishList();
     private Cart cart = new Cart();
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -54,6 +46,11 @@ public class User {
         this.mail = u.mail;
         this.street = u.street;
         this.city = u.city;
+    }
+
+    @Override
+    public IStorageData getCopy() {
+        return new User(this);
     }
     
     

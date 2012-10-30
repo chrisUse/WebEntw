@@ -10,8 +10,7 @@ import java.util.*;
  *
  * @author delbertooo
  */
-public class Product {
-    private int id = 0;
+public class Product extends StorageData{
     private String name;
     private float price;
     private String description;
@@ -35,14 +34,8 @@ public class Product {
         this.manufacturer = p.manufacturer;
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public IStorageData getCopy() {
+        return new Product(this);
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    
-    
 }
