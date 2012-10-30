@@ -16,10 +16,6 @@ public class Storage {
 
     /* should be thread safe too: http://www.theserverside.de/singleton-pattern-in-java/ */
     private static Storage instance = new Storage();
-    private HashMap<Integer, Product> products;
-    private int autoIncProducts = 0;
-    private HashMap<Integer, User> users;
-    private int autoIncUsers = 0;
     
     private HashMap<DataType, HashMap<Integer, IStorageData>> data;
     
