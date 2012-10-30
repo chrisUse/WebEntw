@@ -109,17 +109,18 @@ public class Storage {
         return (Product)getDataById(Storage.Data.PRODUCTS, id);
     }
     
-//    public List<Integer> getUsersByName(String name) {
-//        List<Integer> res = new ArrayList<Integer>();
-//        synchronized (Storage.class) {
-//            for (Map.Entry<Integer, User> e : users.entrySet()) {
-//                if (e.getValue().getName().toLowerCase().equals(name.toLowerCase())) {
-//                    res.add(e.getKey());
-//                }
-//            }
-//        }
-//        return res;
-//    }
+    public List<Integer> getUsersByName(String name) {
+        List<Integer> res = new ArrayList<Integer>();
+        synchronized (Storage.class) {
+            for (Map.Entry<Integer, IStorageData> e : data.get(Storage.Data.USERS).entrySet()) {
+                User u = (User)e.getValue();
+                if (u.getName().toLowerCase().equals(name.toLowerCase())) {
+                    res.add(e.getKey());
+                }
+            }
+        }
+        return res;
+    }
 
     private Storage() {
         
