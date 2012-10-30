@@ -16,12 +16,11 @@ public class Storage {
 
     /* should be thread safe too: http://www.theserverside.de/singleton-pattern-in-java/ */
     private static Storage instance = new Storage();
-    
     private HashMap<DataType, HashMap<Integer, IStorageData>> data;
-    
     private HashMap<DataType, Integer> autoInc;
-    
+
     public static class Data {
+
         public static final DataType USERS = new DataType(0);
         public static final DataType PRODUCTS = new DataType(1);
     }
@@ -29,11 +28,11 @@ public class Storage {
     private void addDefaultData() throws StorageException {
         //add some users
         addUser(new User(
-                true, 
-                "Admin", 
-                "password", 
-                "admin@example.com", 
-                "Admin Street", 
+                true,
+                "Admin",
+                "password",
+                "admin@example.com",
+                "Admin Street",
                 "Admin Town"));
 
         //add some products
@@ -58,7 +57,7 @@ public class Storage {
                 "JAGUAR"));
 
     }
-    
+
     private void addData(DataType type, IStorageData d) throws StorageException {
         synchronized (Storage.class) {
             int newId = autoInc.get(type) + 1;
@@ -66,13 +65,13 @@ public class Storage {
             d.setId(newId);
         }
     }
-    
+
     private void setData(DataType type, IStorageData d) {
         synchronized (Storage.class) {
             data.get(type).put(d.getId(), d.getCopy());
         }
     }
-    
+
     private IStorageData getDataById(DataType type, int id) {
         synchronized (Storage.class) {
             return data.get(type).get(id).getCopy();
@@ -82,32 +81,39 @@ public class Storage {
     public void addUser(User u) throws StorageException {
         addData(Storage.Data.USERS, u);
     }
-    
+
     public void setUser(User u) {
         setData(Storage.Data.USERS, u);
     }
-    
+
     public void addProduct(Product p) throws StorageException {
         addData(Storage.Data.PRODUCTS, p);
     }
-    
+
     public void setProduct(Product p) {
         setData(Storage.Data.PRODUCTS, p);
     }
 
     public User getUserById(int id) {
-        return (User)getDataById(Storage.Data.USERS, id);
+        return (User) getDataById(Storage.Data.USERS, id);
     }
-    
+
     public Product getProductById(int id) {
-        return (Product)getDataById(Storage.Data.PRODUCTS, id);
+        return (Product) getDataById(Storage.Data.PRODUCTS, id);
     }
-    
+
+    /**
+     * Returns the IDs of users with a name starting with
+     * <param>name</param>. This function is <b>not</b> case
+     * sensitive.
+     * @param name Exact name or the first characters of a name.
+     * @return ArrayList of Integers (IDs).
+     */
     public List<Integer> getUserIdsByName(String name) {
         List<Integer> res = new ArrayList<Integer>();
         synchronized (Storage.class) {
             for (Map.Entry<Integer, IStorageData> e : data.get(Storage.Data.USERS).entrySet()) {
-                User u = (User)e.getValue();
+                User u = (User) e.getValue();
                 if (u.getName().toLowerCase().equals(name.toLowerCase())) {
                     res.add(e.getKey());
                 }
@@ -117,13 +123,12 @@ public class Storage {
     }
 
     private Storage() {
-        
+
         autoInc = new HashMap<DataType, Integer>();
         Field[] fields = Storage.Data.class.getFields();
         for (Field f : fields) {
             try {
-                //System.out.println(f.getName() + " -> " + f.get(Storage.Data.class));
-                DataType key = (DataType)f.get(Storage.Data.class);
+                DataType key = (DataType) f.get(Storage.Data.class);
                 autoInc.put(key, 0);
                 data.put(key, new HashMap<Integer, IStorageData>());
             } catch (Exception ex) {
