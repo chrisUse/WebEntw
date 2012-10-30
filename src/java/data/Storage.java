@@ -91,10 +91,6 @@ public class Storage {
     public void setUser(User u) {
         setData(Storage.Data.USERS, u);
     }
-    
-    public void deleteUser(User u) {
-        deleteUserById(u.id);
-    }
 
     public void addProduct(Product p) throws StorageException {
         addData(Storage.Data.PRODUCTS, p);
@@ -102,10 +98,6 @@ public class Storage {
 
     public void setProduct(Product p) {
         setData(Storage.Data.PRODUCTS, p);
-    }
-    
-    public void deleteProduct(Product p) {
-        deleteProductById(p.id);
     }
 
     public User getUserById(int id) {
