@@ -77,6 +77,12 @@ public class Storage {
             return data.get(type).get(id).getCopy();
         }
     }
+    
+    private void deleteDataById(DataType type, int id) {
+        synchronized (Storage.class) {
+            data.get(type).remove(id);
+        }
+    }
 
     public void addUser(User u) throws StorageException {
         addData(Storage.Data.USERS, u);
@@ -84,6 +90,10 @@ public class Storage {
 
     public void setUser(User u) {
         setData(Storage.Data.USERS, u);
+    }
+    
+    public void deleteUser(User u) {
+        deleteUserById(u.id);
     }
 
     public void addProduct(Product p) throws StorageException {
@@ -93,6 +103,10 @@ public class Storage {
     public void setProduct(Product p) {
         setData(Storage.Data.PRODUCTS, p);
     }
+    
+    public void deleteProduct(Product p) {
+        deleteProductById(p.id);
+    }
 
     public User getUserById(int id) {
         return (User) getDataById(Storage.Data.USERS, id);
@@ -100,6 +114,14 @@ public class Storage {
 
     public Product getProductById(int id) {
         return (Product) getDataById(Storage.Data.PRODUCTS, id);
+    }
+    
+    public void deleteUserById(int id) {
+        deleteDataById(Storage.Data.USERS, id);
+    }
+    
+    public void deleteProductById(int id) {
+        deleteDataById(Storage.Data.PRODUCTS , id);
     }
 
     /**
