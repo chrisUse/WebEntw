@@ -78,6 +78,12 @@ public class Storage {
             data.get(type).put(d.getId(), d.getCopy());
         }
     }
+    
+    private IStorageData getDataById(DataType type, int id) {
+        synchronized (Storage.class) {
+            return data.get(type).get(id).getCopy();
+        }
+    }
 
     public void addUser(User u) throws StorageException {
         addData(Storage.Data.USERS, u);
@@ -95,16 +101,14 @@ public class Storage {
         setData(Storage.Data.PRODUCTS, p);
     }
 
-//    public User getUserById(int id) {
-//        synchronized (Storage.class) {
-//            return new User(users.get(id));
-//        }
-//    }
-//    public Product getProductById(int id) {
-//        synchronized (Storage.class) {
-//            return new Product(products.get(id));
-//        }
-//    }
+    public User getUserById(int id) {
+        return (User)getDataById(Storage.Data.USERS, id);
+    }
+    
+    public Product getProductById(int id) {
+        return (Product)getDataById(Storage.Data.PRODUCTS, id);
+    }
+    
 //    public List<Integer> getUsersByName(String name) {
 //        List<Integer> res = new ArrayList<Integer>();
 //        synchronized (Storage.class) {
