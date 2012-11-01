@@ -19,7 +19,7 @@ public class Storage {
     private HashMap<DataType, HashMap<Integer, IStorageData>> data;
     private HashMap<DataType, Integer> autoInc;
 
-    public static class Data {
+    private static class Data {
 
         public static final DataType USERS = new DataType(0);
         public static final DataType PRODUCTS = new DataType(1);
