@@ -44,6 +44,8 @@ public class Product extends StorageData {
         this.price = p.price;
         this.description = p.description;
         this.manufacturer = p.manufacturer;
+        
+        this.comments = p.getComments(); // deep copy
     }
 
     @Override
