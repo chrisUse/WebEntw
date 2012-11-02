@@ -11,6 +11,7 @@ import java.util.Date;
  * @author delbertooo
  */
 public class Comment {
+
     private String name;
     private String text;
     private java.util.Date date;
@@ -20,9 +21,9 @@ public class Comment {
         this.text = text;
         this.date = date;
     }
-    
+
     public Comment(Comment c) {
-        this.date= c.date;
+        this.date = c.date;
         this.name = c.name;
         this.text = c.text;
     }

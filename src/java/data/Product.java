@@ -10,12 +10,12 @@ import java.util.*;
  *
  * @author delbertooo
  */
-public class Product extends StorageData{
+public class Product extends StorageData {
+
     private String name;
     private float price;
     private String description;
     private String manufacturer;
-
     private List<Comment> comments = new ArrayList<Comment>();
 
     public Product(String name, float price, String description, String manufacturer) {
@@ -24,10 +24,22 @@ public class Product extends StorageData{
         this.description = description;
         this.manufacturer = manufacturer;
     }
+
+    public List<Comment> getComments() {
+        List<Comment> clone = new ArrayList<Comment>(comments.size());
+        for (Comment item : comments) {
+            clone.add(new Comment(item));
+        }
+        return clone;
+    }
     
+    public void addComment(Comment c) {
+        comments.add(c);
+    }
+
     public Product(Product p) {
         this.id = p.id;
-        
+
         this.name = p.name;
         this.price = p.price;
         this.description = p.description;

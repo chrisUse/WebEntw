@@ -9,16 +9,15 @@ package data;
  * @author delbertooo
  */
 public class User extends StorageData {
+
     private boolean isAdmin;
     private String name;
     private String password;
     private String mail;
     private String street;
     private String city;
-    
     private WishList wishList = new WishList();
     private Cart cart = new Cart();
-
 
     public String getName() {
         return name;
@@ -27,7 +26,7 @@ public class User extends StorageData {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public User(boolean isAdmin, String name, String password, String mail, String street, String city) {
         this.isAdmin = isAdmin;
         this.name = name;
@@ -36,10 +35,10 @@ public class User extends StorageData {
         this.street = street;
         this.city = city;
     }
-    
+
     public User(User u) {
         this.id = u.id;
-        
+
         this.isAdmin = u.isAdmin;
         this.name = u.name;
         this.password = u.password;
@@ -52,6 +51,4 @@ public class User extends StorageData {
     public IStorageData getCopy() {
         return new User(this);
     }
-    
-    
 }
