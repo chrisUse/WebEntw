@@ -4,7 +4,7 @@
  */
 package data;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Provides a simple wish list for the user. Stores the products in the list 
@@ -12,7 +12,23 @@ import java.util.List;
  * @author Marco Wilhelm, delbertooo
  */
 public class WishList {
-    private List<Product> products;
+    private List<Product> products = new ArrayList<Product>();
+
+    public WishList() {
+    }
+    
+    public WishList(WishList l) {
+        this.products = l.getProducts();
+    }
+    
+    
+    public List<Product> getProducts() {
+        List<Product> clone = new ArrayList<Product>(products.size());
+        for (Product item : products) {
+            clone.add(new Product(item));
+        }
+        return clone;
+    }
     
     /** 
      * Adds a product to the wish list.

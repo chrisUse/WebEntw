@@ -16,6 +16,10 @@ public class Cart {
 
     public Cart() {
     }
+    
+    public Cart(Cart c) {
+        this.productsInCart = c.getProductsInCart(); // deep copy
+    }
 
     public List<ProductInCart> getProductsInCart() {
         List<ProductInCart> clone = new ArrayList<ProductInCart>(productsInCart.size());
