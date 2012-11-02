@@ -9,7 +9,17 @@ package data;
  * @author delbertooo
  */
 public class ProductInCart {
+
     private int count;
-    private Product product; /** @todo use id's **/
-    
+    private int productId;
+
+    public ProductInCart(int count, int productId) {
+        this.count = count;
+        this.productId = productId;
+    }
+
+    public ProductInCart(ProductInCart pic) {
+        this.count = pic.count;
+        this.productId = pic.productId;
+    }
 }

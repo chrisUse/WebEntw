@@ -4,13 +4,26 @@
  */
 package data;
 
-import java.util.List;
+import java.util.*;
 
 /**
  *
  * @author delbertooo
  */
 public class Cart {
-    private List<ProductInCart> productsInCart;
+
+    private List<ProductInCart> productsInCart = new ArrayList<ProductInCart>();
+
+    public Cart() {
+    }
+
+    public List<ProductInCart> getProductsInCart() {
+        List<ProductInCart> clone = new ArrayList<ProductInCart>(productsInCart.size());
+        for (ProductInCart item : productsInCart) {
+            clone.add(new ProductInCart(item));
+        }
+        return clone;
+    }
+    
     
 }

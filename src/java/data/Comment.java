@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author delbertooo
  */
-public class Comment {
+public class Comment implements Cloneable {
 
     private String name;
     private String text;
