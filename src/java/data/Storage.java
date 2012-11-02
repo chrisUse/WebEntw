@@ -77,7 +77,7 @@ public class Storage {
             return data.get(type).get(id).getCopy();
         }
     }
-    
+
     private void deleteDataById(DataType type, int id) {
         synchronized (Storage.class) {
             data.get(type).remove(id);
@@ -107,19 +107,19 @@ public class Storage {
     public Product getProductById(int id) {
         return (Product) getDataById(Storage.Data.PRODUCTS, id);
     }
-    
+
     public void deleteUserById(int id) {
         deleteDataById(Storage.Data.USERS, id);
     }
-    
+
     public void deleteProductById(int id) {
-        deleteDataById(Storage.Data.PRODUCTS , id);
+        deleteDataById(Storage.Data.PRODUCTS, id);
     }
 
     /**
-     * Returns the IDs of users with a name starting with
-     * <param>name</param>. This function is <b>not</b> case
-     * sensitive.
+     * Returns the IDs of users with a name starting with <param>name</param>.
+     * This function is <b>not</b> case sensitive.
+     *
      * @param name Exact name or the first characters of a name.
      * @return ArrayList of Integers (IDs).
      */
@@ -134,6 +134,14 @@ public class Storage {
             }
         }
         return res;
+    }
+
+    public WishList getWishListForUser(int userId) {
+        return this.getUserById(userId).getWishList();
+    }
+
+    public Cart getCartForUser(int userId) {
+        return this.getUserById(userId).getCart();
     }
 
     private Storage() {

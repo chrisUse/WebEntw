@@ -45,10 +45,21 @@ public class User extends StorageData {
         this.mail = u.mail;
         this.street = u.street;
         this.city = u.city;
+
+        this.wishList = u.getWishList(); // deep copy
+        this.cart = u.getCart(); // deep copy
     }
 
     @Override
     public IStorageData getCopy() {
         return new User(this);
+    }
+
+    public WishList getWishList() {
+        return new WishList(wishList);
+    }
+
+    public Cart getCart() {
+        return new Cart(cart);
     }
 }
