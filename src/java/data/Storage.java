@@ -143,6 +143,10 @@ public class Storage {
     public Cart getCartForUser(int userId) {
         return this.getUserById(userId).getCart();
     }
+    
+    public List<Comment> getCommentsForProduct(int productId) {
+        return this.getProductById(productId).getComments();
+    }
 
     private Storage() {
 
