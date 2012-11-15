@@ -7,8 +7,6 @@ package data;
 import java.util.*;
 
 /**
- * Provides a simple wish list for the user. Stores the products in the list 
- * products. Provides methods to add and remove products to the list.
  * @author Stephan Stenzel
  */
 public class Coupon {
