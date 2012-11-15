@@ -9,13 +9,20 @@ import java.util.*;
 /**
  * @author Stephan Stenzel
  */
-public class Coupon {
+public class Coupon implements ICopyable {
 
     private String code;
     private float value;
 
-    public Coupon() {
-    }   
+    public Coupon(String code, float value) {
+        this.code = code;
+        this.value = value;
+    }
+
+    public Coupon(Coupon c) {
+        this.code = c.code;
+        this.value = c.value;
+    }
 
     public String getCode() {
         return code;
@@ -32,4 +39,11 @@ public class Coupon {
     public void setValue(float nValue) {
         value = nValue;
     }
+
+    @Override
+    public ICopyable getCopy() {
+        return new Coupon(this);
+    }
+    
+    
 }
