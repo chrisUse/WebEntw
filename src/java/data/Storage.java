@@ -120,7 +120,7 @@ public class Storage {
     
     public void addCoupon(Coupon c) {
         synchronized (Storage.class) {
-            this.coupons.put(c.getCode(), c);
+            this.coupons.put(c.getCode(), (Coupon)c.getCopy());
         }
     }
     
