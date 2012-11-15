@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="data.Product"%>
+
+<!-- <jsp:useBean id="dataStore" class="data.Storage" scope="page"/> -->
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +12,13 @@
 <body>
  <!-- ########## S Y S T E M ########## -->
  <!-- Check if actor are admin -->
+ 
+
+ 
+ <%
+   data.Storage.getInstance().addProduct(new Product("TestPro1", 23, "Das ist das neue TestP 1", "Von mir blub"));
+   out.println("Test: " + dataStore.getInstance().getProductById(0).getName() );
+ %>
  
  <!--  Nachbedingung Erfolg: Is product are insert actor gets success notification -->
  <!--  Nachbedingung Fehler: If a problem are occurred actor gets error notification -->

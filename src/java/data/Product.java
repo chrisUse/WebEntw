@@ -24,6 +24,10 @@ public class Product extends StorageData {
         this.description = description;
         this.manufacturer = manufacturer;
     }
+    
+    public String getName () {
+      return name;
+    }
 
     public List<Comment> getComments() {
         List<Comment> clone = new ArrayList<Comment>(comments.size());
