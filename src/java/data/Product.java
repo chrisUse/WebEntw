@@ -51,5 +51,5 @@ public class Product extends StorageData {
     @Override
     public IStorageData getCopy() {
         return new Product(this);
-    }
+    }    
 }
