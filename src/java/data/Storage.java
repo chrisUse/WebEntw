@@ -18,6 +18,7 @@ public class Storage {
     private static Storage instance = new Storage();
     private HashMap<DataType, HashMap<Integer, IStorageData>> data;
     private HashMap<DataType, Integer> autoInc;
+    private HashMap<String, Coupon> coupons;
 
     private static class Data {
 
@@ -66,15 +67,16 @@ public class Storage {
         }
     }
 
-    private void setData(DataType type, IStorageData d) {
+    private void setData(DataType type, ICopyable d) {
         synchronized (Storage.class) {
-            data.get(type).put(d.getId(), d.getCopy());
+            data.get(type).put(((IStorageData)d).getId(), (IStorageData)d.getCopy());
         }
     }
 
     private IStorageData getDataById(DataType type, int id) {
         synchronized (Storage.class) {
-            return data.get(type).get(id).getCopy();
+            ICopyable c = (ICopyable)data.get(type).get(id);
+            return (IStorageData)c.getCopy();
         }
     }
 
@@ -115,6 +117,18 @@ public class Storage {
     public void deleteProductById(int id) {
         deleteDataById(Storage.Data.PRODUCTS, id);
     }
+    
+    public void addCoupon(Coupon c) {
+        synchronized (Storage.class) {
+            this.coupons.put(c.getCode(), c);
+        }
+    }
+    
+    public Coupon getCouponByCody(String code) {
+        synchronized (Storage.class) {
+            return (Coupon)this.coupons.get(code).getCopy();
+        }
+    }
 
     /**
      * Returns the IDs of users with a name starting with <param>name</param>.
@@ -151,6 +165,7 @@ public class Storage {
     private Storage() {
 
         autoInc = new HashMap<DataType, Integer>();
+        coupons = new HashMap<String, Coupon>();
         Field[] fields = Storage.Data.class.getFields();
         for (Field f : fields) {
             try {

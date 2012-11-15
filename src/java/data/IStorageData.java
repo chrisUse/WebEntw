@@ -22,5 +22,5 @@ public interface IStorageData {
      */
     public void setId(int id) throws StorageException;
     
-    public IStorageData getCopy();
+    //public IStorageData getCopy();
 }

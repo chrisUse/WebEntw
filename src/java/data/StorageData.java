@@ -10,7 +10,7 @@ import exceptions.StorageException;
  *
  * @author delbertooo
  */
-public abstract class StorageData implements IStorageData {
+public abstract class StorageData implements IStorageData, ICopyable {
 
     protected int id = 0;
     
