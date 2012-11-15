@@ -6,7 +6,7 @@ package data;
 
 /**
  *
- * @author delbertooo
+ * @author drubner, delbertooo
  */
 public class ProductInCart {
 
@@ -21,5 +21,21 @@ public class ProductInCart {
     public ProductInCart(ProductInCart pic) {
         this.count = pic.count;
         this.productId = pic.productId;
+    }
+    
+    public int getId(){
+        return productId;
+    }
+    
+    public int getCount(){
+        return count;
+    }
+    
+    public void setId(int id){
+        this.productId  = id;
+    }
+    
+    public void setCount(int count){
+        this.count      = count;
     }
 }

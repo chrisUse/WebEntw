@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  *
- * @author delbertooo
+ * @author drubner, delbertooo
  */
 public class Cart {
 
@@ -29,5 +29,56 @@ public class Cart {
         return clone;
     }
     
+    public boolean addProduct(ProductInCart product)
+    {
+        return productsInCart.add(product);
+    }
     
+    public boolean removeProduct(int productId)
+    {
+        for(ProductInCart product:productsInCart)
+            if(product.getId() == productId)
+                return productsInCart.remove(product);
+        
+        return false;
+    }
+    
+    public boolean changeQuantity(int productId, int quantity){
+         for(ProductInCart product:productsInCart)
+         {
+            if(product.getId() == productId)
+            {
+                product.setCount(quantity);
+                return true;
+            }
+         }
+         
+         return false;
+    }
+    
+    public boolean increaseQuantity(int productId){
+         for(ProductInCart product:productsInCart)
+         {
+            if(product.getId() == productId)
+            {
+                product.setCount(product.getCount() + 1);
+                return true;
+            }
+         }
+         return false;
+    }
+    
+    public boolean decreaseQuantity(int productId){
+         for(ProductInCart product:productsInCart)
+         {
+            if(product.getId() == productId)
+            {
+                if(product.getCount() > 0)
+                    product.setCount(product.getCount() - 1);
+                    
+                return true;
+            }
+         }
+         return false;
+    }
 }
