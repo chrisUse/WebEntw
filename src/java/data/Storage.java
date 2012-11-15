@@ -124,9 +124,15 @@ public class Storage {
         }
     }
     
-    public Coupon getCouponByCody(String code) {
+    public Coupon getCouponByCode(String code) {
         synchronized (Storage.class) {
             return (Coupon)this.coupons.get(code).getCopy();
+        }
+    }
+    
+    public void deleteCouponByCode(String code) {
+        synchronized (Storage.class) {
+            this.coupons.remove(code);
         }
     }
 
