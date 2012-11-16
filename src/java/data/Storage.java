@@ -7,6 +7,8 @@ package data;
 import exceptions.StorageException;
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -171,15 +173,16 @@ public class Storage {
     private Storage() {
 
         autoInc = new HashMap<DataType, Integer>();
+        data = new HashMap<DataType, HashMap<Integer, IStorageData>>();
         coupons = new HashMap<String, Coupon>();
         Field[] fields = Storage.Data.class.getFields();
         for (Field f : fields) {
             try {
-                DataType key = (DataType) f.get(Storage.Data.class);
-                autoInc.put(key, 0);
+                DataType key = (DataType) f.get(Storage.Data.class);                
+                autoInc.put(key, new Integer(0));
                 data.put(key, new HashMap<Integer, IStorageData>());
             } catch (Exception ex) {
-                throw new RuntimeException("Something in Storage went completely wrong.\n" + ex.getMessage());
+                throw new RuntimeException("Something in Storage went completely wrong.\n" + ex.getClass().toString() + "\n" + ex.getMessage() + "\n");
             }
         }
         try {
