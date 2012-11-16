@@ -18,6 +18,7 @@ public class User extends StorageData {
     private String city;
     private WishList wishList = new WishList();
     private Cart cart = new Cart();
+    private PriceNotificationList priceNotificationList = new PriceNotificationList();
 
     public String getName() {
         return name;

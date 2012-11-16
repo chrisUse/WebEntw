@@ -39,6 +39,13 @@ public class Coupon implements ICopyable {
     public void setValue(float nValue) {
         value = nValue;
     }
+    
+    public boolean validateCode(String nCode) {
+        if(nCode.equals(code)){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public ICopyable getCopy() {
