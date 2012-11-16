@@ -4,6 +4,8 @@
  */
 package data;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -43,31 +45,36 @@ public class ProductTest {
   @Test
   public void testGetName() {
     System.out.println("getName");
-    Product instance = null;
-    String expResult = "";
-    String result = instance.getName();
-    assertEquals(expResult, result);
+    Product instance = new Product ("TestName",0,"TestDescription","TestManufactorer");
+    String expName = "TestName";
+    //String expResult = "";
+    String resultName = instance.getName();
+    assertEquals(expName, resultName);
     // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    //fail("The test case is a prototype.");
   }
 
   /**
    * Test of getComments method, of class Product.
    */
+  /*
   @Test
   public void testGetComments() {
     System.out.println("getComments");
-    Product instance = null;
-    List expResult = null;
+    Product instance = new Product ("TestName",0,"TestDescription","TestManufactorer");
+    instance.addComment(new Comment ("TestCommentName","TestCommentText", new Date ()));
+    List<Comment> expComment = new ArrayList<Comment>(1);
+    //List expResult = null;
     List result = instance.getComments();
-    assertEquals(expResult, result);
+    assertEquals(expComment.get(0), result.get(0));
     // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    //fail("The test case is a prototype.");
   }
-
+  */
   /**
    * Test of addComment method, of class Product.
    */
+  /*
   @Test
   public void testAddComment() {
     System.out.println("addComment");
@@ -77,10 +84,11 @@ public class ProductTest {
     // TODO review the generated test code and remove the default call to fail.
     fail("The test case is a prototype.");
   }
-
+  */
   /**
    * Test of getCopy method, of class Product.
    */
+  /*
   @Test
   public void testGetCopy() {
     System.out.println("getCopy");
@@ -91,4 +99,5 @@ public class ProductTest {
     // TODO review the generated test code and remove the default call to fail.
     fail("The test case is a prototype.");
   }
+  */
 }
