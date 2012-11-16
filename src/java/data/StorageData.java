@@ -14,10 +14,12 @@ public abstract class StorageData implements IStorageData, ICopyable {
 
     protected int id = 0;
     
+    @Override
     public final int getId() {
         return id;
     }
 
+    @Override
     public final void setId(int id) throws StorageException {
         if (this.id == 0) {
             this.id = id;
