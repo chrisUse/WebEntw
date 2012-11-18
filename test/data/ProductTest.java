@@ -4,11 +4,18 @@
  */
 package data;
 
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.xml.namespace.QName;
+import javax.xml.stream.Location;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.Characters;
 
 import javax.xml.stream.events.Comment;
+import javax.xml.stream.events.EndElement;
+import javax.xml.stream.events.StartElement;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -65,44 +72,48 @@ public class ProductTest {
   public void testGetComments() {
     System.out.println("getComments");
     Product instance = new Product ("TestName",0,"TestDescription","TestManufactorer");
-    instance.addComment(new Comment ("TestCommentName","TestCommentText", new Date ()));
+    
+    /*Comment myComment = new Comment ("TestCommentName","TestCommentText", new Date ());
+    
+    //instance.addComment();
     
     List<Comment> expComment = new ArrayList<Comment>();
     expComment.add(new Comment ("TestCommentName","TestCommentText", new Date ()))
     //List expResult = null;
     List result = instance.getComments();
     assertEquals(expComment.get(0), result.get(0));
-    // TODO review the generated test code and remove the default call to fail.
-    //fail("The test case is a prototype.");
+    */ // TODO review the generated test code and remove the default call to fail.
+    fail("The test case is a prototype.");
   }
   
   /**
    * Test of addComment method, of class Product.
    */
-  /*
+  
   @Test
   public void testAddComment() {
     System.out.println("addComment");
     Comment c = null;
     Product instance = null;
-    instance.addComment(c);
+    //instance.addComment(c);
     // TODO review the generated test code and remove the default call to fail.
     fail("The test case is a prototype.");
   }
-  */
+  
   /**
    * Test of getCopy method, of class Product.
    */
-  /*
+  
   @Test
   public void testGetCopy() {
     System.out.println("getCopy");
-    Product instance = null;
-    ICopyable expResult = null;
+    Product instance = new Product("TestName",0,"TestDescription","TestManufactorer");
+    ICopyable expResult = new Product("TestName",0,"TestDescription","TestManufactorer");
     ICopyable result = instance.getCopy();
+    ///TODO: Deep diff
     assertEquals(expResult, result);
     // TODO review the generated test code and remove the default call to fail.
     fail("The test case is a prototype.");
   }
-  */
+  
 }

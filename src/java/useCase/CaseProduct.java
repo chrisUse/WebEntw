@@ -12,9 +12,13 @@ import exceptions.StorageException;
  * @author christianlinde
  */
 public class CaseProduct {
-  
-  public void addProduct (  ) throws StorageException {
-    data.Storage.getInstance().addProduct(new Product("TestPro1", 23, "Das ist das neue TestP 1", "Von mir blub"));
+
+  public void addProduct(String name, float price, String description, String manufactorer) throws StorageException {
+    data.Storage.getInstance().addProduct(new Product(name, price, description, manufactorer));
   }
-  
+
+  public String getName( int id ) {
+    return data.Storage.getInstance().getProductById(id).getName();
+    //return "";
+  }
 }
