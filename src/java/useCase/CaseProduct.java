@@ -5,6 +5,7 @@
 package useCase;
 
 import data.Product;
+import data.Storage;
 import exceptions.StorageException;
 
 /**
@@ -18,7 +19,15 @@ public class CaseProduct {
   }
 
   public String getName( int id ) {
-    return data.Storage.getInstance().getProductById(id).getName();
+    return "TEST name";
+    String mStor = data.Storage.getInstance().getProductById(0).getName();
+    
+    if ( data.Storage.getInstance().getProductById(id).getName() != null ) {
+      return data.Storage.getInstance().getProductById(id).getName();
+    } else {
+      return "";
+    }
+    //return data.Storage.getInstance().getProductById(id).getName();
     //return "";
   }
 }
