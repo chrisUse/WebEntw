@@ -82,6 +82,16 @@ public class Storage {
             return c == null ? null : (IStorageData) c.getCopy();
         }
     }
+    
+    private List<IStorageData>  getAllData(DataType type) {
+        List<IStorageData> res = new ArrayList<IStorageData>();
+        synchronized (Storage.class) {
+            for (Map.Entry<Integer, IStorageData> e : data.get(type).entrySet()) {
+                res.add((IStorageData)((ICopyable)e.getValue()).getCopy());
+            }
+        }
+        return res;
+    }
 
     private void deleteDataById(DataType type, int id) {
         synchronized (Storage.class) {
@@ -111,6 +121,14 @@ public class Storage {
 
     public Product getProductById(int id) {
         return (Product) getDataById(Storage.Data.PRODUCTS, id);
+    }
+    
+    public List<Product> getAllProducts() {
+        List<Product> l = new ArrayList<Product>();
+        for (IStorageData p : this.getAllData(Storage.Data.PRODUCTS)) {
+            l.add((Product)p);
+        }
+        return l;
     }
 
     public void deleteUserById(int id) {
