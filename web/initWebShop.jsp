@@ -6,12 +6,12 @@
 
 <%@page import="data.*" %>
 <%
-    out.println("Storage at address: " + Storage.getInstance() + "<br>");
+    System.out.println("Storage at address: " + Storage.getInstance());
     
-    out.println("Users: " + Storage.getInstance().getUserCount() + "<br>");
-    out.println("Products: " + Storage.getInstance().getProductCount() + "<br>");
+    System.out.println("Users: " + Storage.getInstance().getUserCount());
+    System.out.println("Products: " + Storage.getInstance().getProductCount());
     
-    out.println("Admin ID: " + Storage.getInstance().getUserIdsByName("Admin").toString() + "<br>");
+    System.out.println("Admin ID: " + Storage.getInstance().getUserIdsByName("Admin").toString());
 %>
 
 
