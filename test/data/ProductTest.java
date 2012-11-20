@@ -29,8 +29,18 @@ import static org.junit.Assert.*;
  * @author christianlinde
  */
 public class ProductTest {
+  Product instance;
+  String refName;
+  float  refPrice;
+  String refDescription;
+  String refManufacturer;
   
   public ProductTest() {
+    refName         = "TestName";
+    refPrice        = 2.34565f;
+    refDescription  = "TestDescription";
+    refManufacturer = "TestManufactorer";
+    instance = new Product (refName, refPrice, refDescription, refManufacturer);
   }
   
   @BeforeClass
@@ -55,13 +65,29 @@ public class ProductTest {
   @Test
   public void testGetName() {
     System.out.println("getName");
-    Product instance = new Product ("TestName",0,"TestDescription","TestManufactorer");
-    String expName = "TestName";
-    //String expResult = "";
-    String resultName = instance.getName();
-    assertEquals(expName, resultName);
-    // TODO review the generated test code and remove the default call to fail.
-    //fail("The test case is a prototype.");
+    String result = instance.getName();
+    assertEquals(refName, result);
+  }
+  
+  @Test
+  public void testGetPrice() {
+    System.out.println("getPrice");
+    float result = instance.getPrice();
+    assertTrue( refPrice == result );
+  }
+  
+  @Test
+  public void testGetDescription() {
+    System.out.println("getDescription");
+    String result = instance.getDescription();
+    assertEquals(refDescription, result);
+  }
+  
+  @Test
+  public void testGetManufacturer() {
+    System.out.println("getManufacturer");
+    String result = instance.getManufacturer();
+    assertEquals(refManufacturer, result);
   }
 
   /**
@@ -71,7 +97,6 @@ public class ProductTest {
   @Test
   public void testGetComments() {
     System.out.println("getComments");
-    Product instance = new Product ("TestName",0,"TestDescription","TestManufactorer");
     
     /*Comment myComment = new Comment ("TestCommentName","TestCommentText", new Date ());
     
