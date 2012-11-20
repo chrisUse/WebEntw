@@ -33,12 +33,11 @@
         </form>-->
         
         
-        <%--<jsp:include page="initWebShop.jsp"></jsp:include>--%>
-        <jsp:include page="onlineshopTemplate.xhtml"></jsp:include>
+        <jsp:include page="initWebShop.jsp"></jsp:include>
         
-        <!--<form name="sps" action="showProductShort.jsp">
+        <form name="sps" action="showProductShort.jsp">
             productID: <input type="text" name="productID" value="1" />
             <input type="submit" value="Show Product"/>
-        </form>-->
+        </form>
     </body>
 </html>

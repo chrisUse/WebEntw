@@ -17,7 +17,5 @@
         <title>add product to wishlist</title>
     </head>
     <body>
-
-            
     </body>
 </html>
