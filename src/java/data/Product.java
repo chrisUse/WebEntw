@@ -26,7 +26,19 @@ public class Product extends StorageData {
     }
     
     public String getName () {
-      return name;
+      return this.name;
+    }
+    
+    public float getPrice () {
+      return this.price;
+    }
+    
+    public String getDescription () {
+      return this.description;
+    }
+    
+    public String getManufacturer () {
+      return this.manufacturer;
     }
 
     public List<Comment> getComments() {

@@ -14,36 +14,40 @@ import exceptions.StorageException;
  */
 public class CaseProduct {
 
-  public void addProduct(String name, float price, String description, String manufactorer) throws StorageException {
-    data.Storage.getInstance().addProduct(new Product(name, price, description, manufactorer));
+  public int addProduct(String name, float price, String description, String manufactorer) throws StorageException {
+    return data.Storage.getInstance().addProduct(new Product(name, price, description, manufactorer));
   }
 
   public String getName( int id ) {
-    //return "TEST name";
-    /*String mStor = data.Storage.getInstance().getProductById(0).getName();
-    
     if ( data.Storage.getInstance().getProductById(id).getName() != null ) {
       return data.Storage.getInstance().getProductById(id).getName();
     } else {
-      return "";
-    }*/
-    //return data.Storage.getInstance().getProductById(id).getName();
-    return null;
+      return null;
+    }
   }
   
-  public float getPrice () {
-    
-    return -1;
+  public float getPrice ( int id ) {
+    if ( data.Storage.getInstance().getProductById(id).getPrice() != -1 ) {
+      return data.Storage.getInstance().getProductById(id).getPrice();
+    } else {
+      return -1;
+    }
   }
   
-  public String getDescription () {
-    
-    return null;
+  public String getDescription ( int id ) {
+    if ( data.Storage.getInstance().getProductById(id).getDescription() != null ) {
+      return data.Storage.getInstance().getProductById(id).getDescription();
+    } else {
+      return null;
+    }
   }
   
-  public String getManufacturer () {
-    
-    return null;
+  public String getManufacturer ( int id ) {
+    if ( data.Storage.getInstance().getProductById(id).getManufacturer() != null ) {
+      return data.Storage.getInstance().getProductById(id).getManufacturer();
+    } else {
+      return null;
+    }
   }
   
 }
