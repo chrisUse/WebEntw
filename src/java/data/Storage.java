@@ -61,27 +61,36 @@ public class Storage {
 
     }
 
-    private void addData(DataType type, IStorageData d) throws StorageException {
+    private int addData(DataType type, IStorageData d) throws StorageException {
         synchronized (Storage.class) {
             int newId = autoInc.get(type) + 1;
             autoInc.put(type, newId);
             d.setId(newId);
-            
-            data.get(type).put(newId, d);
+            return this.setData(type, (ICopyable) d) ? null : newId;
         }
     }
 
-    private void setData(DataType type, ICopyable d) {
+    private boolean setData(DataType type, ICopyable d) {
         synchronized (Storage.class) {
-            data.get(type).put(((IStorageData)d).getId(), (IStorageData)d.getCopy());
+            return data.get(type).put(((IStorageData) d).getId(), (IStorageData) d.getCopy()) == null ? false : true;
         }
     }
 
     private IStorageData getDataById(DataType type, int id) {
         synchronized (Storage.class) {
-            ICopyable c = (ICopyable)data.get(type).get(id);
-            return (IStorageData)c.getCopy();
+            ICopyable c = (ICopyable) data.get(type).get(id);
+            return c == null ? null : (IStorageData) c.getCopy();
         }
+    }
+    
+    private List<IStorageData>  getAllData(DataType type) {
+        List<IStorageData> res = new ArrayList<IStorageData>();
+        synchronized (Storage.class) {
+            for (Map.Entry<Integer, IStorageData> e : data.get(type).entrySet()) {
+                res.add((IStorageData)((ICopyable)e.getValue()).getCopy());
+            }
+        }
+        return res;
     }
 
     private void deleteDataById(DataType type, int id) {
@@ -90,16 +99,16 @@ public class Storage {
         }
     }
 
-    public void addUser(User u) throws StorageException {
-        addData(Storage.Data.USERS, u);
+    public int addUser(User u) throws StorageException {
+        return addData(Storage.Data.USERS, u);
     }
 
     public void setUser(User u) {
         setData(Storage.Data.USERS, u);
     }
 
-    public void addProduct(Product p) throws StorageException {
-        addData(Storage.Data.PRODUCTS, p);
+    public int addProduct(Product p) throws StorageException {
+        return addData(Storage.Data.PRODUCTS, p);
     }
 
     public void setProduct(Product p) {
@@ -113,6 +122,14 @@ public class Storage {
     public Product getProductById(int id) {
         return (Product) getDataById(Storage.Data.PRODUCTS, id);
     }
+    
+    public List<Product> getAllProducts() {
+        List<Product> l = new ArrayList<Product>();
+        for (IStorageData p : this.getAllData(Storage.Data.PRODUCTS)) {
+            l.add((Product)p);
+        }
+        return l;
+    }
 
     public void deleteUserById(int id) {
         deleteDataById(Storage.Data.USERS, id);
@@ -121,19 +138,19 @@ public class Storage {
     public void deleteProductById(int id) {
         deleteDataById(Storage.Data.PRODUCTS, id);
     }
-    
+
     public void addCoupon(Coupon c) {
         synchronized (Storage.class) {
-            this.coupons.put(c.getCode(), (Coupon)c.getCopy());
+            this.coupons.put(c.getCode(), (Coupon) c.getCopy());
         }
     }
-    
+
     public Coupon getCouponByCode(String code) {
         synchronized (Storage.class) {
-            return (Coupon)this.coupons.get(code).getCopy();
+            return (Coupon) this.coupons.get(code).getCopy();
         }
     }
-    
+
     public void deleteCouponByCode(String code) {
         synchronized (Storage.class) {
             this.coupons.remove(code);
@@ -167,7 +184,7 @@ public class Storage {
     public Cart getCartForUser(int userId) {
         return this.getUserById(userId).getCart();
     }
-    
+
     public List<Comment> getCommentsForProduct(int productId) {
         return this.getProductById(productId).getComments();
     }
@@ -180,7 +197,7 @@ public class Storage {
         Field[] fields = Storage.Data.class.getFields();
         for (Field f : fields) {
             try {
-                DataType key = (DataType) f.get(Storage.Data.class);                
+                DataType key = (DataType) f.get(Storage.Data.class);
                 autoInc.put(key, new Integer(0));
                 data.put(key, new HashMap<Integer, IStorageData>());
             } catch (Exception ex) {
@@ -197,17 +214,19 @@ public class Storage {
     public static Storage getInstance() {
         return instance;
     }
-    
-    
+
     /*========================================================================
-      ========================================================================*/
-    
+     ========================================================================*/
     /*for debug purposes only*/
-    public int getUserCount(){
-        return data.get(Storage.Data.USERS).values().size();
+    public int getUserCount() {
+        synchronized (Storage.class) {
+            return data.get(Storage.Data.USERS).values().size();
+        }
     }
-    
-    public int getProductCount(){
-        return data.get(Storage.Data.PRODUCTS).values().size();
+
+    public int getProductCount() {
+        synchronized (Storage.class) {
+            return data.get(Storage.Data.PRODUCTS).values().size();
+        }
     }
 }
