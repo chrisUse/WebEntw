@@ -14,8 +14,8 @@ import exceptions.StorageException;
  */
 public class CaseProduct {
 
-  public void addProduct(String name, float price, String description, String manufactorer) throws StorageException {
-    data.Storage.getInstance().addProduct(new Product(name, price, description, manufactorer));
+  public int addProduct(String name, float price, String description, String manufactorer) throws StorageException {
+    return data.Storage.getInstance().addProduct(new Product(name, price, description, manufactorer));
   }
 
   public String getName( int id ) {

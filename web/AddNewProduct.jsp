@@ -23,7 +23,9 @@
           if (request.getParameter("InsertProduct") != null) {
             // Initial values and add product.
             out.println("Add Product <br />");
-            nProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
+            int newPID = nProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
+            String name = nProduct.getName(newPID);
+            out.println ("Test: " + name);
           }
           // name = request.getParameter("name");
 
@@ -39,8 +41,7 @@
            out.println("No new product");
            }
            * */
-          String name = nProduct.getName(0);
-          out.println ("Test: " + name);
+          
         %>
 
         <!--  Nachbedingung Erfolg: Is product are insert actor gets success notification -->
