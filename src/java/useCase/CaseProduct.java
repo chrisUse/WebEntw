@@ -20,15 +20,15 @@ public class CaseProduct {
 
   public String getName( int id ) {
     //return "TEST name";
-    /*String mStor = data.Storage.getInstance().getProductById(0).getName();
+    //String mStor = data.Storage.getInstance().getProductById(0).getName();
     
     if ( data.Storage.getInstance().getProductById(id).getName() != null ) {
       return data.Storage.getInstance().getProductById(id).getName();
     } else {
-      return "";
-    }*/
+      return null;
+    }
     //return data.Storage.getInstance().getProductById(id).getName();
-    return null;
+    //return null;
   }
   
   public float getPrice () {

@@ -10,54 +10,54 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
-    <h:body>
-        <ui:composition template="./newTemplate.xhtml">
-            <ui:define name="content">
+  <h:body>
+    <ui:composition template="./newTemplate.xhtml">
+      <ui:define name="content">
 
-    <!-- ########## S Y S T E M ########## -->
-    <!-- Check if actor are admin -->
+        <!-- ########## S Y S T E M ########## -->
+        <!-- Check if actor are admin -->
 
-    <%
-      // Check if values are present
-      if (request.getParameter("InsertProduct") != null) {
-        // Initial values and add product.
-        out.println ("Add Product <br />");
-        CaseProduct nProduct = new CaseProduct();
-        nProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
-      }
-      // name = request.getParameter("name");
+        <%
+          CaseProduct nProduct = new CaseProduct();
+          // Check if values are present
+          if (request.getParameter("InsertProduct") != null) {
+            // Initial values and add product.
+            out.println("Add Product <br />");
+            nProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
+          }
+          // name = request.getParameter("name");
 
 
-/*
-      if (nProduct != null) {
-        out.println("New Product");
-        //if (nProduct.getName(0) != null) {
-        //String test = nProduct.getName(2);
-        out.println("Name: " + nProduct.getName(0));
-        //}
-      } else {
-        out.println("No new product");
-      }
- * */
-      // String name = data.Storage.getInstance() .getProductById(0).getName();
-      // out.println ("Test: " + name);
-%>
+          /*
+           if (nProduct != null) {
+           out.println("New Product");
+           //if (nProduct.getName(0) != null) {
+           //String test = nProduct.getName(2);
+           out.println("Name: " + nProduct.getName(0));
+           //}
+           } else {
+           out.println("No new product");
+           }
+           * */
+          String name = nProduct.getName(0);
+          out.println ("Test: " + name);
+        %>
 
-          <!--  Nachbedingung Erfolg: Is product are insert actor gets success notification -->
-          <!--  Nachbedingung Fehler: If a problem are occurred actor gets error notification -->
-          <!--   Actor can change something to fix error -->
+        <!--  Nachbedingung Erfolg: Is product are insert actor gets success notification -->
+        <!--  Nachbedingung Fehler: If a problem are occurred actor gets error notification -->
+        <!--   Actor can change something to fix error -->
 
-          <!-- ########## A C T O R ########## -->
-          <!-- Actor insert product informations for adding -->
-          <form method="post" action="AddNewProduct.jsp">
-            <input name="Name" value="" type="text"> 
-            <input name="Price" value="" type="text"> 
-            <input name="Description" value="" type="text"> 
-            <input name="Manufactorer" value="" type="text">
-            <input name="InsertProduct" value="Add"  type="submit" >  
-          </form>
+        <!-- ########## A C T O R ########## -->
+        <!-- Actor insert product informations for adding -->
+        <form method="post" action="AddNewProduct.jsp">
+          <input name="Name" value="" type="text" /> 
+          <input name="Price" value="" type="text" /> 
+          <input name="Description" value="" type="text" /> 
+          <input name="Manufactorer" value="" type="text" />
+          <input name="InsertProduct" value="Add"  type="submit" />  
+        </form>
 
-         </ui:define>
-        </ui:composition>
-    </h:body>
+      </ui:define>
+    </ui:composition>
+  </h:body>
 </html>
