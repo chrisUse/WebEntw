@@ -24,8 +24,12 @@
             // Initial values and add product.
             out.println("Add Product <br />");
             int newPID = nProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
-            String name = nProduct.getName(newPID);
-            out.println ("Test: " + name);
+            //String name = nProduct.getName(newPID);
+            out.println ("ID: " + newPID + " ");
+            out.println ("Name: "         + nProduct.getName(newPID) + "<br />");
+            out.println ("Price: "        + nProduct.getPrice(newPID) + "<br />");
+            out.println ("Description: "  + nProduct.getDescription(newPID) + "<br />");
+            out.println ("Manufacturer: " + nProduct.getManufacturer(newPID) + "<br />");
           }
           // name = request.getParameter("name");
 
