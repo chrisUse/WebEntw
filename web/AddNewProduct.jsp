@@ -1,37 +1,63 @@
-<%@page import="data.Product"%>
+<?xml version='1.0' encoding='UTF-8' ?>
 
-<!-- <jsp:useBean id="dataStore" class="data.Storage" scope="page"/> -->
-
+<%@page import="useCase.CaseProduct"%>
+<%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> Add new Product </title>
-</head>
-<body>
- <!-- ########## S Y S T E M ########## -->
- <!-- Check if actor are admin -->
- 
 
- 
- <%
-   data.Storage.getInstance().addProduct(new Product("TestPro1", 23, "Das ist das neue TestP 1", "Von mir blub"));
-   out.println("Test: " + dataStore.getInstance().getProductById(0).getName() );
- %>
- 
- <!--  Nachbedingung Erfolg: Is product are insert actor gets success notification -->
- <!--  Nachbedingung Fehler: If a problem are occurred actor gets error notification -->
- <!--   Actor can change something to fix error -->
- 
- <!-- ########## A C T O R ########## -->
- <!-- Actor insert product informations for adding -->
- <form method="post" action="AddNewProduct.jsp">
-  <input name="Name"         value="" type="text">
-  <input name="Price"        value="" type="text">
-  <input name="Description"  value="" type="text">
-  <input name="Manifactorer" value="" type="text">
- </form>
-  
-</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <h:body>
+        <ui:composition template="./newTemplate.xhtml">
+            <ui:define name="content">
+
+    <!-- ########## S Y S T E M ########## -->
+    <!-- Check if actor are admin -->
+
+    <%
+      // Check if values are present
+      if (request.getParameter("InsertProduct") != null) {
+        // Initial values and add product.
+        out.println ("Add Product <br />");
+        CaseProduct nProduct = new CaseProduct();
+        nProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
+      }
+      // name = request.getParameter("name");
+
+
+/*
+      if (nProduct != null) {
+        out.println("New Product");
+        //if (nProduct.getName(0) != null) {
+        //String test = nProduct.getName(2);
+        out.println("Name: " + nProduct.getName(0));
+        //}
+      } else {
+        out.println("No new product");
+      }
+ * */
+      // String name = data.Storage.getInstance() .getProductById(0).getName();
+      // out.println ("Test: " + name);
+%>
+
+          <!--  Nachbedingung Erfolg: Is product are insert actor gets success notification -->
+          <!--  Nachbedingung Fehler: If a problem are occurred actor gets error notification -->
+          <!--   Actor can change something to fix error -->
+
+          <!-- ########## A C T O R ########## -->
+          <!-- Actor insert product informations for adding -->
+          <form method="post" action="AddNewProduct.jsp">
+            <input name="Name" value="" type="text"> 
+            <input name="Price" value="" type="text"> 
+            <input name="Description" value="" type="text"> 
+            <input name="Manufactorer" value="" type="text">
+            <input name="InsertProduct" value="Add"  type="submit" >  
+          </form>
+
+         </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
