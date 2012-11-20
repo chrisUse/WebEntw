@@ -196,17 +196,19 @@ public class Storage {
     public static Storage getInstance() {
         return instance;
     }
-    
-    
+
     /*========================================================================
-      ========================================================================*/
-    
+     ========================================================================*/
     /*for debug purposes only*/
-    public int getUserCount(){
-        return data.get(Storage.Data.USERS).values().size();
+    public int getUserCount() {
+        synchronized (Storage.class) {
+            return data.get(Storage.Data.USERS).values().size();
+        }
     }
-    
-    public int getProductCount(){
-        return data.get(Storage.Data.PRODUCTS).values().size();
+
+    public int getProductCount() {
+        synchronized (Storage.class) {
+            return data.get(Storage.Data.PRODUCTS).values().size();
+        }
     }
 }
