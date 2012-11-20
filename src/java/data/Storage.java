@@ -66,19 +66,20 @@ public class Storage {
             int newId = autoInc.get(type) + 1;
             autoInc.put(type, newId);
             d.setId(newId);
+            this.setData(type, (ICopyable) d);
         }
     }
 
     private void setData(DataType type, ICopyable d) {
         synchronized (Storage.class) {
-            data.get(type).put(((IStorageData)d).getId(), (IStorageData)d.getCopy());
+            data.get(type).put(((IStorageData) d).getId(), (IStorageData) d.getCopy());
         }
     }
 
     private IStorageData getDataById(DataType type, int id) {
         synchronized (Storage.class) {
-            ICopyable c = (ICopyable)data.get(type).get(id);
-            return (IStorageData)c.getCopy();
+            ICopyable c = (ICopyable) data.get(type).get(id);
+            return c == null ? null : (IStorageData) c.getCopy();
         }
     }
 
@@ -119,19 +120,19 @@ public class Storage {
     public void deleteProductById(int id) {
         deleteDataById(Storage.Data.PRODUCTS, id);
     }
-    
+
     public void addCoupon(Coupon c) {
         synchronized (Storage.class) {
-            this.coupons.put(c.getCode(), (Coupon)c.getCopy());
+            this.coupons.put(c.getCode(), (Coupon) c.getCopy());
         }
     }
-    
+
     public Coupon getCouponByCode(String code) {
         synchronized (Storage.class) {
-            return (Coupon)this.coupons.get(code).getCopy();
+            return (Coupon) this.coupons.get(code).getCopy();
         }
     }
-    
+
     public void deleteCouponByCode(String code) {
         synchronized (Storage.class) {
             this.coupons.remove(code);
@@ -165,7 +166,7 @@ public class Storage {
     public Cart getCartForUser(int userId) {
         return this.getUserById(userId).getCart();
     }
-    
+
     public List<Comment> getCommentsForProduct(int productId) {
         return this.getProductById(productId).getComments();
     }
@@ -178,7 +179,7 @@ public class Storage {
         Field[] fields = Storage.Data.class.getFields();
         for (Field f : fields) {
             try {
-                DataType key = (DataType) f.get(Storage.Data.class);                
+                DataType key = (DataType) f.get(Storage.Data.class);
                 autoInc.put(key, new Integer(0));
                 data.put(key, new HashMap<Integer, IStorageData>());
             } catch (Exception ex) {
