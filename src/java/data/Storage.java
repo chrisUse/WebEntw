@@ -61,18 +61,18 @@ public class Storage {
 
     }
 
-    private void addData(DataType type, IStorageData d) throws StorageException {
+    private int addData(DataType type, IStorageData d) throws StorageException {
         synchronized (Storage.class) {
             int newId = autoInc.get(type) + 1;
             autoInc.put(type, newId);
             d.setId(newId);
-            this.setData(type, (ICopyable) d);
+            return this.setData(type, (ICopyable) d) ? null : newId;
         }
     }
 
-    private void setData(DataType type, ICopyable d) {
+    private boolean setData(DataType type, ICopyable d) {
         synchronized (Storage.class) {
-            data.get(type).put(((IStorageData) d).getId(), (IStorageData) d.getCopy());
+            return data.get(type).put(((IStorageData) d).getId(), (IStorageData) d.getCopy()) == null ? false : true;
         }
     }
 
@@ -89,16 +89,16 @@ public class Storage {
         }
     }
 
-    public void addUser(User u) throws StorageException {
-        addData(Storage.Data.USERS, u);
+    public int addUser(User u) throws StorageException {
+        return addData(Storage.Data.USERS, u);
     }
 
     public void setUser(User u) {
         setData(Storage.Data.USERS, u);
     }
 
-    public void addProduct(Product p) throws StorageException {
-        addData(Storage.Data.PRODUCTS, p);
+    public int addProduct(Product p) throws StorageException {
+        return addData(Storage.Data.PRODUCTS, p);
     }
 
     public void setProduct(Product p) {
