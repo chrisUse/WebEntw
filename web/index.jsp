@@ -22,14 +22,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>WebShop</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <!--<h1>Hello World!</h1>
         <form name="Name Input Form" action="response.jsp">
           Enter your name:
           <input type="text" name="name" />
           <input type="submit" value="OK" />
-        </form>
+        </form>-->
+        
+        
+        <%--<jsp:include page="initWebShop.jsp"></jsp:include>--%>
+        <jsp:include page="onlineshopTemplate.xhtml"></jsp:include>
+        
+        <!--<form name="sps" action="showProductShort.jsp">
+            productID: <input type="text" name="productID" value="1" />
+            <input type="submit" value="Show Product"/>
+        </form>-->
     </body>
 </html>

@@ -24,10 +24,64 @@ public class Product extends StorageData {
         this.description = description;
         this.manufacturer = manufacturer;
     }
-    
-    public String getName () {
-      return name;
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
     }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the price
+     */
+    public float getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the manufacturer
+     */
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    /**
+     * @param manufacturer the manufacturer to set
+     */
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+    
+
 
     public List<Comment> getComments() {
         List<Comment> clone = new ArrayList<Comment>(comments.size());
