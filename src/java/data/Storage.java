@@ -66,6 +66,8 @@ public class Storage {
             int newId = autoInc.get(type) + 1;
             autoInc.put(type, newId);
             d.setId(newId);
+            
+            data.get(type).put(newId, d);
         }
     }
 
@@ -194,5 +196,18 @@ public class Storage {
 
     public static Storage getInstance() {
         return instance;
+    }
+    
+    
+    /*========================================================================
+      ========================================================================*/
+    
+    /*for debug purposes only*/
+    public int getUserCount(){
+        return data.get(Storage.Data.USERS).values().size();
+    }
+    
+    public int getProductCount(){
+        return data.get(Storage.Data.PRODUCTS).values().size();
     }
 }
