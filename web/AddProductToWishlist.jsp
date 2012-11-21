@@ -5,10 +5,20 @@
 --%>
 
 
-
-
-
 <%@page import="data.Storage"%>
+<%@page import="data.WishList"%>
+<%@page import="data.User"%>
+<%
+    //TODO   set currentUser to the real current user
+    User currentUser = Storage.getInstance().getUserById(1);
+    WishList wishList = currentUser.getWishList();
+    wishList.addProduct(Integer.parseInt(request.getParameter("productID")));
+    currentUser.setWishList(wishList);
+    response.sendRedirect("showWishlist.jsp?userID=1");
+%>
+
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,5 +27,6 @@
         <title>add product to wishlist</title>
     </head>
     <body>
+        
     </body>
 </html>
