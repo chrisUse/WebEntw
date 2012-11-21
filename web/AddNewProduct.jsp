@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 
-<%@page import="useCase.CaseProduct"%>
+<%@page import="beans.CaseProduct"%>
+
+<% // Use of Bean needs a empty standard constructor %>
+<jsp:useBean id="caseProduct" class="beans.CaseProduct" scope="page"/>
+
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -11,26 +15,27 @@
 
 
   <h:body>
-    <ui:composition template="./newTemplate.xhtml">
+    <ui:composition template="./onlineshopTemplate.xhtml">
       <ui:define name="content">
 
         <!-- ########## S Y S T E M ########## -->
         <!-- Check if actor are admin -->
 
         <%
-          CaseProduct nProduct = new CaseProduct();
-          // Check if values are present
+        
+          // With Bean
           if (request.getParameter("InsertProduct") != null) {
             // Initial values and add product.
             out.println("Add Product <br />");
-            int newPID = nProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
+            int newPID = caseProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
             //String name = nProduct.getName(newPID);
             out.println ("ID: " + newPID + " ");
-            out.println ("Name: "         + nProduct.getName(newPID)         + "<br />");
-            out.println ("Price: "        + nProduct.getPrice(newPID)        + "<br />");
-            out.println ("Description: "  + nProduct.getDescription(newPID)  + "<br />");
-            out.println ("Manufacturer: " + nProduct.getManufacturer(newPID) + "<br />");
+            out.println ("Name: "         + caseProduct.getName(newPID)         + "<br />");
+            out.println ("Price: "        + caseProduct.getPrice(newPID)        + "<br />");
+            out.println ("Description: "  + caseProduct.getDescription(newPID)  + "<br />");
+            out.println ("Manufacturer: " + caseProduct.getManufacturer(newPID) + "<br />");
           }
+        
           // name = request.getParameter("name");
 
 
@@ -54,6 +59,8 @@
 
         <!-- ########## A C T O R ########## -->
         <!-- Actor insert product informations for adding -->
+        
+        
         <form method="post" action="AddNewProduct.jsp">
           <input name="Name" value="" type="text" /> 
           <input name="Price" value="" type="text" /> 
@@ -61,7 +68,7 @@
           <input name="Manufactorer" value="" type="text" />
           <input name="InsertProduct" value="Add"  type="submit" />  
         </form>
-
+        
       </ui:define>
     </ui:composition>
   </h:body>
