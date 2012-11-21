@@ -58,6 +58,36 @@ public class Storage {
                 + "innerorts 8,6 l/100km, außerorts 4,9 l/100km, kombiniert "
                 + "6,2 l/100km.CO2-Emission: 163 g/km; Effizienzklasse B",
                 "JAGUAR"));
+        addProduct(new Product(
+                "Logitech M185",
+                12.44f,
+                "schnurlos, grau",
+                "Logitech"));
+        addProduct(new Product(
+                "Logitech M185",
+                12.44f,
+                "schnurlos, schwarz",
+                "Logitech"));
+        addProduct(new Product(
+                "Logitech M185",
+                12.44f,
+                "schnurlos, weiß",
+                "Logitech"));
+        addProduct(new Product(
+                "Logitech B110",
+                6.18f,
+                "USB, 800dpi, schwarz",
+                "Logitech"));
+        addProduct(new Product(
+                "Logitech B110",
+                6.18f,
+                "USB, 800dpi, grau",
+                "Logitech"));
+        addProduct(new Product(
+                "Logitech B110",
+                6.18f,
+                "USB, 800dpi, weiß",
+                "Logitech"));
 
     }
 

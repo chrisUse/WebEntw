@@ -42,8 +42,13 @@
                     <td><%= product.getManufacturer()%></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td><input type="submit" value="read comments" /></td>
+                    <td>
+                        <form name="addToWishlist" action="AddProductToWishlist.jsp">
+                            <input type="hidden" name="productID" value="<%= request.getParameter("productID")%>" />
+                            <input type="submit" value="add to wishlist" />
+                        </form>
+                    </td>
+                    <td> <input type="submit" value="read comments" /></td>
                 </tr>
             </tbody>
         </table>
