@@ -14,6 +14,10 @@ import javax.annotation.ManagedBean;
 @ManagedBean
 public class CaseProduct {
   private String name;
+  
+  public CaseProduct () {
+    this.name ="NewTestName";
+  }
 
   public int addProduct(String name, float price, String description, String manufactorer) throws StorageException {
     return data.Storage.getInstance().addProduct(new data.Product(name, price, description, manufactorer));
