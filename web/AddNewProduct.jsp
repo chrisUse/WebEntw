@@ -41,6 +41,18 @@
             out.println("Description: " + caseProduct.getDescription(newPID) + "<br />");
             out.println("Manufacturer: " + caseProduct.getManufacturer(newPID) + "<br />");
           }
+          
+          out.println ("Print all products");
+          
+          List<data.Product> allProducts = data.Storage.getInstance().getAllProducts();
+          
+          for ( data.Product product : allProducts ) {
+            out.println ("Name: " + product.getName() + "<br />");
+            out.println ("Price: " + product.getPrice() + "<br />");
+            out.println ("Desctiption: " + product.getDescription() + "<br />");
+            out.println ("Manufacturer: " + product.getManufacturer() + "<br />");
+            out.println ("=============================== <br />");
+          }
 
           // name = request.getParameter("name");
 

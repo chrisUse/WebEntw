@@ -4,25 +4,13 @@
  */
 package data;
 
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.xml.namespace.QName;
-import javax.xml.stream.Location;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.events.Characters;
-
 import javax.xml.stream.events.Comment;
-import javax.xml.stream.events.EndElement;
-import javax.xml.stream.events.StartElement;
-
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
