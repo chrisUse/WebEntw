@@ -23,8 +23,8 @@
     <!-- Check if actor are admin -->
 
     <div>
-      <jsp:include page="header.html" />
-      <jsp:include page="menue.html" />
+      <jsp:include page="/templates/header.html" />
+      <jsp:include page="/templates/menue.html" />
 
       <div id="content" class="left_content">
         <%
