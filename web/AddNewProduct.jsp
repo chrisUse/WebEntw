@@ -24,7 +24,7 @@
 
     <div>
       <jsp:include page="/templates/header.html" />
-      <jsp:include page="/templates/menue.html" />
+      <jsp:include page="/templates/menu.html" />
 
       <div id="content" class="left_content">
         <%
