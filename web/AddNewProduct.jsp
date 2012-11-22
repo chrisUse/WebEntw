@@ -12,30 +12,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+    <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
 
+    <!-- ########## S Y S T E M ########## -->
+    <!-- Check if actor are admin -->
 
-  <h:body>
-    <ui:composition template="./onlineshopTemplate.xhtml">
-      <ui:define name="content">
+    <div>
+      <jsp:include page="header.html" />
+      <jsp:include page="menue.html" />
 
-        <!-- ########## S Y S T E M ########## -->
-        <!-- Check if actor are admin -->
-
+      <div id="content" class="left_content">
         <%
-        
+
           // With Bean
           if (request.getParameter("InsertProduct") != null) {
             // Initial values and add product.
             out.println("Add Product <br />");
             int newPID = caseProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
             //String name = nProduct.getName(newPID);
-            out.println ("ID: " + newPID + " ");
-            out.println ("Name: "         + caseProduct.getName(newPID)         + "<br />");
-            out.println ("Price: "        + caseProduct.getPrice(newPID)        + "<br />");
-            out.println ("Description: "  + caseProduct.getDescription(newPID)  + "<br />");
-            out.println ("Manufacturer: " + caseProduct.getManufacturer(newPID) + "<br />");
+            out.println("ID: " + newPID + " ");
+            out.println("Name: " + caseProduct.getName(newPID) + "<br />");
+            out.println("Price: " + caseProduct.getPrice(newPID) + "<br />");
+            out.println("Description: " + caseProduct.getDescription(newPID) + "<br />");
+            out.println("Manufacturer: " + caseProduct.getManufacturer(newPID) + "<br />");
           }
-        
+
           // name = request.getParameter("name");
 
 
@@ -50,7 +56,7 @@
            out.println("No new product");
            }
            * */
-          
+
         %>
 
         <!--  Nachbedingung Erfolg: Is product are insert actor gets success notification -->
@@ -59,8 +65,8 @@
 
         <!-- ########## A C T O R ########## -->
         <!-- Actor insert product informations for adding -->
-        
-        
+
+
         <form method="post" action="AddNewProduct.jsp">
           <input name="Name" value="" type="text" /> 
           <input name="Price" value="" type="text" /> 
@@ -68,8 +74,7 @@
           <input name="Manufactorer" value="" type="text" />
           <input name="InsertProduct" value="Add"  type="submit" />  
         </form>
-        
-      </ui:define>
-    </ui:composition>
-  </h:body>
+      </div>
+    </div>
+  </body>
 </html>
