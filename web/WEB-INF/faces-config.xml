@@ -6,4 +6,18 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
   version="2.0">
 
+  <navigation-rule>
+    <from-view-id>*</from-view-id>
+    <navigation-case>
+      <from-action>#{product.view}</from-action>
+      <from-outcome>ok</from-outcome>
+      <to-view-id>/ViewProduct.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>cancel</from-outcome>
+      <to-view-id>/cancelled.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+
+  
 </faces-config>
