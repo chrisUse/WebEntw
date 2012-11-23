@@ -9,7 +9,7 @@
   <navigation-rule>
     <from-view-id>*</from-view-id>
     <navigation-case>
-      <from-action>#{product.view}</from-action>
+      <from-action>#{view}</from-action>
       <from-outcome>ok</from-outcome>
       <to-view-id>/ViewProduct.xhtml</to-view-id>
     </navigation-case>
