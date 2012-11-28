@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 
-<%@page import="beans.CaseProduct"%>
+<%@page import="beans.caseProduct"%>
 
 <% // Use of Bean needs a empty standard constructor %>
-<jsp:useBean id="caseProduct" class="beans.CaseProduct" scope="page"/>
+<jsp:useBean id="caseProduct" class="beans.caseProduct" scope="page"/>
 
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

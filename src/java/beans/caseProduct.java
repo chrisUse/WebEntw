@@ -5,17 +5,19 @@
 package beans;
 
 import exceptions.StorageException;
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 /**
- *
+ *(name = "caseProduct1")
  * @author christianlinde
  */
 @ManagedBean
-public class CaseProduct {
+@RequestScoped
+public class caseProduct {
   private String name;
   
-  public CaseProduct () {
+  public caseProduct () {
     this.name ="NewTestName";
   }
 
@@ -23,7 +25,7 @@ public class CaseProduct {
     return data.Storage.getInstance().addProduct(new data.Product(name, price, description, manufactorer));
   }
 
-  public String getName(int id) {/*
+  public String getName() {/* int id
     if (data.Storage.getInstance().getProductById(id).getName() != null) {
       return data.Storage.getInstance().getProductById(id).getName();
     } else {
