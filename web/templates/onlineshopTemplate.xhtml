@@ -9,27 +9,6 @@
     <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
     <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
 
-    <script>
-      function loadProducts(){
-        var xmlhttp;
-        if(window.XMLHttpRequest){
-          xmlhttp = new XMLHttpRequest();
-        }
-        else{
-          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-                
-        xmlhttp.onreadystatechange=function()
-        {
-          if (xmlhttp.readyState==4)
-            document.getElementById("content").innerHTML=xmlhttp.responseText;
-        }
-                
-        xmlhttp.open(GET, "test.txt", true);
-        xmlhttp.send();
-      }
-    </script>
-
     <title>Online Shop</title>
   </h:head>
 
@@ -48,29 +27,16 @@
         <ul>
           <h:form>
             <li>Anmeldung</li>
-            <li><h:commandLink value="Product View JSF"
-                             action="/ViewProduct.xhtml" /></li>
+            <!-- <li><h:commandLink value="Product View JSF"
+                             action="/ViewProduct.xhtml" /></li> -->
             <li><a href="ViewProduct.jsp">Product View JSP</a> </li>
             <li><h:commandLink value="New Product JSF"
                              action="/AddNewProduct.xhtml" /></li>
-            <li><a href="AddNewProduct.jsp">New Product JSP</a> </li>
+            <!-- <li><a href="AddNewProduct.jsp">New Product JSP</a> </li> -->
             <li>wasweißich</li>
           </h:form>
         </ul>
       </div>
-
-      <!--
-        <div id="left">
-            <ui:insert name="left">
-                <ul>
-                    <li>Anmeldung</li>
-                    <li>Produkte</li>
-                    <li><button type="button" onclick="loadProducts()">Product 1</button></li>
-                    <li>wasweißich</li>
-                </ul>
-            </ui:insert>
-        </div>
-      -->
 
       <div id="content" class="left_content">
         <ui:insert name="content">
