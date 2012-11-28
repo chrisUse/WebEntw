@@ -12,18 +12,18 @@
         
         <h:form id="form">
           <h:outputLabel value="Name" for="name"/>
-          <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}"/> 
-          <!--
-          <h:outputLabel value="Price" for="Price"/>
-          <h:inputText name="Price" value="" type="text" /> 
+          <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}"/>
           
-          <h:outputLabel value="Description" for="Description"/>
-          <h:inputText name="Description" value="" type="text" /> 
+          <h:outputLabel value="Price" for="price"/>
+          <h:inputText id="price" size="30" maxlength="40" required="true" value="#{caseProduct.price}"  /> 
           
-          <h:outputLabel value="Manufactorer" for="Manufactorer"/>
-          <h:inputText name="Manufactorer" value="" type="text" /> 
-          -->
-          <h:commandButton value="Insert Product" />
+          <h:outputLabel value="Description" for="description"/>
+          <h:inputText id="description" size="30" maxlength="40" required="true" value="#{caseProduct.description}" /> 
+          
+          <h:outputLabel value="Manufactorer" for="manufacturer"/>
+          <h:inputText id="manufacturer" size="30" maxlength="40" required="true" value="#{caseProduct.manufacturer}" /> 
+          
+          <h:commandButton value="Insert Product" actionListener="#{caseProduct.insertNewProduct}" />
         </h:form>
         
       </ui:define>

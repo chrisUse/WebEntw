@@ -28,19 +28,20 @@
 
       <div id="content" class="left_content">
         <%
-
+/*
           // With Bean
           if (request.getParameter("InsertProduct") != null) {
             // Initial values and add product.
             out.println("Add Product <br />");
             int newPID = caseProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
             //String name = nProduct.getName(newPID);
-            out.println("ID: " + newPID + " ");/*
-            out.println("Name: " + caseProduct.getName(newPID) + "<br />");
-            out.println("Price: " + caseProduct.getPrice(newPID) + "<br />");
-            out.println("Description: " + caseProduct.getDescription(newPID) + "<br />");
-            out.println("Manufacturer: " + caseProduct.getManufacturer(newPID) + "<br />");*/
+            out.println("ID: " + newPID + " ");
+           // out.println("Name: " + caseProduct.getName(newPID) + "<br />");
+           // out.println("Price: " + caseProduct.getPrice(newPID) + "<br />");
+           // out.println("Description: " + caseProduct.getDescription(newPID) + "<br />");
+           // out.println("Manufacturer: " + caseProduct.getManufacturer(newPID) + "<br />");
           }
+          */
           
           out.println ("Print all products");
           
@@ -71,21 +72,6 @@
 
         %>
 
-        <!--  Nachbedingung Erfolg: Is product are insert actor gets success notification -->
-        <!--  Nachbedingung Fehler: If a problem are occurred actor gets error notification -->
-        <!--   Actor can change something to fix error -->
-
-        <!-- ########## A C T O R ########## -->
-        <!-- Actor insert product informations for adding -->
-
-
-        <form method="post" action="AddNewProduct.jsp">
-          <input name="Name" value="" type="text" /> 
-          <input name="Price" value="" type="text" /> 
-          <input name="Description" value="" type="text" /> 
-          <input name="Manufactorer" value="" type="text" />
-          <input name="InsertProduct" value="Add"  type="submit" />  
-        </form>
       </div>
     </div>
   </body>

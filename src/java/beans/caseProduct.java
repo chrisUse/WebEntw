@@ -4,7 +4,10 @@
  */
 package beans;
 
+import data.Product;
 import exceptions.StorageException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -16,6 +19,11 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class caseProduct {
   private String name;
+  private float price;
+  private String description;
+  private String manufacturer;
+  
+  private int addProductID;
   
   public caseProduct () {
     this.name ="NewTestName";
@@ -25,12 +33,7 @@ public class caseProduct {
     return data.Storage.getInstance().addProduct(new data.Product(name, price, description, manufactorer));
   }
 
-  public String getName() {/* int id
-    if (data.Storage.getInstance().getProductById(id).getName() != null) {
-      return data.Storage.getInstance().getProductById(id).getName();
-    } else {
-      return null;
-    }*/
+  public String getName() {
     return this.name;
   }
 
@@ -38,27 +41,35 @@ public class caseProduct {
     this.name = name;
   }
 
-  public float getPrice(int id) {
-    if (data.Storage.getInstance().getProductById(id).getPrice() != -1) {
-      return data.Storage.getInstance().getProductById(id).getPrice();
-    } else {
-      return -1;
-    }
+  public float getPrice() {
+    return this.price;
   }
 
-  public String getDescription(int id) {
-    if (data.Storage.getInstance().getProductById(id).getDescription() != null) {
-      return data.Storage.getInstance().getProductById(id).getDescription();
-    } else {
-      return null;
-    }
+  public String getDescription() {
+    return this.description;
   }
 
-  public String getManufacturer(int id) {
-    if (data.Storage.getInstance().getProductById(id).getManufacturer() != null) {
-      return data.Storage.getInstance().getProductById(id).getManufacturer();
-    } else {
-      return null;
+  public String getManufacturer() {
+    return this.manufacturer;
+  }
+
+  public void setPrice(float price) {
+    this.price = price;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public void setManufacturer(String manufacturer) {
+    this.manufacturer = manufacturer;
+  }
+  
+  public void insertNewProduct () {
+    try {
+      this.addProductID = data.Storage.getInstance().addProduct(new Product (this.name, this.price, this.description, this.manufacturer));
+    } catch (StorageException ex) {
+      Logger.getLogger(caseProduct.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
 }
