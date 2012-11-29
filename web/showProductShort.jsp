@@ -52,6 +52,12 @@ Product product = Storage.getInstance().getProductById(productID);
                             <input type="submit" value="add to wishlist" />
                         </form>
                     </td>
+                    <td>
+                        <form name="addToBasket" action="AddProductToCart.jsp">
+                            <input type="hidden" name="productID" value="<%= productID %>" />
+                            <input type="submit" value="add to basket" />
+                        </form>
+                    </td>
                     <td> <input type="submit" value="read comments" /></td>
                 </tr>
             </tbody>

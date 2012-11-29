@@ -29,26 +29,36 @@ public class Cart {
         return clone;
     }
     
-    public boolean addProduct(ProductInCart product)
+    public boolean addProduct(ProductInCart pProduct)
     {
-        return productsInCart.add(product);
+        return productsInCart.add(pProduct);
     }
     
-    public boolean removeProduct(int productId)
+    public boolean addProduct(int pProductId)
     {
-        for(ProductInCart product:productsInCart)
-            if(product.getId() == productId)
-                return productsInCart.remove(product);
+        return productsInCart.add(new ProductInCart(1, pProductId));
+    }
+    
+    public boolean addProduct(Product pProduct)
+    {
+        return this.addProduct(pProduct.getId());
+    }
+    
+    public boolean removeProduct(int pProductId)
+    {
+        for(ProductInCart tProduct:productsInCart)
+            if(tProduct.getId() == pProductId)
+                return productsInCart.remove(tProduct);
         
         return false;
     }
     
-    public boolean changeQuantity(int productId, int quantity){
+    public boolean changeQuantity(int pProductId, int pQuantity){
          for(ProductInCart product:productsInCart)
          {
-            if(product.getId() == productId)
+            if(product.getId() == pProductId)
             {
-                product.setCount(quantity);
+                product.setCount(pQuantity);
                 return true;
             }
          }
@@ -56,29 +66,38 @@ public class Cart {
          return false;
     }
     
-    public boolean increaseQuantity(int productId){
-         for(ProductInCart product:productsInCart)
+    public boolean increaseQuantity(int pProductId){
+         for(ProductInCart tProduct:productsInCart)
          {
-            if(product.getId() == productId)
+            if(tProduct.getId() == pProductId)
             {
-                product.setCount(product.getCount() + 1);
+                tProduct.setCount(tProduct.getCount() + 1);
                 return true;
             }
          }
          return false;
     }
     
-    public boolean decreaseQuantity(int productId){
-         for(ProductInCart product:productsInCart)
+    public boolean decreaseQuantity(int pProductId){
+         for(ProductInCart tProduct:productsInCart)
          {
-            if(product.getId() == productId)
+            if(tProduct.getId() == pProductId)
             {
-                if(product.getCount() > 0)
-                    product.setCount(product.getCount() - 1);
+                if(tProduct.getCount() > 0)
+                    tProduct.setCount(tProduct.getCount() - 1);
                     
                 return true;
             }
          }
          return false;
+    }
+    
+    public boolean isInCart(int pProductID)
+    {
+        for(ProductInCart tProductIC : productsInCart)
+            if(tProductIC.getId() == pProductID)
+                return true;
+   
+        return false;
     }
 }

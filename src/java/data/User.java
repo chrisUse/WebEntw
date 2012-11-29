@@ -63,6 +63,11 @@ public class User extends StorageData {
     public void setWishList(WishList wishList) {
         this.wishList = wishList;
     }
+    
+    public void setCart(Cart pCart)
+    {
+        this.cart   = pCart;
+    }
 
     public Cart getCart() {
         return new Cart(cart);
