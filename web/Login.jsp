@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 
-<%@page import="beans.caseProduct"%>
-
 <% // Use of Bean needs a empty standard constructor %>
 <jsp:useBean id="sess" class="beans.Session" scope="session"/>
 
@@ -37,14 +35,10 @@
                             <p>Willkommen <c:out value="${sess.currentUser.name}" />!</p>
                         </c:when>
                         <c:otherwise>
-                            Falsche Logindaten!
-                            <c:out value="${sess.login()}" />
-                            <jsp:getProperty name="sess" property="mail"/>
-                            <jsp:getProperty name="sess" property="password"/>
+                            <p class="error">Falsche Logindaten!</p>
                         </c:otherwise>
                     </c:choose>
                 </c:if>
-                <%  // request.getParameter("InsertProduct") and param.submit %>
 
 
 
