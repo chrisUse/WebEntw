@@ -87,15 +87,20 @@ public class caseProduct {
     }
   }
 
-  public boolean updateProduct() {
+  public void updateProduct() {
     Product tmpProduct = data.Storage.getInstance().getProductById(addProductID);
-    tmpProduct.setName(name);
-    tmpProduct.setPrice(price);
-    tmpProduct.setDescription(description);
-    tmpProduct.setManufacturer(manufacturer);
-    
-    return data.Storage.getInstance().setProduct(tmpProduct);
-    
+    if (tmpProduct != null) {
+      tmpProduct.setName(name);
+      tmpProduct.setPrice(price);
+      tmpProduct.setDescription(description);
+      tmpProduct.setManufacturer(manufacturer);
+
+      if (data.Storage.getInstance().setProduct(tmpProduct)) {
+        System.out.println("Its true");
+      } else {
+        System.out.println("Its false");
+      }
+    }
   }
 
   public List<Product> getAllProducts() {
