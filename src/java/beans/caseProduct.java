@@ -13,25 +13,38 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 /**
- *(name = "caseProduct1")
+ * (name = "caseProduct1")
+ *
  * @author christianlinde
  */
 @ManagedBean
 @RequestScoped
 public class caseProduct {
+
   private String name;
   private float price;
   private String description;
   private String manufacturer;
-  
   private int addProductID;
-  
-  public caseProduct () {
-    this.name ="NewTestName";
+
+  public caseProduct() {
+    //this.name ="NewTestName";
   }
 
   public int addProduct(String name, float price, String description, String manufactorer) throws StorageException {
     return data.Storage.getInstance().addProduct(new data.Product(name, price, description, manufactorer));
+  }
+
+  public void loadProductByID(int id) {
+    Product selectedProduct = data.Storage.getInstance().getProductById(id);
+
+    if (selectedProduct != null) {
+      this.addProductID = selectedProduct.getId();
+      this.name = selectedProduct.getName();
+      this.price = selectedProduct.getPrice();
+      this.description = selectedProduct.getDescription();
+      this.manufacturer = selectedProduct.getManufacturer();
+    }
   }
 
   public String getName() {
@@ -65,16 +78,27 @@ public class caseProduct {
   public void setManufacturer(String manufacturer) {
     this.manufacturer = manufacturer;
   }
-  
-  public void insertNewProduct () {
+
+  public void insertNewProduct() {
     try {
-      this.addProductID = data.Storage.getInstance().addProduct(new Product (this.name, this.price, this.description, this.manufacturer));
+      this.addProductID = data.Storage.getInstance().addProduct(new Product(this.name, this.price, this.description, this.manufacturer));
     } catch (StorageException ex) {
       Logger.getLogger(caseProduct.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
-  
-  public List<Product> getAllProducts () {
+
+  public boolean updateProduct() {
+    Product tmpProduct = data.Storage.getInstance().getProductById(addProductID);
+    tmpProduct.setName(name);
+    tmpProduct.setPrice(price);
+    tmpProduct.setDescription(description);
+    tmpProduct.setManufacturer(manufacturer);
+    
+    return data.Storage.getInstance().setProduct(tmpProduct);
+    
+  }
+
+  public List<Product> getAllProducts() {
     return data.Storage.getInstance().getAllProducts();
   }
 }

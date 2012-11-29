@@ -38,6 +38,7 @@
             <td>Price</td>
             <td>Description</td>
             <td>Manufacturer</td>
+            <td>Options</td>
           </tr>
 
           <%
@@ -51,6 +52,7 @@
             <td><%=product.getPrice()%></td>
             <td><%=product.getDescription()%></td>
             <td><%=product.getManufacturer()%></td>
+            <td><a href="EditProduct.xhtml?id=<%=product.getId()%>">Edit</a></td>
           </tr>
 
 
