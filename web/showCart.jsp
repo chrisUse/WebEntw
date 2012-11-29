@@ -33,21 +33,31 @@
                     <td><% out.print(tProduct.getName()); %></td>
                     <td><% out.print(tProductIC.getCount()); %></td>
                     <td>
-                        <form name="increaseQuantity" action="">
+                        <form name="increaseQuantity" action="IncreaseQuantity.jsp">
                             <input type="hidden" name="productID" value="<%= tProduct.getId() %>" />
+                            <input type="hidden" name="userID" value="<%= tUserID%>" />
                             <input type="submit" value="+" />
                         </form>
                     </td>
                     <td>
-                        <form name="decreaseQuantity" action="">
+                        <form name="decreaseQuantity" action="DecreaseQuantity.jsp">
                             <input type="hidden" name="productID" value="<%= tProduct.getId() %>" />
+                            <input type="hidden" name="userID" value="<%= tUserID%>" />
                             <input type="submit" value="-" />
                         </form>
                     </td>
                     <td>
                         <form name="editCartEntry" action="">
                             <input type="hidden" name="productID" value="<%= tProduct.getId() %>" />
+                            <input type="hidden" name="userID" value="<%= tUserID%>" />
                             <input type="submit" value="Edit" />
+                        </form>
+                    </td>
+                    <td>
+                        <form name="deleteCartEntry" action="DeleteCartEntry.jsp">
+                            <input type="hidden" name="productID" value="<%= tProduct.getId() %>" />
+                            <input type="hidden" name="userID" value="<%= tUserID%>" />
+                            <input type="submit" value="Remove" />
                         </form>
                     </td>
                 </tr>
