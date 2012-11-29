@@ -86,11 +86,18 @@ public class StorageTest {
   @Test
   public void testSetProduct() {
     System.out.println("setProduct");
-    Product p = null;
-    Storage instance = null;
-    instance.setProduct(p);
+    Product p = Storage.getInstance().getProductById(1);
+    
+    p.setName("blub");
+    p.setPrice(1.0f);
+    p.setDescription("noop");
+    p.setManufacturer("miaaa");
+    
+    assertTrue(Storage.getInstance().setProduct(p));
+    //Storage instance = null;
+    ///instance.setProduct(p);
     // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    //fail("The test case is a prototype.");
   }
 
   /**

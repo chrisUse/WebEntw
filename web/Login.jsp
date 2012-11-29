@@ -3,7 +3,7 @@
 <%@page import="beans.caseProduct"%>
 
 <% // Use of Bean needs a empty standard constructor %>
-<jsp:useBean id="caseProduct" class="beans.caseProduct" scope="page"/>
+<jsp:useBean id="sess" class="beans.Session" scope="session"/>
 
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,39 +29,9 @@
       <div id="content" class="left_content">
         <%  // request.getParameter("InsertProduct") %>
         
-        <center><h1>Print all products</h1></center>
+        <h1>Anmeldung</h1>
         
-        <table>
-          <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Price</td>
-            <td>Description</td>
-            <td>Manufacturer</td>
-            <td>Options</td>
-          </tr>
-
-          <%
-            List<data.Product> allProducts = caseProduct.getAllProducts();
-
-            for (data.Product product : allProducts) {
-          %>
-          <tr>
-            <td><%=product.getId()%></td>
-            <td><%=product.getName()%></td>
-            <td><%=product.getPrice()%></td>
-            <td><%=product.getDescription()%></td>
-            <td><%=product.getManufacturer()%></td>
-            <td><a href="EditProduct.xhtml?id=<%=product.getId()%>">Edit</a></td>
-          </tr>
-
-
-
-          <%
-            }
-
-          %>
-        </table>
+        <jsp:getProperty name="sess" property="currentUser" />
 
       </div>
     </div>

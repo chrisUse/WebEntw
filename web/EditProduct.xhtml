@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+  <body>
+    <ui:composition template="/templates/onlineshopTemplate.xhtml">
+      <ui:define name="content">
+        <h1> Edit Product JSF </h1>
+        
+         #{caseProduct.loadProductByID(param['id'])}
+        
+        <h:form id="form">
+          <h:panelGrid id="grid" columns="2">
+          <h:outputLabel value="Name" for="name"/>
+          <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}"/>
+          
+          <h:outputLabel value="Price" for="price"/>
+          <h:inputText id="price" size="30" maxlength="40" required="true" value="#{caseProduct.price}"  /> 
+          
+          <h:outputLabel value="Description" for="description"/>
+          <h:inputText id="description" size="30" maxlength="40" required="true" value="#{caseProduct.description}" /> 
+          
+          <h:outputLabel value="Manufactorer" for="manufacturer"/>
+          <h:inputText id="manufacturer" size="30" maxlength="40" required="true" value="#{caseProduct.manufacturer}" /> 
+          
+          <h:commandButton value="Update Product" action="ViewProduct.jsp" actionListener="#{caseProduct.updateProduct}" />
+          </h:panelGrid>
+        </h:form>
+        
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>
