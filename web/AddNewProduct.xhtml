@@ -11,6 +11,7 @@
         <h1> Add New Product JSF </h1>
         
         <h:form id="form">
+          <h:panelGrid id="grid" columns="2">
           <h:outputLabel value="Name" for="name"/>
           <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}"/>
           
@@ -24,6 +25,7 @@
           <h:inputText id="manufacturer" size="30" maxlength="40" required="true" value="#{caseProduct.manufacturer}" /> 
           
           <h:commandButton value="Insert Product" actionListener="#{caseProduct.insertNewProduct}" />
+          </h:panelGrid>
         </h:form>
         
       </ui:define>
