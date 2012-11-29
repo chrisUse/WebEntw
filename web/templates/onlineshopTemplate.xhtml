@@ -23,20 +23,8 @@
       </div>
     -->
     <div>
-      <div id="left">
-        <ul>
-          <h:form>
-            <li>Anmeldung</li>
-            <!-- <li><h:commandLink value="Product View JSF"
-                             action="/ViewProduct.xhtml" /></li> -->
-            <li><a href="ViewProduct.jsp">Product View JSP</a> </li>
-            <li><h:commandLink value="New Product JSF"
-                             action="/AddNewProduct.xhtml" /></li>
-            <!-- <li><a href="AddNewProduct.jsp">New Product JSP</a> </li> -->
-            <li>wasweißich</li>
-          </h:form>
-        </ul>
-      </div>
+    
+    <ui:include src="/templates/menu.xhtml" />
 
       <div id="content" class="left_content">
         <ui:insert name="content">
