@@ -7,7 +7,11 @@
 <%@page import="data.Product"%>
 <%@page import="data.Storage"%>
 
-<% Product product = Storage.getInstance().getProductById(Integer.parseInt(request.getParameter("productID"))); %>
+<% 
+if(request.getParameter("productID") != null)
+    productID = Integer.parseInt(request.getParameter("productID"));
+Product product = Storage.getInstance().getProductById(productID);
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,7 +48,7 @@
                 <tr>
                     <td>
                         <form name="addToWishlist" action="AddProductToWishlist.jsp">
-                            <input type="hidden" name="productID" value="<%= request.getParameter("productID")%>" />
+                            <input type="hidden" name="productID" value="<%= productID %>" />
                             <input type="submit" value="add to wishlist" />
                         </form>
                     </td>

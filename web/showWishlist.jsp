@@ -10,9 +10,8 @@
 <%@page import="data.User"%>
 <%@page import="data.Storage"%>
 <%
-    // TODO is there any better posibility ... (how does that jsp:useBean work?)
-    ArrayList<Product> wishList = (ArrayList) Storage.getInstance().getUserById(1).getWishList().getProducts();
-    out.print(wishList.size());
+    WishList wishList = new WishList(Storage.getInstance().getUserById(1).getWishList());
+    //out.print(wishList.getProducts().size());
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,13 +22,30 @@
         <title>Wishlist</title>
     </head>
     <body>
+        <%
+        if(!Boolean.parseBoolean(request.getParameter("newProduct")))
+            out.print("Ihr ausgewähltes Produkt befand sich bereits auf Ihrer Wunschliste");
+        %>
         <table border="1">
+            <thead>
+                <tr> 
+                    <td>ID</td>
+                    <td>Name</td>
+                </tr>
+            </thead>
             <tbody>
-                <% for(int i=0; i<wishList.size(); i++) {
-                    out.print("<tr><td>");
-                        wishList.get(i).getName();
-                    out.print("</tr></td>");
-                }%>
+                <% for(int i=0; i<wishList.getProducts().size(); i++) { %>
+                    <tr> 
+                        <td><% out.print(wishList.getProducts().get(i).getId()); %></td>
+                        <td><% out.print(wishList.getProducts().get(i).getName()); %></td>
+                        <td> 
+                            <form action="removeProductFromWishlist.jsp">
+                                <input type="hidden" name="productID" value="<%= wishList.getProducts().get(i).getId() %>" />
+                                <input type="submit" value="Entfernen" />
+                            </form>
+                        </td>
+                    </tr>
+                <% } %>
             </tbody>
         </table>
 
