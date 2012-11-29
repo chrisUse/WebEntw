@@ -29,15 +29,6 @@ public class WishList {
         }
         return clone;
     }
-    
-    /** 
-     * Adds a product to the wish list.
-     * @param product the product which should get added
-     * @return a boolean value whether the product could be added or not
-     */
-    public boolean addProduct(Product product){
-        return products.add(product);
-    }
 
     /**
      * Adds a product to the wish list.
@@ -45,16 +36,10 @@ public class WishList {
      * @return A boolean value whether the product could be added or not.
      */
     public boolean addProduct(int id){
-        return products.add(Storage.getInstance().getProductById(id));
-    }
-    
-    /**
-     * Removes a product from the wish list.
-     * @param product The product which should get removed.
-     * @return A boolean value whether the product could be removed or not.
-     */
-    public boolean removeProduct(Product product){
-        return products.remove(product);
+        if(!contains(id)){
+            return products.add(Storage.getInstance().getProductById(id));
+        }
+        return false;
     }
     
     /**
@@ -63,7 +48,31 @@ public class WishList {
      * @return A boolean value whether the product could be removed or not.
      */
     public boolean removeProduct(int id){
-        return products.remove(Storage.getInstance().getProductById(id));
+        for(int i=0; i<products.size(); i++){
+            if(products.get(i).getId() == id)
+            {
+                products.remove(i);
+                return true;
+            }
+        }
+        return false;
+        //return products.remove(Storage.getInstance().getProductById(id));
+    }
+    
+    /**
+     * Checks whether a product is in the wish list or not
+     * @param id the ID to check against
+     * @return true, if the product is in the wish list already; else false
+     */
+    public boolean contains(int id){
+        boolean ret = false;
+        for(int i=0; i<products.size(); i++){
+            if(products.get(i).getId() == id)
+                ret = true;
+        }
+        return ret;
+        
+        //return products.contains(Storage.getInstance().getProductById(id));
     }
 
 }

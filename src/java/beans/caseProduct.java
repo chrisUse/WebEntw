@@ -6,6 +6,7 @@ package beans;
 
 import data.Product;
 import exceptions.StorageException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -71,5 +72,9 @@ public class caseProduct {
     } catch (StorageException ex) {
       Logger.getLogger(caseProduct.class.getName()).log(Level.SEVERE, null, ex);
     }
+  }
+  
+  public List<Product> getAllProducts () {
+    return data.Storage.getInstance().getAllProducts();
   }
 }

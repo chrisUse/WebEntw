@@ -27,50 +27,39 @@
       <jsp:include page="/templates/menu.xhtml" />
 
       <div id="content" class="left_content">
-        <%
-/*
-          // With Bean
-          if (request.getParameter("InsertProduct") != null) {
-            // Initial values and add product.
-            out.println("Add Product <br />");
-            int newPID = caseProduct.addProduct(request.getParameter("Name"), Float.parseFloat(request.getParameter("Price")), request.getParameter("Description"), request.getParameter("Manufacturer"));
-            //String name = nProduct.getName(newPID);
-            out.println("ID: " + newPID + " ");
-           // out.println("Name: " + caseProduct.getName(newPID) + "<br />");
-           // out.println("Price: " + caseProduct.getPrice(newPID) + "<br />");
-           // out.println("Description: " + caseProduct.getDescription(newPID) + "<br />");
-           // out.println("Manufacturer: " + caseProduct.getManufacturer(newPID) + "<br />");
-          }
-          */
-          
-          out.println ("Print all products");
-          
-          List<data.Product> allProducts = data.Storage.getInstance().getAllProducts();
-          
-          for ( data.Product product : allProducts ) {
-            out.println ("Name: " + product.getName() + "<br />");
-            out.println ("Price: " + product.getPrice() + "<br />");
-            out.println ("Desctiption: " + product.getDescription() + "<br />");
-            out.println ("Manufacturer: " + product.getManufacturer() + "<br />");
-            out.println ("=============================== <br />");
-          }
+        <%  // request.getParameter("InsertProduct") %>
+        
+        <center><h1>Print all products</h1></center>
+        
+        <table>
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Description</td>
+            <td>Manufacturer</td>
+          </tr>
 
-          // name = request.getParameter("name");
+          <%
+            List<data.Product> allProducts = caseProduct.getAllProducts();
+
+            for (data.Product product : allProducts) {
+          %>
+          <tr>
+            <td><%=product.getId()%></td>
+            <td><%=product.getName()%></td>
+            <td><%=product.getPrice()%></td>
+            <td><%=product.getDescription()%></td>
+            <td><%=product.getManufacturer()%></td>
+          </tr>
 
 
-          /*
-           if (nProduct != null) {
-           out.println("New Product");
-           //if (nProduct.getName(0) != null) {
-           //String test = nProduct.getName(2);
-           out.println("Name: " + nProduct.getName(0));
-           //}
-           } else {
-           out.println("No new product");
-           }
-           * */
 
-        %>
+          <%
+            }
+
+          %>
+        </table>
 
       </div>
     </div>
