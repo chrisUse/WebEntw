@@ -19,5 +19,19 @@
     </navigation-case>
   </navigation-rule>
 
+  <!-- Settings for application -->
+  <!--	<application>
+    		<locale-config>
+       			<default-locale>de</default-locale>
+       			<supported-locale>en</supported-locale>
+    		</locale-config>
+    		<message-bundle>resources.messages</message-bundle>
+    		<resource-bundle>
+       			<base-name>resources.messages</base-name>
+       			<var>msgs</var>
+    		</resource-bundle>
+ 	</application>
+  -->
   
 </faces-config>
+
