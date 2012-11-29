@@ -43,14 +43,17 @@ public class Session {
         return this.currentUser == null ? null : Storage.getInstance().getUserById(this.currentUser);
     }
     
-    public void login() {
+    public Integer login() {
         Integer uid = Storage.getInstance().getUserIdByMail(mail);
-        if (uid == null || Storage.getInstance().getUserById(uid).getPassword().equals(this.password)) {
+        if (uid == null || !Storage.getInstance().getUserById(uid).getPassword().equals(this.password)) {
             this.currentUser = null;
-            return; //todo fehler
+            return null;
         } 
         
+        this.logout();
         this.currentUser = uid;
+        
+        return this.currentUser;
     }
     
     public void logout() {
