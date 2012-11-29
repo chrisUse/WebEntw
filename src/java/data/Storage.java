@@ -4,6 +4,8 @@
  */
 package data;
 
+import exceptions.DuplicateEntryException;
+import exceptions.OnlineshopException;
 import exceptions.StorageException;
 import java.lang.reflect.Field;
 import java.util.*;
@@ -112,12 +114,12 @@ public class Storage {
             return c == null ? null : (IStorageData) c.getCopy();
         }
     }
-    
-    private List<IStorageData>  getAllData(DataType type) {
+
+    private List<IStorageData> getAllData(DataType type) {
         List<IStorageData> res = new ArrayList<IStorageData>();
         synchronized (Storage.class) {
             for (Map.Entry<Integer, IStorageData> e : data.get(type).entrySet()) {
-                res.add((IStorageData)((ICopyable)e.getValue()).getCopy());
+                res.add((IStorageData) ((ICopyable) e.getValue()).getCopy());
             }
         }
         return res;
@@ -129,20 +131,23 @@ public class Storage {
         }
     }
 
-    public int addUser(User u) throws StorageException {
+    public int addUser(User u) throws StorageException, DuplicateEntryException {
+        if (this.getUserIdByMail(u.getMail()) != null) {
+            throw new DuplicateEntryException("user_email_already_exists");
+        }
         return addData(Storage.Data.USERS, u);
     }
 
-    public void setUser(User u) {
-        setData(Storage.Data.USERS, u);
+    public boolean setUser(User u) {
+        return setData(Storage.Data.USERS, u);
     }
 
     public int addProduct(Product p) throws StorageException {
         return addData(Storage.Data.PRODUCTS, p);
     }
 
-    public void setProduct(Product p) {
-        setData(Storage.Data.PRODUCTS, p);
+    public boolean setProduct(Product p) {
+        return setData(Storage.Data.PRODUCTS, p);
     }
 
     public User getUserById(int id) {
@@ -152,11 +157,11 @@ public class Storage {
     public Product getProductById(int id) {
         return (Product) getDataById(Storage.Data.PRODUCTS, id);
     }
-    
+
     public List<Product> getAllProducts() {
         List<Product> l = new ArrayList<Product>();
         for (IStorageData p : this.getAllData(Storage.Data.PRODUCTS)) {
-            l.add((Product)p);
+            l.add((Product) p);
         }
         return l;
     }
@@ -205,6 +210,18 @@ public class Storage {
             }
         }
         return res;
+    }
+
+    public Integer getUserIdByMail(String mail) {
+        synchronized (Storage.class) {
+            for (Map.Entry<Integer, IStorageData> e : data.get(Storage.Data.USERS).entrySet()) {
+                User u = (User) e.getValue();
+                if (u.getMail().toLowerCase().equals(mail.toLowerCase())) {
+                    return e.getKey();
+                }
+            }
+        }
+        return null;
     }
 
     public WishList getWishListForUser(int userId) {
