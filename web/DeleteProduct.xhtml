@@ -10,7 +10,29 @@
       <ui:define name="content">
         <h1> Delete Product JSF </h1>
         
+        #{caseProduct.loadProductByID(param['id'])}
         
+        <h:form id="form">
+          <h:panelGrid id="grid" columns="2">
+          <h:outputLabel value="" for="addProductID"/>
+          <h:inputHidden id="addProductID" value="#{caseProduct.addProductID}"/>
+          
+          <h:outputLabel value="Name" for="name"/>
+          <h:outputText id="name" value="#{caseProduct.name}"/>
+          
+          <h:outputLabel value="Price" for="price"/>
+          <h:outputText id="price" value="#{caseProduct.price}"  /> 
+          
+          <h:outputLabel value="Description" for="description"/>
+          <h:outputText id="description" value="#{caseProduct.description}" /> 
+          
+          <h:outputLabel value="Manufactorer" for="manufacturer"/>
+          <h:outputText id="manufacturer" value="#{caseProduct.manufacturer}" /> 
+          
+          <h:commandButton value="Delete Product" action="#{caseProduct.deleteProduct}" />
+          </h:panelGrid>
+          <h:messages errorStyle="color:red" />
+        </h:form>
         
       </ui:define>
     </ui:composition>

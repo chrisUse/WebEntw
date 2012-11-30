@@ -49,6 +49,13 @@ public class caseProduct {
       this.manufacturer = selectedProduct.getManufacturer();
     } 
   }
+  
+  public String deleteProduct() {
+    
+    data.Storage.getInstance().deleteProductById(this.addProductID);
+    
+    return "/ViewProduct.jsp";
+  }
 
   public int getAddProductID() {
     return addProductID;

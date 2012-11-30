@@ -52,7 +52,10 @@
             <td><%=product.getPrice()%></td>
             <td><%=product.getDescription()%></td>
             <td><%=product.getManufacturer()%></td>
-            <td><a href="EditProduct.xhtml?id=<%=product.getId()%>">Edit</a></td>
+            <td>
+              <a href="EditProduct.xhtml?id=<%=product.getId()%>">Edit</a>
+              <a href="DeleteProduct.xhtml?id=<%=product.getId()%>">Delete</a>
+            </td>
           </tr>
 
 
