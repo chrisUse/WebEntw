@@ -28,6 +28,7 @@ public class caseProduct {
   private String description;
   private String manufacturer;
   private int addProductID;
+  private Product selectedProduct;
 
   public caseProduct() {
     //this.name ="NewTestName";
@@ -38,7 +39,7 @@ public class caseProduct {
   }
 
   public void loadProductByID(int id) {
-    Product selectedProduct = data.Storage.getInstance().getProductById(id);
+    this.selectedProduct = data.Storage.getInstance().getProductById(id);
 
     if (selectedProduct != null) {
       this.addProductID = id;
@@ -46,7 +47,15 @@ public class caseProduct {
       this.price = selectedProduct.getPrice();
       this.description = selectedProduct.getDescription();
       this.manufacturer = selectedProduct.getManufacturer();
-    }
+    } 
+  }
+
+  public int getAddProductID() {
+    return addProductID;
+  }
+
+  public void setAddProductID(int addProductID) {
+    this.addProductID = addProductID;
   }
 
   public String getName() {
@@ -89,19 +98,22 @@ public class caseProduct {
     }
   }
 
-  public void updateProduct() {
-    Product tmpProduct = data.Storage.getInstance().getProductById(addProductID);
-    //if (tmpProduct != null) {
-      tmpProduct.setName(name);
-      tmpProduct.setPrice(price);
-      tmpProduct.setDescription(description);
-      tmpProduct.setManufacturer(manufacturer);
+  public String updateProduct(  ) {
+    Product tmpProduct = data.Storage.getInstance().getProductById(this.addProductID);
+    if (tmpProduct != null) {
+      tmpProduct.setName(this.name);
+      tmpProduct.setPrice(this.price);
+      tmpProduct.setDescription(this.description);
+      tmpProduct.setManufacturer(this.manufacturer);
 
       data.Storage.getInstance().setProduct(tmpProduct);
-      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler: " + tmpProduct.getName(), "Leser ist gespert");
-      FacesContext.getCurrentInstance().addMessage("form", msg);
       
-    //}
+      return "/ViewProduct.jsp"; //action="ViewProduct.jsp"
+    } else {
+      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler ID nicht vorhanden: " + addProductID, "Product nicht geaendert");
+      FacesContext.getCurrentInstance().addMessage("form", msg);
+      return null;
+    }
   }
 
   public List<Product> getAllProducts() {
