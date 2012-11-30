@@ -85,7 +85,7 @@ public class StorageTest {
    */
   @Test
   public void testSetProduct() {
-    System.out.println("setProduct");
+    System.out.println("setProduct True");
     Product p = Storage.getInstance().getProductById(1);
     
     p.setName("blub");
@@ -100,6 +100,25 @@ public class StorageTest {
     //fail("The test case is a prototype.");
   }
 
+  @Test
+  public void testSetProductDiff() {
+    System.out.println("setProduct Diff");
+    Product p = Storage.getInstance().getProductById(1);
+    
+    p.setName("blub");
+    p.setPrice(1.0f);
+    p.setDescription("noop");
+    p.setManufacturer("miaaa");
+    
+    Storage.getInstance().setProduct(p);
+    
+    Product expProduct = Storage.getInstance().getProductById(1);
+    
+    System.out.println("Pa: " + p.getName() + " Pb: " + expProduct.getName() );
+    
+    assertEquals(p.getName(),expProduct.getName());
+  }
+  
   /**
    * Test of getUserById method, of class Storage.
    */
