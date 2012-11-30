@@ -29,6 +29,15 @@ public class Cart {
         return clone;
     }
     
+    public int getCountOfProduct(int pProductId)
+    {
+        for(ProductInCart tProduct:productsInCart)
+            if(tProduct.getId() == pProductId)
+                return tProduct.getCount();
+        
+        return 0;
+    }
+    
     public boolean addProduct(ProductInCart pProduct)
     {
         return productsInCart.add(pProduct);
