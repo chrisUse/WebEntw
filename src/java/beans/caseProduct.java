@@ -9,8 +9,10 @@ import exceptions.StorageException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  * (name = "caseProduct1")
@@ -89,18 +91,17 @@ public class caseProduct {
 
   public void updateProduct() {
     Product tmpProduct = data.Storage.getInstance().getProductById(addProductID);
-    if (tmpProduct != null) {
+    //if (tmpProduct != null) {
       tmpProduct.setName(name);
       tmpProduct.setPrice(price);
       tmpProduct.setDescription(description);
       tmpProduct.setManufacturer(manufacturer);
 
-      if (data.Storage.getInstance().setProduct(tmpProduct)) {
-        System.out.println("Its true");
-      } else {
-        System.out.println("Its false");
-      }
-    }
+      data.Storage.getInstance().setProduct(tmpProduct);
+      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler: " + tmpProduct.getName(), "Leser ist gespert");
+      FacesContext.getCurrentInstance().addMessage("form", msg);
+      
+    //}
   }
 
   public List<Product> getAllProducts() {
