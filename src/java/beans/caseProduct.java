@@ -47,14 +47,20 @@ public class caseProduct {
       this.price = selectedProduct.getPrice();
       this.description = selectedProduct.getDescription();
       this.manufacturer = selectedProduct.getManufacturer();
-    } 
+    }
   }
-  
+
   public String deleteProduct() {
-    
+
     data.Storage.getInstance().deleteProductById(this.addProductID);
-    
-    return "/ViewProduct.jsp";
+
+    if (data.Storage.getInstance().getProductById(addProductID) == null) {
+      return "/ViewProduct.jsp";
+    } else {
+      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler Product not deleted: " + addProductID, "Product not deleted");
+      FacesContext.getCurrentInstance().addMessage("form", msg);
+      return null;
+    }
   }
 
   public int getAddProductID() {
@@ -105,7 +111,7 @@ public class caseProduct {
     }
   }
 
-  public String updateProduct(  ) {
+  public String updateProduct() {
     Product tmpProduct = data.Storage.getInstance().getProductById(this.addProductID);
     if (tmpProduct != null) {
       tmpProduct.setName(this.name);
@@ -114,10 +120,10 @@ public class caseProduct {
       tmpProduct.setManufacturer(this.manufacturer);
 
       data.Storage.getInstance().setProduct(tmpProduct);
-      
+
       return "/ViewProduct.jsp"; //action="ViewProduct.jsp" actionListener
     } else {
-      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler ID nicht vorhanden: " + addProductID, "Product nicht geaendert");
+      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler ID not found: " + addProductID, "Product not changed");
       FacesContext.getCurrentInstance().addMessage("form", msg);
       return null;
     }
