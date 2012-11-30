@@ -10,8 +10,9 @@
 <%@page import="data.Storage"%>
 <%@page import="data.User"%>
 <%
-    int tUserID = Integer.parseInt(request.getParameter("userID"));
-    Cart tCart  = Storage.getInstance().getUserById(tUserID).getCart();
+    boolean tIsInCart   = Boolean.parseBoolean(request.getParameter("isInCart"));
+    int     tUserID     = Integer.parseInt(request.getParameter("userID"));
+    Cart tCart          = Storage.getInstance().getUserById(tUserID).getCart();
     System.out.println("Cart size: " + tCart.getProductsInCart().size());
 %>
 
@@ -23,6 +24,10 @@
         <title>show cart</title>
     </head>
     <body>
+        <%
+            if(tIsInCart)
+                out.print("Product is already in cart!");
+        %>
         <table border="1">
             <th>ID</th><th>Name</th><th>Count</th>
             <% for(int i = 0; i < tCart.getProductsInCart().size(); i++) { 
