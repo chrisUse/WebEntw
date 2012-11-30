@@ -14,8 +14,9 @@
         
         <h:form id="form">
           <h:panelGrid id="grid" columns="2">
-            <h:outputLabel value="ID" for="addProductID"/>
-          <h:inputText id="addProductID" size="30" maxlength="40" required="true" value="#{caseProduct.addProductID}"/>
+          <h:outputLabel value="" for="addProductID"/>
+          <h:inputHidden id="addProductID" size="30" maxlength="40" value="#{caseProduct.addProductID}"/>
+          
           <h:outputLabel value="Name" for="name"/>
           <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}"/>
           

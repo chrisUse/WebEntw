@@ -108,7 +108,7 @@ public class caseProduct {
 
       data.Storage.getInstance().setProduct(tmpProduct);
       
-      return "/ViewProduct.jsp"; //action="ViewProduct.jsp"
+      return "/ViewProduct.jsp"; //action="ViewProduct.jsp" actionListener
     } else {
       FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler ID nicht vorhanden: " + addProductID, "Product nicht geaendert");
       FacesContext.getCurrentInstance().addMessage("form", msg);
