@@ -18,7 +18,6 @@
     if(!tCart.isInCart(tProductID))
         tCart.addProduct(Storage.getInstance().getProductById(tProductID));
     else
-        //tCart.increaseQuantity(tProductID);
         tIsInCart   = true;
 
     tCurrentUser.setCart(tCart);

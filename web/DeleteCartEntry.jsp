@@ -11,10 +11,10 @@
     int  tProductID     = Integer.parseInt(request.getParameter("productID"));
     User tCurrentUser   = Storage.getInstance().getUserById(tUserID);
     Cart tCart          = tCurrentUser.getCart();
-    tCart.removeProduct(tProductID);
+    boolean tRemoved    = tCart.removeProduct(tProductID);
     tCurrentUser.setCart(tCart);
     Storage.getInstance().setUser(tCurrentUser);
-    response.sendRedirect("showCart.jsp?&userID="+tUserID);
+    response.sendRedirect("showCart.jsp?removed="+tRemoved+"&userID="+tUserID);
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
