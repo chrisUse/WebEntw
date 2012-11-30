@@ -39,7 +39,7 @@ public class caseProduct {
     Product selectedProduct = data.Storage.getInstance().getProductById(id);
 
     if (selectedProduct != null) {
-      this.addProductID = selectedProduct.getId();
+      this.addProductID = id;
       this.name = selectedProduct.getName();
       this.price = selectedProduct.getPrice();
       this.description = selectedProduct.getDescription();
