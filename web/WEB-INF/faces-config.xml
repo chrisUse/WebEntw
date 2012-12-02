@@ -20,7 +20,7 @@
   </navigation-rule>
 
   <!-- Settings for application -->
-  <!--	<application>
+  <application>
     		<locale-config>
        			<default-locale>de</default-locale>
        			<supported-locale>en</supported-locale>
@@ -31,7 +31,7 @@
        			<var>msgs</var>
     		</resource-bundle>
  	</application>
-  -->
+  
   
 </faces-config>
 

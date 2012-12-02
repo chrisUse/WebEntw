@@ -4,6 +4,7 @@
  */
 package beans;
 
+import com.sun.istack.internal.NotNull;
 import data.Product;
 import exceptions.StorageException;
 import java.util.List;
@@ -23,9 +24,13 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class caseProduct {
 
+  @NotNull
   private String name;
+  @NotNull
   private float price;
+  @NotNull
   private String description;
+  @NotNull
   private String manufacturer;
   private int addProductID;
   private Product selectedProduct;
