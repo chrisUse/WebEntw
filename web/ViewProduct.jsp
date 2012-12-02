@@ -4,6 +4,7 @@
 
 <% // Use of Bean needs a empty standard constructor %>
 <jsp:useBean id="caseProduct" class="beans.caseProduct" scope="page"/>
+<jsp:useBean id="sess" class="beans.Session" scope="session"/>
 
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -42,9 +43,8 @@
           </tr>
 
           <%
-            List<data.Product> allProducts = caseProduct.getAllProducts();
 
-            for (data.Product product : allProducts) {
+            for (data.Product product : caseProduct.getAllProducts()) {
           %>
           <tr>
             <td><%=product.getId()%></td>
@@ -52,7 +52,16 @@
             <td><%=product.getPrice()%></td>
             <td><%=product.getDescription()%></td>
             <td><%=product.getManufacturer()%></td>
-            <td><a href="EditProduct.xhtml?id=<%=product.getId()%>">Edit</a></td>
+            <td>
+              <!-- TODO: Admin check -->
+              <a href="AddProductToWishlist.jsp?productID=<%=product.getId()%>">add to wishlist</a>
+              <a href="AddProductToCart.jsp?productID=<%=product.getId()%>">add to cart</a>
+              
+              <% if ( sess.getCurrentUser() != null && sess.getCurrentUser().isIsAdmin() == true ) { %>
+                <a href="EditProduct.xhtml?productID=<%=product.getId()%>">Edit</a>
+                <a href="DeleteProduct.xhtml?productID=<%=product.getId()%>">Delete</a>
+              <% } %>
+            </td>
           </tr>
 
 
@@ -62,7 +71,7 @@
 
           %>
         </table>
-
+       <a href="AddNewProduct.xhtml">Add Product (JSF)</a>
       </div>
     </div>
   </body>

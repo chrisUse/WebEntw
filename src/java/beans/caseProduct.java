@@ -4,13 +4,16 @@
  */
 package beans;
 
+import com.sun.istack.internal.NotNull;
 import data.Product;
 import exceptions.StorageException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  * (name = "caseProduct1")
@@ -21,11 +24,16 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class caseProduct {
 
+  @NotNull
   private String name;
+  @NotNull
   private float price;
+  @NotNull
   private String description;
+  @NotNull
   private String manufacturer;
   private int addProductID;
+  private Product selectedProduct;
 
   public caseProduct() {
     //this.name ="NewTestName";
@@ -36,15 +44,36 @@ public class caseProduct {
   }
 
   public void loadProductByID(int id) {
-    Product selectedProduct = data.Storage.getInstance().getProductById(id);
+    this.selectedProduct = data.Storage.getInstance().getProductById(id);
 
     if (selectedProduct != null) {
-      this.addProductID = selectedProduct.getId();
+      this.addProductID = id;
       this.name = selectedProduct.getName();
       this.price = selectedProduct.getPrice();
       this.description = selectedProduct.getDescription();
       this.manufacturer = selectedProduct.getManufacturer();
     }
+  }
+
+  public String deleteProduct() {
+
+    data.Storage.getInstance().deleteProductById(this.addProductID);
+
+    if (data.Storage.getInstance().getProductById(addProductID) == null) {
+      return "/ViewProduct.jsp";
+    } else {
+      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler Product not deleted: " + addProductID, "Product not deleted");
+      FacesContext.getCurrentInstance().addMessage("form", msg);
+      return null;
+    }
+  }
+
+  public int getAddProductID() {
+    return addProductID;
+  }
+
+  public void setAddProductID(int addProductID) {
+    this.addProductID = addProductID;
   }
 
   public String getName() {
@@ -79,27 +108,31 @@ public class caseProduct {
     this.manufacturer = manufacturer;
   }
 
-  public void insertNewProduct() {
+  public String insertNewProduct() {
     try {
       this.addProductID = data.Storage.getInstance().addProduct(new Product(this.name, this.price, this.description, this.manufacturer));
+      return "/ViewProduct.jsp";
     } catch (StorageException ex) {
       Logger.getLogger(caseProduct.class.getName()).log(Level.SEVERE, null, ex);
+      return null;
     }
   }
 
-  public void updateProduct() {
-    Product tmpProduct = data.Storage.getInstance().getProductById(addProductID);
+  public String updateProduct() {
+    Product tmpProduct = data.Storage.getInstance().getProductById(this.addProductID);
     if (tmpProduct != null) {
-      tmpProduct.setName(name);
-      tmpProduct.setPrice(price);
-      tmpProduct.setDescription(description);
-      tmpProduct.setManufacturer(manufacturer);
+      tmpProduct.setName(this.name);
+      tmpProduct.setPrice(this.price);
+      tmpProduct.setDescription(this.description);
+      tmpProduct.setManufacturer(this.manufacturer);
 
-      if (data.Storage.getInstance().setProduct(tmpProduct)) {
-        System.out.println("Its true");
-      } else {
-        System.out.println("Its false");
-      }
+      data.Storage.getInstance().setProduct(tmpProduct);
+
+      return "/ViewProduct.jsp"; //action="ViewProduct.jsp" actionListener
+    } else {
+      FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Fehler ID not found: " + addProductID, "Product not changed");
+      FacesContext.getCurrentInstance().addMessage("form", msg);
+      return null;
     }
   }
 

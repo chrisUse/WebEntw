@@ -12,10 +12,10 @@
         
         <h:form id="form">
           <h:panelGrid id="grid" columns="2">
-          <h:outputLabel value="Name" for="name"/>
+          <h:outputLabel value="#{msgs.Name}" for="name"/>
           <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}"/>
           
-          <h:outputLabel value="Price" for="price"/>
+          <h:outputLabel value="#{msgs.Price}" for="price"/>
           <h:inputText id="price" size="30" maxlength="40" required="true" value="#{caseProduct.price}"  /> 
           
           <h:outputLabel value="Description" for="description"/>
@@ -24,7 +24,7 @@
           <h:outputLabel value="Manufactorer" for="manufacturer"/>
           <h:inputText id="manufacturer" size="30" maxlength="40" required="true" value="#{caseProduct.manufacturer}" /> 
           
-          <h:commandButton value="Insert Product" actionListener="#{caseProduct.insertNewProduct}" />
+          <h:commandButton value="Insert Product" action="#{caseProduct.insertNewProduct}" />
           </h:panelGrid>
         </h:form>
         
