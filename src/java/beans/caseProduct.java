@@ -103,11 +103,13 @@ public class caseProduct {
     this.manufacturer = manufacturer;
   }
 
-  public void insertNewProduct() {
+  public String insertNewProduct() {
     try {
       this.addProductID = data.Storage.getInstance().addProduct(new Product(this.name, this.price, this.description, this.manufacturer));
+      return "/ViewProduct.jsp";
     } catch (StorageException ex) {
       Logger.getLogger(caseProduct.class.getName()).log(Level.SEVERE, null, ex);
+      return null;
     }
   }
 
