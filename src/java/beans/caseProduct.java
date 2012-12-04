@@ -6,6 +6,7 @@ package beans;
 
 import com.sun.istack.internal.NotNull;
 import data.Product;
+import data.Storage;
 import exceptions.StorageException;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,6 +38,10 @@ public class caseProduct {
 
   public caseProduct() {
     //this.name ="NewTestName";
+  }
+  
+  public boolean isUserAdmin () {
+    return Storage.getInstance().getUserById(1).isIsAdmin();
   }
 
   public int addProduct(String name, float price, String description, String manufactorer) throws StorageException {
