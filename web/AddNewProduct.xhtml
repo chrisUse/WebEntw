@@ -10,7 +10,7 @@
     <ui:composition template="/templates/onlineshopTemplate.xhtml">
       <ui:define name="content">
 
-        <!-- <c:if test="{session.getCurrentUser.isIsAdmin}"> -->
+        <c:if test="{session.currentUser.isAdmin}"> 
           <h1> #{msgs.AddNewProductJSF} </h1>
 
           <h:form id="form">
@@ -30,12 +30,12 @@
               <h:commandButton value="#{msgs.InsertProduct}" action="#{caseProduct.insertNewProduct}" />
             </h:panelGrid>
           </h:form>
-        <!-- </c:if>
+        </c:if>
         
-        <c:if test="{session.getCurrentUser.isIsAdmin}"> -->
+        <c:if test="{session.currentUser.isAdmin}"> 
           <h1> #{msgs.NoAdmin} </h1>
           <h:commandButton value="#{msgs.LoginLinkLabel}" action="Login.jsp" />
-        <!-- </c:if> -->
+        </c:if> 
       </ui:define>
     </ui:composition>
   </body>
