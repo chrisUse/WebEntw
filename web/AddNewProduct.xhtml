@@ -12,10 +12,7 @@
 
         <h1> #{msgs.AddNewProductJSF} </h1>
         
-        <c:if test="#{caseProduct.userAdmin}"> TRUE </c:if>
-        <c:if test="#{sessionTT.isCurrentUserAdmin()}"> TRUE2 </c:if>
-        
-        <!-- <c:if test="{session.isCurrentUserAdmin() == true}">  -->
+        <!-- <c:if test="#{caseProduct.userAdmin}"> -->
 
           <h:form id="form">
             <h:panelGrid id="grid" columns="2">
@@ -34,12 +31,13 @@
               <h:commandButton value="#{msgs.InsertProduct}" action="#{caseProduct.insertNewProduct}" />
             </h:panelGrid>
           </h:form>
-        <!-- </c:if> -->
+        <!-- </c:if>
+       
 
-        <!-- <c:if test="{session.isCurrentUserAdmin}"> 
+        <c:if test="{caseProduct.userAdmin}">
           <h1> #{msgs.NoAdmin} </h1>
           <h:commandButton value="#{msgs.LoginLinkLabel}" action="Login.jsp" />
-        </c:if>  -->
+        </c:if> -->
       </ui:define>
     </ui:composition>
   </body>
