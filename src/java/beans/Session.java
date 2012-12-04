@@ -43,6 +43,11 @@ public class Session {
         return this.currentUser == null ? null : Storage.getInstance().getUserById(this.currentUser);
     }
     
+    public boolean isCurrentUserAdmin() {
+        User u = this.getCurrentUser();
+        return u == null ? false : u.isIsAdmin();
+    }
+    
     public Integer login() {
         Integer uid = Storage.getInstance().getUserIdByMail(mail);
         if (uid == null || !Storage.getInstance().getUserById(uid).getPassword().equals(this.password)) {
