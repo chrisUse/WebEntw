@@ -29,9 +29,9 @@
 
       <div id="content" class="left_content">
         <%  // request.getParameter("InsertProduct") %>
-        
+
         <center><h1>Print all products</h1></center>
-        
+
         <table>
           <tr>
             <td>ID</td>
@@ -56,11 +56,11 @@
               <!-- TODO: Admin check -->
               <a href="AddProductToWishlist.jsp?productID=<%=product.getId()%>">add to wishlist</a>
               <a href="AddProductToCart.jsp?productID=<%=product.getId()%>">add to cart</a>
-              
-              <% if ( sess.getCurrentUser() != null && sess.getCurrentUser().isIsAdmin() == true ) { %>
-                <a href="EditProduct.xhtml?productID=<%=product.getId()%>">Edit</a>
-                <a href="DeleteProduct.xhtml?productID=<%=product.getId()%>">Delete</a>
-              <% } %>
+
+              <% if (sess.getCurrentUser() != null && sess.getCurrentUser().isIsAdmin() == true) {%>
+              <a href="EditProduct.xhtml?productID=<%=product.getId()%>">Edit</a>
+              <a href="DeleteProduct.xhtml?productID=<%=product.getId()%>">Delete</a>
+              <% }%>
             </td>
           </tr>
 
@@ -71,7 +71,9 @@
 
           %>
         </table>
-       <a href="AddNewProduct.xhtml">Add Product (JSF)</a>
+        <% if (sess.getCurrentUser() != null && sess.getCurrentUser().isIsAdmin() == true) {%>
+        <a href="AddNewProduct.xhtml">Add Product (JSF)</a>
+        <% }%>
       </div>
     </div>
   </body>

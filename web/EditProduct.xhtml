@@ -11,7 +11,7 @@
       <ui:define name="content">
         <h1> #{msgs.EditProductJSF} </h1>
         
-        <c:if test="{session.currentUser.isAdmin}"> 
+        <!-- <c:if test="{session.currentUser.isAdmin}"> -->
          #{caseProduct.loadProductByID(param['productID'])}
         
         <h:form id="form">
@@ -35,12 +35,12 @@
           </h:panelGrid>
           <h:messages errorStyle="color:red" />
         </h:form>
-        </c:if>
+        <!-- </c:if>
         
         <c:if test="{session.currentUser.isAdmin}"> 
           <h1> #{msgs.NoAdmin} </h1>
           <h:commandButton value="#{msgs.LoginLinkLabel}" action="Login.jsp" />
-        </c:if> 
+        </c:if> -->
       </ui:define>
     </ui:composition>
   </body>
