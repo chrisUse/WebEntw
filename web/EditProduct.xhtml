@@ -19,17 +19,7 @@
           <h:outputLabel value="" for="addProductID"/>
           <h:inputHidden id="addProductID" size="30" maxlength="40" value="#{caseProduct.addProductID}"/>
           
-          <h:outputLabel value="#{msgs.Name}" for="name"/>
-          <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}"/>
-          
-          <h:outputLabel value="#{msgs.Price}" for="price"/>
-          <h:inputText id="price" size="30" maxlength="40" required="true" value="#{caseProduct.price}"  /> 
-          
-          <h:outputLabel value="#{msgs.Description}" for="description"/>
-          <h:inputText id="description" size="30" maxlength="40" required="true" value="#{caseProduct.description}" /> 
-          
-          <h:outputLabel value="#{msgs.Manufactorer}" for="manufacturer"/>
-          <h:inputText id="manufacturer" size="30" maxlength="40" required="true" value="#{caseProduct.manufacturer}" /> 
+          <ui:include src="ProductInput.xhtml" />
           
           <h:commandButton value="#{msgs.UpdateProduct}" action="#{caseProduct.updateProduct}" />
           </h:panelGrid>

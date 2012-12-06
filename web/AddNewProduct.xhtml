@@ -12,8 +12,7 @@
 
         <h1> #{msgs.AddNewProductJSF} </h1>
 
-        <!-- <c:if test="{session.currentUserAdmin}">  -->
-
+        <c:if test="{session.currentUserAdmin}"> 
           <h:form id="form">
             <h:panelGrid id="grid" columns="2">
               <ui:include src="ProductInput.xhtml" />
@@ -24,7 +23,7 @@
 
             <h:message for="price" style="color:red" />
           </h:form>
-        <!--</c:if> -->
+        </c:if>
 
         <!--
                 <c:if test="{caseProduct.userAdmin}">

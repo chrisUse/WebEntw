@@ -20,17 +20,7 @@
           <h:outputLabel value="" for="addProductID"/>
           <h:inputHidden id="addProductID" value="#{caseProduct.addProductID}"/>
           
-          <h:outputLabel value="#{msgs.Name}" for="name"/>
-          <h:outputText id="name" value="#{caseProduct.name}"/>
-          
-          <h:outputLabel value="#{msgs.Price}" for="price"/>
-          <h:outputText id="price" value="#{caseProduct.price}"  /> 
-          
-          <h:outputLabel value="#{msgs.Description}" for="description"/>
-          <h:outputText id="description" value="#{caseProduct.description}" /> 
-          
-          <h:outputLabel value="#{msgs.Manufactorer}" for="manufacturer"/>
-          <h:outputText id="manufacturer" value="#{caseProduct.manufacturer}" /> 
+          <ui:include src="ProductInput.xhtml" />
           
           <h:commandButton value="#{msgs.DeleteProduct}" action="#{caseProduct.deleteProduct}" />
           </h:panelGrid>
