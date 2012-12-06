@@ -11,8 +11,9 @@
 
 
         <h1> #{msgs.AddNewProductJSF} </h1>
+        User Admin: #{sessionBean.currentUser.name}
 
-        <c:if test="{session.currentUserAdmin}"> 
+        <c:if test="#{sessionBean.currentUserAdmin == true}"> 
           <h:form id="form">
             <h:panelGrid id="grid" columns="2">
               <ui:include src="ProductInput.xhtml" />
@@ -25,11 +26,13 @@
           </h:form>
         </c:if>
 
-        <!--
-                <c:if test="{caseProduct.userAdmin}">
-                  <h1> #{msgs.NoAdmin} </h1>
-                  <h:commandButton value="#{msgs.LoginLinkLabel}" action="Login.jsp" />
-                </c:if> -->
+
+        <c:if test="#{!sessionBean.currentUserAdmin}">
+          <h1> #{msgs.NoAdmin} </h1>
+          <h:form id="form">
+            <h:commandButton value="#{msgs.LoginLinkLabel}" action="Login.jsp" />
+          </h:form>
+        </c:if> 
       </ui:define>
     </ui:composition>
   </body>
