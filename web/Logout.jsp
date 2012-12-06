@@ -2,7 +2,7 @@
 
 
 <% // Use of Bean needs a empty standard constructor %>
-<jsp:useBean id="sess" class="beans.Session" scope="session"/>
+<jsp:useBean id="sess" class="beans.SessionBean" scope="session"/>
 
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
