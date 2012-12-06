@@ -12,7 +12,7 @@ import javax.faces.bean.*;
  */
 @ManagedBean
 @SessionScoped
-public class Session {
+public class SessionBean {
 
     private Integer currentUser = null;
     
@@ -36,7 +36,7 @@ public class Session {
     }
     
 
-    public Session() {
+    public SessionBean() {
     }
 
     public User getCurrentUser() {
