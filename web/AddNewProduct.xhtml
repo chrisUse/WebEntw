@@ -11,8 +11,8 @@
 
 
         <h1> #{msgs.AddNewProductJSF} </h1>
-        
-        <!-- <c:if test="#{caseProduct.userAdmin}"> -->
+
+        <c:if test="#{session.currentUserAdmin}"> 
 
           <h:form id="form">
             <h:panelGrid id="grid" columns="2">
@@ -20,24 +20,33 @@
               <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}"/>
 
               <h:outputLabel value="#{msgs.Price}" for="price"/>
-              <h:inputText id="price" size="30" maxlength="40" required="true" value="#{caseProduct.price}"  /> 
+              <h:inputText id="price" size="30" maxlength="40" required="true" value="#{caseProduct.price}"  >
+                <f:validateDoubleRange  minimum="0" />
+                <!-- <f:validateRegex pattern="[-+]?[0-9]*\.[0-9]*?" /> -->
+                <!-- <f:validator validatorId="duplicateMailValidator" /> -->
+              </h:inputText>
 
               <h:outputLabel value="#{msgs.Description}" for="description"/>
               <h:inputTextarea id="description" cols="34" required="false" value="#{caseProduct.description}" /> 
 
               <h:outputLabel value="#{msgs.Manufactorer}" for="manufacturer"/>
-              <h:inputText id="manufacturer" size="30" maxlength="40" required="true" value="#{caseProduct.manufacturer}" /> 
+              <h:inputText id="manufacturer" size="30" maxlength="40" required="true" value="#{caseProduct.manufacturer}" > 
+
+              </h:inputText>
 
               <h:commandButton value="#{msgs.InsertProduct}" action="#{caseProduct.insertNewProduct}" />
-            </h:panelGrid>
-          </h:form>
-        <!-- </c:if>
-       
 
-        <c:if test="{caseProduct.userAdmin}">
-          <h1> #{msgs.NoAdmin} </h1>
-          <h:commandButton value="#{msgs.LoginLinkLabel}" action="Login.jsp" />
-        </c:if> -->
+            </h:panelGrid>
+
+            <h:message for="price" style="color:red" />
+          </h:form>
+        </c:if>
+
+        <!--
+                <c:if test="{caseProduct.userAdmin}">
+                  <h1> #{msgs.NoAdmin} </h1>
+                  <h:commandButton value="#{msgs.LoginLinkLabel}" action="Login.jsp" />
+                </c:if> -->
       </ui:define>
     </ui:composition>
   </body>
