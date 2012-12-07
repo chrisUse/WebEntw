@@ -2,7 +2,7 @@
 
 
 <% // Use of Bean needs a empty standard constructor %>
-<jsp:useBean id="sess" class="beans.SessionBean" scope="session"/>
+<jsp:useBean id="sessionBean" class="beans.SessionBean" scope="session"/>
 
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,7 +27,7 @@
 
             <div id="content" class="left_content">
                 <h1>Abmelden</h1>
-                <c:set var="temp" value="${sess.logout()}" />
+                <c:set var="temp" value="${sessionBean.logout()}" />
                 Sie wurden erfolgreich abgemeldet.
             </div>
         </div>

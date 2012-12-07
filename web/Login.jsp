@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 
 <% // Use of Bean needs a empty standard constructor %>
-<jsp:useBean id="sess" class="beans.SessionBean" scope="session"/>
+<jsp:useBean id="sessionBean" class="beans.SessionBean" scope="session"/>
 
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,12 +27,12 @@
                 <h1>Anmeldung</h1>
 
                 <c:if test="${pageContext.request.method=='POST' and param.submit=='Submit'}">
-                    <jsp:setProperty name="sess" property="mail" value="${param.mail}"/>
-                    <jsp:setProperty name="sess" property="password" value="${param.password}"/>
+                    <jsp:setProperty name="sessionBean" property="mail" value="${param.mail}"/>
+                    <jsp:setProperty name="sessionBean" property="password" value="${param.password}"/>
                     <c:choose>
-                        <c:when test="${sess.login() != null}">
+                        <c:when test="${sessionBean.login() != null}">
                             <p>Erfolgreich angemeldet!</p>
-                            <p>Willkommen <c:out value="${sess.currentUser.name}" />!</p>
+                            <p>Willkommen <c:out value="${sessionBean.currentUser.name}" />!</p>
                         </c:when>
                         <c:otherwise>
                             <p class="error">Falsche Logindaten!</p>
@@ -42,7 +42,7 @@
 
 
 
-                <c:if test="${sess.currentUser == null}">
+                <c:if test="${sessionBean.currentUser == null}">
                     <form action="Login.jsp" method="post">
                         <fieldset>
                             <legend>Insert your data: </legend>
