@@ -10,27 +10,29 @@
     <ui:composition template="/templates/onlineshopTemplate.xhtml">
       <ui:define name="content">
         <h1> #{msgs.EditProductJSF} </h1>
-        
-        <!-- <c:if test="{session.currentUser.isAdmin}"> -->
-         #{caseProduct.loadProductByID(param['productID'])}
-        
-        <h:form id="form">
-          <h:panelGrid id="grid" columns="2">
-          <h:outputLabel value="" for="addProductID"/>
-          <h:inputHidden id="addProductID" size="30" maxlength="40" value="#{caseProduct.addProductID}"/>
-          
-          <ui:include src="ProductInput.xhtml" />
-          
-          <h:commandButton value="#{msgs.UpdateProduct}" action="#{caseProduct.updateProduct}" />
-          </h:panelGrid>
-          <h:messages errorStyle="color:red" />
-        </h:form>
-        <!-- </c:if>
-        
-        <c:if test="{session.currentUser.isAdmin}"> 
+
+        <c:if test="#{sessionBean.currentUserAdmin}"> 
+          #{caseProduct.loadProductByID(param['productID'])}
+
+          <h:form id="form">
+            <h:panelGrid id="grid" columns="2">
+              <h:outputLabel value="" for="addProductID"/>
+              <h:inputHidden id="addProductID" size="30" maxlength="40" value="#{caseProduct.addProductID}"/>
+
+              <ui:include src="ProductInput.xhtml" />
+
+              <h:commandButton value="#{msgs.UpdateProduct}" action="#{caseProduct.updateProduct}" />
+            </h:panelGrid>
+            <h:messages errorStyle="color:red" />
+          </h:form>
+        </c:if>
+
+        <c:if test="#{!sessionBean.currentUserAdmin}"> 
           <h1> #{msgs.NoAdmin} </h1>
-          <h:commandButton value="#{msgs.LoginLinkLabel}" action="Login.jsp" />
-        </c:if> -->
+          <h:form id="form2">
+            <h:commandButton value="#{msgs.LoginLinkLabel}" action="Login.jsp" />
+          </h:form>
+        </c:if>
       </ui:define>
     </ui:composition>
   </body>

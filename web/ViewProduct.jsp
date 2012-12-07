@@ -4,7 +4,7 @@
 
 <% // Use of Bean needs a empty standard constructor %>
 <jsp:useBean id="caseProduct" class="beans.caseProduct" scope="page"/>
-<jsp:useBean id="sess" class="beans.SessionBean" scope="session"/>
+<jsp:useBean id="sessionBean" class="beans.SessionBean" scope="session"/>
 
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -57,7 +57,7 @@
               <a href="AddProductToWishlist.jsp?productID=<%=product.getId()%>">add to wishlist</a>
               <a href="AddProductToCart.jsp?productID=<%=product.getId()%>">add to cart</a>
 
-              <% if (sess.getCurrentUser() != null && sess.getCurrentUser().isIsAdmin() == true) {%>
+              <% if (sessionBean.getCurrentUser() != null && sessionBean.getCurrentUser().isIsAdmin() == true) {%>
               <a href="EditProduct.xhtml?productID=<%=product.getId()%>">Edit</a>
               <a href="DeleteProduct.xhtml?productID=<%=product.getId()%>">Delete</a>
               <% }%>
@@ -71,7 +71,7 @@
 
           %>
         </table>
-        <% if (sess.getCurrentUser() != null && sess.getCurrentUser().isIsAdmin() == true) {%>
+        <% if (sessionBean.getCurrentUser() != null && sessionBean.getCurrentUser().isIsAdmin() == true) {%>
         <a href="AddNewProduct.xhtml">Add Product (JSF)</a>
         <% }%>
       </div>
