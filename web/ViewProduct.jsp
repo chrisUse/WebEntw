@@ -20,32 +20,20 @@
   </head>
   <body>
 
-    <!-- ########## S Y S T E M ########## -->
-    <!-- Check if actor are admin -->
-
     <div>
       <jsp:include page="/templates/header.xhtml" />
       <jsp:include page="/templates/menu.xhtml" />
 
       <div id="content" class="left_content">
-        <%  // request.getParameter("InsertProduct") %>
-
         <center><h1>Print all products</h1></center>
 
         <table>
           <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Price</td>
-            <td>Description</td>
-            <td>Manufacturer</td>
+            <td>ID</td> <td>Name</td> <td>Price</td> <td>Description</td> <td>Manufacturer</td>
             <td>Options</td>
           </tr>
 
-          <%
-
-            for (data.Product product : caseProduct.getAllProducts()) {
-          %>
+          <% for (data.Product product : caseProduct.getAllProducts()) {  %>
           <tr>
             <td><%=product.getId()%></td>
             <td><%=product.getName()%></td>
@@ -53,37 +41,22 @@
             <td><%=product.getDescription()%></td>
             <td><%=product.getManufacturer()%></td>
             <td>
-              <!-- TODO: Admin check -->
               <form name="form">
                 <select name="link" SIZE="1" onchange="window.location.href=this.value;">
                   <option value="AddProductToWishlist.jsp?productID=<%=product.getId()%>"> add to wishlist </option>
                   <option value="AddProductToCart.jsp?productID=<%=product.getId()%>"> add to cart </option>
-                  
+
                   <% if (sessionBean.getCurrentUser() != null && sessionBean.getCurrentUser().isIsAdmin() == true) {%>
                   <option value="EditProduct.xhtml?productID=<%=product.getId()%>"> Edit </option>
                   <option value="DeleteProduct.xhtml?productID=<%=product.getId()%>"> Delete </option>
                   <% }%> 
-                  
+
                   <option selected="selected" value="#"> -- Options -- </option>
                 </select>
               </form>
-              <!--
-              <a href="AddProductToWishlist.jsp?productID=<%=product.getId()%>">add to wishlist</a>
-              <a href="AddProductToCart.jsp?productID=<%=product.getId()%>">add to cart</a>
-
-              <% if (sessionBean.getCurrentUser() != null && sessionBean.getCurrentUser().isIsAdmin() == true) {%>
-              <a href="EditProduct.xhtml?productID=<%=product.getId()%>">Edit</a>
-              <a href="DeleteProduct.xhtml?productID=<%=product.getId()%>">Delete</a>
-              <% }%> -->
             </td>
           </tr>
-
-
-
-          <%
-            }
-
-          %>
+          <% } %>
         </table>
         <% if (sessionBean.getCurrentUser() != null && sessionBean.getCurrentUser().isIsAdmin() == true) {%>
         <a href="AddNewProduct.xhtml">Add Product (JSF)</a>
