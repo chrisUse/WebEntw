@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <%@page import="beans.caseProduct"%>
 
@@ -9,7 +10,6 @@
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -54,13 +54,27 @@
             <td><%=product.getManufacturer()%></td>
             <td>
               <!-- TODO: Admin check -->
+              <form name="form">
+                <select name="link" SIZE="1" onchange="window.location.href=this.value;">
+                  <option value="AddProductToWishlist.jsp?productID=<%=product.getId()%>"> add to wishlist </option>
+                  <option value="AddProductToCart.jsp?productID=<%=product.getId()%>"> add to cart </option>
+                  
+                  <% if (sessionBean.getCurrentUser() != null && sessionBean.getCurrentUser().isIsAdmin() == true) {%>
+                  <option value="EditProduct.xhtml?productID=<%=product.getId()%>"> Edit </option>
+                  <option value="DeleteProduct.xhtml?productID=<%=product.getId()%>"> Delete </option>
+                  <% }%> 
+                  
+                  <option selected="selected" value="#"> -- Options -- </option>
+                </select>
+              </form>
+              <!--
               <a href="AddProductToWishlist.jsp?productID=<%=product.getId()%>">add to wishlist</a>
               <a href="AddProductToCart.jsp?productID=<%=product.getId()%>">add to cart</a>
 
               <% if (sessionBean.getCurrentUser() != null && sessionBean.getCurrentUser().isIsAdmin() == true) {%>
               <a href="EditProduct.xhtml?productID=<%=product.getId()%>">Edit</a>
               <a href="DeleteProduct.xhtml?productID=<%=product.getId()%>">Delete</a>
-              <% }%>
+              <% }%> -->
             </td>
           </tr>
 
