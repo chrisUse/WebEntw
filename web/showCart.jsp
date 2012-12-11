@@ -4,7 +4,7 @@
     Author     : Danny
 --%>
 
-<%@page import="data.ProductInCart"%>
+<%@page import="data.ProductInCart"%>i
 <%@page import="data.Product"%>
 <%@page import="data.Cart"%>
 <%@page import="data.Storage"%>
@@ -24,7 +24,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
-        <title>show cart</title>
+        <title>Cart</title>
     </head>
     <body>
         <div>
