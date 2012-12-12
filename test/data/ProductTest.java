@@ -116,17 +116,16 @@ public class ProductTest {
   /**
    * Test of getCopy method, of class Product.
    */
-  
   @Test
   public void testGetCopy() {
     System.out.println("getCopy");
-    Product instance = new Product("TestName",0,"TestDescription","TestManufactorer");
-    ICopyable expResult = new Product("TestName",0,"TestDescription","TestManufactorer");
+    ICopyable expResult = new Product("TestName",2.34565f,"TestDescription","TestManufactorer");
     ICopyable result = instance.getCopy();
-    ///TODO: Deep diff
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    
+    assertEquals(((Product)expResult).getName(), ((Product)result).getName());
+    assertTrue(((Product)expResult).getPrice() == ((Product)result).getPrice());
+    assertEquals(((Product)expResult).getDescription(), ((Product)result).getDescription());
+    assertEquals(((Product)expResult).getManufacturer(), ((Product)result).getManufacturer());
   }
   
 }

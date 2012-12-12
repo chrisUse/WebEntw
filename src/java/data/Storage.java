@@ -90,7 +90,6 @@ public class Storage {
                 6.18f,
                 "USB, 800dpi, weiß",
                 "Logitech"));
-
     }
 
     private int addData(DataType type, IStorageData d) throws StorageException {
@@ -237,7 +236,6 @@ public class Storage {
     }
 
     private Storage() {
-
         autoInc = new HashMap<DataType, Integer>();
         data = new HashMap<DataType, HashMap<Integer, IStorageData>>();
         coupons = new HashMap<String, Coupon>();

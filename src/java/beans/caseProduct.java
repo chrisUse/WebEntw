@@ -40,8 +40,18 @@ public class caseProduct {
     //this.name ="NewTestName";
   }
   
-  public boolean isUserAdmin () {
-    return Storage.getInstance().getUserById(1).isIsAdmin();
+  /*
+   * Checks if the product exists by name.
+   * 
+   * @return Returns true if the product exists otherwise false.
+   */
+  public boolean isProductExist ( String name ) {
+    for ( Product p : data.Storage.getInstance().getAllProducts() ) {
+      if ( p.getName() == name ) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public int addProduct(String name, float price, String description, String manufactorer) throws StorageException {
