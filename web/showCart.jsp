@@ -13,17 +13,13 @@
 <%@page import="data.Storage"%>
 <%@page import="data.User"%>
 <%
+    if(sessionBean.getCurrentUser() == null)
+        response.sendRedirect("LoginError.jsp");
+        
     boolean tIsInCart   = Boolean.parseBoolean(request.getParameter("isInCart"));
     boolean tRemoved    = Boolean.parseBoolean(request.getParameter("removed"));
-    int tUserID         = -1;
-    Cart tCart          = null;
-    if(sessionBean.getCurrentUser() != null)
-    {
-        tUserID = sessionBean.getCurrentUser().getId();
-        tCart   = Storage.getInstance().getUserById(tUserID).getCart();
-    }
-    else
-        response.sendRedirect("LoginError.jsp");
+    int tUserID         = sessionBean.getCurrentUser().getId();
+    Cart tCart          = Storage.getInstance().getUserById(tUserID).getCart();
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

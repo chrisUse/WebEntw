@@ -11,7 +11,9 @@
 <%@page import="data.User"%>
 <%@page import="data.Storage"%>
 <%
-    // current user??
+    if(sessionBean.getCurrentUser() == null)
+        response.sendRedirect("LoginError.jsp");
+        
     boolean tIsInCart       = false;
     int     tUserID         = sessionBean.getCurrentUser().getId();   
     int     tProductID      = Integer.parseInt(request.getParameter("productID"));
