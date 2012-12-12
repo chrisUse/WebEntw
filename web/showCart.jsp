@@ -4,16 +4,21 @@
     Author     : Danny
 --%>
 
-<%@page import="data.ProductInCart"%>i
+<% // Use of Bean needs a empty standard constructor %>
+<jsp:useBean id="sessionBean" class="beans.SessionBean" scope="session"/>
+
+<%@page import="data.ProductInCart"%>
 <%@page import="data.Product"%>
 <%@page import="data.Cart"%>
 <%@page import="data.Storage"%>
 <%@page import="data.User"%>
 <%
+    if(sessionBean.getCurrentUser() == null)
+        response.sendRedirect("LoginError.jsp");
+        
     boolean tIsInCart   = Boolean.parseBoolean(request.getParameter("isInCart"));
     boolean tRemoved    = Boolean.parseBoolean(request.getParameter("removed"));
-    int     tUserID     = Integer.parseInt(request.getParameter("userID"));
-    
+    int tUserID         = sessionBean.getCurrentUser().getId();
     Cart tCart          = Storage.getInstance().getUserById(tUserID).getCart();
 %>
 
@@ -40,7 +45,7 @@
                     if(tCart.getProductsInCart().size() == 0)
                         out.print("Your cart is empty.");
                 %>
-                <table border="1">
+                <table border="0">
                     <th>ID</th><th>Name</th><th>Count</th>
                     <% for(int i = 0; i < tCart.getProductsInCart().size(); i++) { 
                             ProductInCart   tProductIC  = tCart.getProductsInCart().get(i);
@@ -77,8 +82,23 @@
                                     <input type="submit" value="Remove" />
                                 </form>
                             </td>
-                        </tr>
+                        <tr />
                     <% }    %>
+                </table>
+                
+                <table>
+                    <tr>
+                        <td>
+                            <form action="ViewProduct.jsp">
+                                <input type="submit" value="Continue shopping" />
+                            </form>
+                        </td>
+                        <td>
+                            <form action="">
+                                <input type="submit" value="Clear cart" />
+                            </form>
+                        </td>
+                    <tr />
                 </table>
             </div>
         </div>

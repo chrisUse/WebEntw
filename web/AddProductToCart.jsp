@@ -4,13 +4,18 @@
     Author     : Danny
 --%>
 
+<% // Use of Bean needs a empty standard constructor %>
+<jsp:useBean id="sessionBean" class="beans.SessionBean" scope="session"/>
+
 <%@page import="data.Cart"%>
 <%@page import="data.User"%>
 <%@page import="data.Storage"%>
 <%
-    // current user??
+    if(sessionBean.getCurrentUser() == null)
+        response.sendRedirect("LoginError.jsp");
+        
     boolean tIsInCart       = false;
-    int     tUserID         = 1;   
+    int     tUserID         = sessionBean.getCurrentUser().getId();   
     int     tProductID      = Integer.parseInt(request.getParameter("productID"));
     User    tCurrentUser    = Storage.getInstance().getUserById(tUserID);
     Cart    tCart           = tCurrentUser.getCart();
