@@ -5,7 +5,10 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
   <h:outputLabel value="#{msgs.Name}" for="name"/>
-  <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}"/>
+  <h:inputText id="name" size="30" maxlength="40" required="true" value="#{caseProduct.name}">
+    <!-- Check with ajax if the name is present in the datastore -->
+  </h:inputText>
+  
 
   <h:outputLabel value="#{msgs.Price}" for="price"/>
   <h:inputText id="price" size="30" maxlength="40" required="true" value="#{caseProduct.price}"  >
