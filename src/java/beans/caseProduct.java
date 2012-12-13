@@ -38,7 +38,7 @@ public class caseProduct {
   private String nameUsed;
 
   public caseProduct() {
-    //this.name ="NewTestName";
+    //this.name ="";
     this.nameUsed = "";
   }
 
@@ -99,16 +99,18 @@ public class caseProduct {
   }
 
   public void setName(String name) {
-    if ( ! isProductExist(name)) {
+    if ( ! isProductExist(name) ) {
       this.name = name;
+    } else {
+      this.nameUsed = "Product existiert";
     }
   }
   
-  public boolean checkNameSet () {
-    if (this.name != null && this.name.equals("")) {
-      return true;
+  public String checkNameSet () {
+    if (this.name != null && ! this.name.equals("")) {
+      return "";
     }
-    return false;
+    return this.nameUsed;
   }
 
   public float getPrice() {
