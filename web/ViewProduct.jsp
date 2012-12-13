@@ -20,28 +20,44 @@
   </head>
   <body>
 
+    <%
+      //int counter = 1;
+      //while (request.getParameter("checked_" + counter) != null) {
+      if (request.getParameterValues("checked") != null) {
+        String[] t = request.getParameterValues("checked");
+        //for ( String t : request.getParameterValues("checked") ) {
+        //for ( int x=0; x < t.length; x++ ) {
+        out.print("Daten: " + t[0]);
+        //counter++;
+        //}
+      }
+    %>
+
     <div>
       <jsp:include page="/templates/header.xhtml" />
-      <jsp:include page="/templates/menu.xhtml" />
+      <jsp:include page="/templates/menu.jsp" />
 
       <div id="content" class="left_content">
         <center><h1>Print all products</h1></center>
 
         <table>
           <tr>
-            <td>ID</td> <td>Name</td> <td>Price</td> <td>Description</td> <td>Manufacturer</td>
+            <td>Select</td><td>ID</td> <td>Name</td> <td>Price</td> <td>Description</td> <td>Manufacturer</td>
             <td>Options</td>
           </tr>
 
-          <% for (data.Product product : caseProduct.getAllProducts()) {  %>
-          <tr>
-            <td><%=product.getId()%></td>
-            <td><%=product.getName()%></td>
-            <td><%=product.getPrice()%></td>
-            <td><%=product.getDescription()%></td>
-            <td><%=product.getManufacturer()%></td>
-            <td>
-              <form name="form">
+          <form name="outerForm" action="ViewProduct.jsp" method="post">
+            <% //counter = 1; %>
+            <% for (data.Product product : caseProduct.getAllProducts()) {%>
+            <tr>
+              <td><input name="checked[]" type="checkbox" value="<%=product.getId()%>"/></td>
+              <td><%=product.getId()%></td>
+              <td><%=product.getName()%></td>
+              <td><%=product.getPrice()%></td>
+              <td><%=product.getDescription()%></td>
+              <td><%=product.getManufacturer()%></td>
+              <td>
+                <!-- <form name="form"> -->
                 <select name="link" SIZE="1" onchange="window.location.href=this.value;">
                   <option value="AddProductToWishlist.jsp?productID=<%=product.getId()%>"> add to wishlist </option>
                   <option value="AddProductToCart.jsp?productID=<%=product.getId()%>"> add to cart </option>
@@ -53,10 +69,12 @@
 
                   <option selected="selected" value="#"> -- Options -- </option>
                 </select>
-              </form>
-            </td>
-          </tr>
-          <% } %>
+                <!--  </form> -->
+              </td>
+            </tr>
+            <% }%>
+            <input type="submit" name="DeleteAllSelected" value="Delete all selected" />
+          </form>
         </table>
         <% if (sessionBean.getCurrentUser() != null && sessionBean.getCurrentUser().isIsAdmin() == true) {%>
         <a href="AddNewProduct.xhtml">Add Product (JSF)</a>

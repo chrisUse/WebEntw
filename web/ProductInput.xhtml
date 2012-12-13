@@ -21,15 +21,15 @@
       <!-- <f:validateRegex pattern="[-+]?[0-9]*\.[0-9]*?" /> -->
       <!-- <f:validator validatorId="duplicateMailValidator" /> -->
     </h:inputText>
-    <h:outputText id="checkPrice" value="#{(caseProduct.price == 0.0 ? 'Wert vorhanden' : '')}"/>
+    <h:outputText id="checkPrice" value=""/>
 
     <h:outputLabel value="#{msgs.Description}" for="description"/>
     <h:inputTextarea id="description" cols="34" required="false" value="#{caseProduct.description}" /> 
-    <h:outputText id="checkDescription" value="#{caseProduct.description}"/>
+    <h:outputText id="checkDescription" value=""/>
 
     <h:outputLabel value="#{msgs.Manufactorer}" for="manufacturer"/>
     <h:inputText id="manufacturer" size="30" maxlength="40" required="true" value="#{caseProduct.manufacturer}" />
-    <h:outputText id="checkManufacturer" value="#{caseProduct.manufacturer}"/>
+    <h:outputText id="checkManufacturer" value=""/>
 
   </ui:composition>
 </html>

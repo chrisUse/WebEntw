@@ -102,7 +102,7 @@ public class caseProduct {
     if ( ! isProductExist(name) ) {
       this.name = name;
     } else {
-      this.nameUsed = "Product existiert";
+      this.nameUsed = "Product exists";
     }
   }
   
