@@ -21,15 +21,10 @@
   <body>
 
     <%
-      //int counter = 1;
-      //while (request.getParameter("checked_" + counter) != null) {
-      if (request.getParameterValues("checked") != null) {
-        String[] t = request.getParameterValues("checked");
-        //for ( String t : request.getParameterValues("checked") ) {
-        //for ( int x=0; x < t.length; x++ ) {
-        out.print("Daten: " + t[0]);
-        //counter++;
-        //}
+      if (request.getParameter("DeleteAllSelected") != null) {
+        for (String t : request.getParameterValues("checked")) {
+          out.print("Data to delete: " + t);
+        }
       }
     %>
 
@@ -50,7 +45,7 @@
             <% //counter = 1; %>
             <% for (data.Product product : caseProduct.getAllProducts()) {%>
             <tr>
-              <td><input name="checked[]" type="checkbox" value="<%=product.getId()%>"/></td>
+              <td><input name="checked" type="checkbox" value="<%=product.getId()%>"/></td>
               <td><%=product.getId()%></td>
               <td><%=product.getName()%></td>
               <td><%=product.getPrice()%></td>
