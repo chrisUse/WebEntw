@@ -21,13 +21,13 @@
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
         <div>
-
+            <c:set var="temp" value="${sessionBean.logout()}" />
             <jsp:include page="/templates/header.xhtml" />
             <jsp:include page="/templates/menu.jsp" />
 
             <div id="content" class="left_content">
                 <h1>Abmelden</h1>
-                <c:set var="temp" value="${sessionBean.logout()}" />
+
                 Sie wurden erfolgreich abgemeldet.
             </div>
         </div>

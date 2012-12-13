@@ -19,6 +19,12 @@
         <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
         <div>
+            <c:set var="loggedIn" value="${null}" />
+            <c:if test="${pageContext.request.method=='POST' and param.submit=='Submit'}">
+                <jsp:setProperty name="sessionBean" property="mail" value="${param.mail}"/>
+                <jsp:setProperty name="sessionBean" property="password" value="${param.password}"/>
+                <c:set var="loggedIn" value="${sessionBean.login() != null}" />
+            </c:if>
 
             <jsp:include page="/templates/header.xhtml" />
             <jsp:include page="/templates/menu.jsp" />
@@ -26,11 +32,9 @@
             <div id="content" class="left_content">
                 <h1>Anmeldung</h1>
 
-                <c:if test="${pageContext.request.method=='POST' and param.submit=='Submit'}">
-                    <jsp:setProperty name="sessionBean" property="mail" value="${param.mail}"/>
-                    <jsp:setProperty name="sessionBean" property="password" value="${param.password}"/>
+                <c:if test="${loggedIn != null}">
                     <c:choose>
-                        <c:when test="${sessionBean.login() != null}">
+                        <c:when test="${loggedIn}">
                             <p>Erfolgreich angemeldet!</p>
                             <p>Willkommen <c:out value="${sessionBean.currentUser.name}" />!</p>
                         </c:when>
@@ -41,20 +45,24 @@
                 </c:if>
 
 
-
-                <c:if test="${sessionBean.currentUser == null}">
-                    <form action="Login.jsp" method="post">
-                        <fieldset>
-                            <legend>Insert your data: </legend>
-                            <label for="mail">Email:</label><br />
-                            <input type="text" id="mail" name="mail" /><br />
-                            <label for="password">Password:</label><br />
-                            <input type="password" id="password" name="password" /><br/>
-                            <br />
-                            <input type="submit" name="submit" value="Submit" />
-                        </fieldset>
-                    </form>
-                </c:if>
+                <c:choose>
+                    <c:when test="${sessionBean.currentUser == null}">
+                        <form action="Login.jsp" method="post">
+                            <fieldset>
+                                <legend>Insert your data: </legend>
+                                <label for="mail">Email:</label><br />
+                                <input type="text" id="mail" name="mail" /><br />
+                                <label for="password">Password:</label><br />
+                                <input type="password" id="password" name="password" /><br/>
+                                <br />
+                                <input type="submit" name="submit" value="Submit" />
+                            </fieldset>
+                        </form>
+                    </c:when>
+                    <c:when test="${loggedIn == null}">
+                        <p>Sie sind bereits angemeldet.</p>
+                    </c:when>
+                </c:choose>
             </div>
         </div>
     </body>

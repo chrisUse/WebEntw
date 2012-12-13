@@ -12,6 +12,12 @@
 
                 <h:form id="form">
                     <h:panelGrid id="grid" columns="3">
+                        <h:outputLabel value="Anrede" for="salutation"/>
+                        <h:selectOneMenu id="salutation" value="#{userBean.salutation}" required="true">
+                            <f:selectItems value="#{userBean.salutations}" />
+                        </h:selectOneMenu>
+                        <h:message for="salutation" class="error"/>
+                        
                         <h:outputLabel value="Vollständiger Name" for="name"/>
                         <h:inputText id="name" size="30" value="#{userBean.name}" required="true">
                             <f:validateLength minimum="3" />
