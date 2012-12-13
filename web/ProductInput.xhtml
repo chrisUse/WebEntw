@@ -10,7 +10,7 @@
     <f:ajax event="valueChange" render="checkName"/>
     
   </h:inputText>
-  <h:outputText id="checkName" value="#{(caseProduct.checkNameSet() == true ? 'Wert vorhanden' : '')}" />
+  <h:outputText id="checkName" value="#{(caseProduct.checkNameSet() ? '' : 'Wert vorhanden')}" />
   
 
   <h:outputLabel value="#{msgs.Price}" for="price"/>

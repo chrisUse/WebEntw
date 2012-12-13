@@ -99,13 +99,13 @@ public class caseProduct {
   }
 
   public void setName(String name) {
-    if ( ! isProductExist(name)) {
+    if ( ! isProductExist(name) ) {
       this.name = name;
     }
   }
   
   public boolean checkNameSet () {
-    if (this.name != null && this.name.equals("")) {
+    if (this.name != null && ! this.name.equals("")) {
       return true;
     }
     return false;
