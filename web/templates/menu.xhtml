@@ -13,7 +13,7 @@ and open the template in the editor.
                                (link.forRegistredUsersOnly and (sessionBean.currentUser != null)) or
                                (link.forAdminOnly and sessionBean.currentUserAdmin) or
                                (link.forEveryone)}">
-                    <li><a href="#{link.action}">#{link.linkText} (*)</a></li>
+                    <li><a href="#{link.action}">#{link.linkText}</a></li>
                 </c:if>
 
             </c:forEach>
