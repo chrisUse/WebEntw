@@ -24,6 +24,25 @@
                             <f:validateLength minimum="2" />
                         </h:inputText>
                         <h:message for="city" class="error" />
+                        
+                        <h:outputLabel value="Wollen Sie Werbung erhalten?" for="wantsCommercials" />
+                        <h:selectBooleanCheckbox id="wantsCommercials" value="#{userBean.wantsCommercials}" >
+                            <f:ajax render="spamPanel" />
+                        </h:selectBooleanCheckbox>
+                        <h:message for="city" class="wantsCommercials" />
+                        
+                        <h:outputText value="" />
+                        <h:panelGrid id="spamPanel" columns="2">
+                            <h:selectBooleanCheckbox id="comElectro" value="#{userBean.comElectro}" rendered="#{userBean.wantsCommercials}" />
+                            <h:outputLabel value="Elektronik" rendered="#{userBean.wantsCommercials}" for="comElectro" />
+                            
+                            <h:selectBooleanCheckbox id="comBooks" value="#{userBean.comBooks}" rendered="#{userBean.wantsCommercials}" />
+                            <h:outputLabel value="Bücher" rendered="#{userBean.wantsCommercials}" for="comBooks" />
+                            
+                            <h:selectBooleanCheckbox id="comMedia" value="#{userBean.comMedia}" rendered="#{userBean.wantsCommercials}" />
+                            <h:outputLabel value="Medien" rendered="#{userBean.wantsCommercials}" for="comMedia" />
+                        </h:panelGrid>
+                        <h:outputText value="" />
 
 
                         <h:commandButton value="Weiter" action="#{userBean.completeRegistration}" />

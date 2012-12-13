@@ -30,12 +30,48 @@ public class UserBean implements Serializable {
     
     private String salutation;
     private boolean termsAccepted = false;
+    private boolean wantsCommercials = false;
+    
+    private boolean comElectro, comBooks, comMedia;
     
     private boolean registrationComplete = false;
 
     public UserBean() {
     }
 
+    public boolean isWantsCommercials() {
+        return wantsCommercials;
+    }
+
+    public boolean isComElectro() {
+        return comElectro;
+    }
+
+    public void setComElectro(boolean comElectro) {
+        this.comElectro = comElectro;
+    }
+
+    public boolean isComBooks() {
+        return comBooks;
+    }
+
+    public void setComBooks(boolean comBooks) {
+        this.comBooks = comBooks;
+    }
+
+    public boolean isComMedia() {
+        return comMedia;
+    }
+
+    public void setComMedia(boolean comMedia) {
+        this.comMedia = comMedia;
+    }
+
+    public void setWantsCommercials(boolean wantsCommercials) {
+        this.wantsCommercials = wantsCommercials;
+    }
+
+    
     public String getSalutation() {
         return salutation;
     }
