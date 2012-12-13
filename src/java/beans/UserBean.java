@@ -8,8 +8,8 @@ import data.*;
 import exceptions.DuplicateEntryException;
 import exceptions.StorageException;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
@@ -28,10 +28,39 @@ public class UserBean implements Serializable {
     private String street;
     private String city;
     
+    private String salutation;
+    private boolean termsAccepted = false;
+    
     private boolean registrationComplete = false;
 
     public UserBean() {
     }
+
+    public String getSalutation() {
+        return salutation;
+    }
+    
+    public List<String> getSalutations() {
+        List<String> l = new ArrayList<String>();
+        l.add("Herr");
+        l.add("Frau");
+        l.add("Prof.");
+        return l;
+    }
+
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
+    }
+
+    public boolean isTermsAccepted() {
+        return termsAccepted;
+    }
+
+    public void setTermsAccepted(boolean termsAccepted) {
+        this.termsAccepted = termsAccepted;
+    }
+    
+    
 
     public boolean isRegistrationComplete() {
         
