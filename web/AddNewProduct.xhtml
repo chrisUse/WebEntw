@@ -17,10 +17,11 @@
             <h:panelGrid id="grid" columns="3">
               <ui:include src="ProductInput.xhtml" />
 
-              <h:commandButton value="#{msgs.InsertProduct}" action="#{caseProduct.insertNewProduct}" />
+              
               
             </h:panelGrid>
 
+            <h:commandButton value="#{msgs.InsertProduct}" action="#{caseProduct.insertNewProduct}" />
             <h:message for="price" style="color:red" />
           </h:form>
         </c:if>
