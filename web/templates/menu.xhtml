@@ -4,20 +4,19 @@ and open the template in the editor.
 -->
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
     <div id="left">
         <ul>
-            <li><a href="Login.jsp">Anmeldung</a></li>
-            <li><a href="Register.xhtml">Registrierung</a></li>
-            <!-- <li><a href="ViewProduct.xhtml"  >Product View JSF</a> </li> -->
-            <li><a href="ViewProduct.jsp"    >Product View JSP</a> </li>
-            <!-- <li><a href="AddNewProduct.xhtml">New Product JSF</a> </li> -->
-            <!-- <li><a href="showProducts.jsp">Show Products</a></li> -->
-            <!-- <li><a href="AddNewProduct.jsp"  >New Product JSP</a> </li> -->
-            <li><a href="showWishlist.jsp">Show Wishlist</a></li>
-            <li><a href="showCart.jsp?userID=1">Show Cart</a></li>
-            <li><a href="Logout.jsp">Abmelden</a></li>
+            <c:forEach var="link" items="#{menuBean.menuItems}">
+                <c:if test="#{(link.forAnonymousUsersOnly and (sessionBean.currentUser == null)) or
+                               (link.forRegistredUsersOnly and (sessionBean.currentUser != null)) or
+                               (link.forAdminOnly and sessionBean.currentUserAdmin) or
+                               (link.forEveryone)}">
+                    <li><a href="#{link.action}">#{link.linkText}</a></li>
+                </c:if>
 
+            </c:forEach>
         </ul>
     </div>
 </ui:composition>

@@ -21,7 +21,7 @@
         <div>
 
             <jsp:include page="/templates/header.xhtml" />
-            <jsp:include page="/templates/menu.xhtml" />
+            <jsp:include page="/templates/menu.jsp" />
 
             <div id="content" class="left_content">
                 <h1>Anmeldung</h1>
