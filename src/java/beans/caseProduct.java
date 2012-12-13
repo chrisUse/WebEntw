@@ -35,19 +35,22 @@ public class caseProduct {
   private String manufacturer;
   private int addProductID;
   private Product selectedProduct;
+  private String nameUsed;
 
   public caseProduct() {
     //this.name ="NewTestName";
+    this.nameUsed = "";
   }
-  
+
   /*
    * Checks if the product exists by name.
    * 
    * @return Returns true if the product exists otherwise false.
    */
-  public boolean isProductExist ( String name ) {
-    for ( Product p : data.Storage.getInstance().getAllProducts() ) {
-      if ( p.getName() == name ) {
+  public boolean isProductExist(String name) {
+    for (Product p : data.Storage.getInstance().getAllProducts()) {
+      if (p.getName().equals(name)) {
+        this.nameUsed = "Name in use";
         return true;
       }
     }
@@ -96,7 +99,16 @@ public class caseProduct {
   }
 
   public void setName(String name) {
-    this.name = name;
+    if ( ! isProductExist(name)) {
+      this.name = name;
+    }
+  }
+  
+  public boolean checkNameSet () {
+    if (this.name != null && this.name.equals("")) {
+      return true;
+    }
+    return false;
   }
 
   public float getPrice() {

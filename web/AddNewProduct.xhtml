@@ -14,7 +14,7 @@
 
         <c:if test="#{sessionBean.currentUserAdmin}"> 
           <h:form id="form">
-            <h:panelGrid id="grid" columns="2">
+            <h:panelGrid id="grid" columns="3">
               <ui:include src="ProductInput.xhtml" />
 
               <h:commandButton value="#{msgs.InsertProduct}" action="#{caseProduct.insertNewProduct}" />
