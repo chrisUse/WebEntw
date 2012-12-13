@@ -85,6 +85,17 @@ public class caseProduct {
       return null;
     }
   }
+  
+  public boolean deleteProductByID( int id ) {
+
+    data.Storage.getInstance().deleteProductById(id);
+
+    if (data.Storage.getInstance().getProductById(addProductID) == null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   public int getAddProductID() {
     return addProductID;

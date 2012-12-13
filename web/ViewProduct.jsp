@@ -23,7 +23,8 @@
     <%
       if (request.getParameter("DeleteAllSelected") != null) {
         for (String t : request.getParameterValues("checked")) {
-          out.print("Data to delete: " + t);
+          //out.print("Data to delete: " + t);
+          caseProduct.deleteProductByID ( Integer.parseInt(t) );
         }
       }
     %>
