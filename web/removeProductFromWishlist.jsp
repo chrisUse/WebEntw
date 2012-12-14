@@ -4,18 +4,22 @@
     Author     : Marco Wilhelm
 --%>
 
-<%@page import="data.WishList"%>
-<%@page import="data.Storage"%>
-<%@page import="data.User"%>
+<%@page import="exceptions.PorductDoesNotExistException"%>
+<jsp:useBean id="sessionBean" class="beans.SessionBean" scope="session"/>
+<jsp:useBean id="wishlistBean" class="beans.WishlistBean" scope="page" />
+
 <%
-    //TODO   set currentUser to the real current user
-    User currentUser = Storage.getInstance().getUserById(1);
-    WishList wishList = currentUser.getWishList();
-    int productID = Integer.parseInt(request.getParameter("productID"));
-    wishList.removeProduct(productID);
-    currentUser.setWishList(wishList);
-    Storage.getInstance().setUser(currentUser);
-    response.sendRedirect("showWishlist.jsp?userID=1");
+    if(sessionBean.getCurrentUser() == null)
+        response.sendRedirect("LoginError.jsp");
+
+    try{
+        wishlistBean.removeProduct(sessionBean.getCurrentUserID(), Integer.parseInt(request.getParameter("productID")));
+    }
+    catch(PorductDoesNotExistException ex){
+        session.setAttribute("error", ex.getMessage());
+    }
+    
+    response.sendRedirect("showWishlist.jsp"); 
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

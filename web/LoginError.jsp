@@ -15,8 +15,12 @@
     </head>
     <body>
         <div>
+            <%--
             <%@include file="templates/header.xhtml" %>
             <%@include file="templates/menu.xhtml" %>
+            --%>
+            <jsp:include page="/templates/header.xhtml" />
+            <jsp:include page="/templates/menu.jsp" />
             
             <div id="content" class="left_content">
                 You are currently not logged in.<br/>

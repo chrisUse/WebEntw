@@ -17,7 +17,13 @@ h1 {
 }
 
 .error {
+    font-weight: bold;
     color: red;
+}
+
+.status {
+    font-weight: bold;
+    color: blue;
 }
 
 a:link, a:visited {

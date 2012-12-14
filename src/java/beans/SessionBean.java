@@ -43,6 +43,10 @@ public class SessionBean {
         return this.currentUser == null ? null : Storage.getInstance().getUserById(this.currentUser);
     }
     
+    public int getCurrentUserID() {
+        return this.currentUser;
+    }
+    
     public boolean isCurrentUserAdmin() {
         User u = this.getCurrentUser();
         return u == null ? false : u.isIsAdmin();

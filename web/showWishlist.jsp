@@ -4,14 +4,12 @@
     Author     : Marco
 --%>
 
-<%@page import="data.Product"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="data.WishList"%>
-<%@page import="data.User"%>
-<%@page import="data.Storage"%>
+<jsp:useBean id="sessionBean" class="beans.SessionBean" scope="session"/>
+<jsp:useBean id="wishlistBean" class="beans.WishlistBean" scope="page" />
+
 <%
-    WishList wishList = new WishList(Storage.getInstance().getUserById(1).getWishList());
-    //out.print(wishList.getProducts().size());
+    if(sessionBean.getCurrentUser() == null)
+        response.sendRedirect("LoginError.jsp");
 %>
 
 <%@page language="java" import="java.util.*,java.text.*"%>
@@ -31,41 +29,61 @@
     <body>
         
         <div>
+            <%--
             <%@include file="templates/header.xhtml" %>
             <%@include file="templates/menu.xhtml" %>
+            --%>
+            <jsp:include page="/templates/header.xhtml" />
+            <jsp:include page="/templates/menu.jsp" />
             
             <div id="content" class="left_content">
-                <%
-                if(!Boolean.parseBoolean(request.getParameter("newProduct")))
-                    out.print("Ihr ausgewähltes Produkt befand sich bereits auf Ihrer Wunschliste");
-                %>
-                <table border="1">
-                    <thead>
-                        <tr> 
-                            <td>ID</td>
-                            <td>Name</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(int i=0; i<wishList.getProducts().size(); i++) { %>
-                            <tr> 
-                                <td><% out.print(wishList.getProducts().get(i).getId()); %></td>
-                                <td><% out.print(wishList.getProducts().get(i).getName()); %></td>
-                                <td> 
-                                    <form action="removeProductFromWishlist.jsp">
-                                        <input type="hidden" name="productID" value="<%= wishList.getProducts().get(i).getId() %>" />
-                                        <input type="submit" value="Entfernen" />
-                                    </form>
-                                </td>
-                            </tr>
-                        <% } %>
-                    </tbody>
-                </table>
                 
-                <!-- just for test issues-->
-                <form action="showProducts.jsp">
-                    <input type="submit" value="Zur Produktübersicht" />
-                </form>
+                <h1>Wunschliste von <%= sessionBean.getCurrentUser().getName() %></h1>
+                
+                <% if(session.getAttribute("error") != null){
+                    if(session.getAttribute("error") == "pae") {%>
+                        <p class="error">Der ausgewählte Artikel befand sich bereits auf Ihrer Wunschliste</p> 
+                    <% }
+                    else if(session.getAttribute("error") == "pdne") {%>
+                       <p class="error">Der ausgewählte Artikel befand sich nicht auf Ihrer Wunschliste</p>
+                    <% }
+                    session.removeAttribute("error");
+                }
+
+                if(wishlistBean.getSize(sessionBean.getCurrentUserID()) == 0) { %>
+                    <p class="status">Auf Ihrer Wunschliste befinden sich noch keine Artikel</p>
+                    <form action="ViewProduct.jsp">
+                        <input type="submit" value="Zur Artikelübersicht" />
+                    </form>
+                <% } 
+                else{ %>
+                    <p class="status">Auf Ihrer Wunschliste befinden sich <%= wishlistBean.getSize(sessionBean.getCurrentUserID()) %> Artikel</p>
+                    <table>
+                        <thead>
+                            <tr> 
+                                <td align="right"><b>Artikel Nummer</b></td>
+                                <td><b>Name</b></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(data.Product product : wishlistBean.getProducts(sessionBean.getCurrentUserID())) { %>
+                                <tr>
+                                    <td align="center"> <%= product.getId() %> </td>
+                                    <td> <%= product.getName() %> </td>
+                                    <td>
+                                        <form action="removeProductFromWishlist.jsp">
+                                            <input type="hidden" name="productID" value="<%= product.getId() %>" />
+                                            <input type="submit" value="Entfernen" />
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                    <form action="ViewProduct.jsp">
+                        <input type="submit" value="Weitere Artikel hinzufügen" />
+                    </form>
+                <% } %>
             </div>
         </div>
     </body>
