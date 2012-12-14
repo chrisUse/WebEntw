@@ -20,7 +20,6 @@ public class MenuBean {
 
     public MenuBean() {
         menuItems = new ArrayList<MenuItem>();
-        // action, linktext, admin, anonym, registred
         menuItems.add(new MenuItem("Login.jsp", "Anmeldung", MenuItemVisibility.ANONYMOUS_USERS_ONLY));
         menuItems.add(new MenuItem("Register.xhtml", "Registrierung", MenuItemVisibility.ANONYMOUS_USERS_ONLY));
         menuItems.add(new MenuItem("AddNewProduct.xhtml", "New Product JSF", MenuItemVisibility.ADMINS_ONLY));
