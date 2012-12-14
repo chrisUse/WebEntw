@@ -29,7 +29,7 @@
                         <h:selectBooleanCheckbox id="wantsCommercials" value="#{userBean.wantsCommercials}" >
                             <f:ajax render="spamPanel" />
                         </h:selectBooleanCheckbox>
-                        <h:message for="city" class="wantsCommercials" />
+                        <h:message for="wantsCommercials" class="error" />
                         
                         <h:outputText value="" />
                         <h:panelGrid id="spamPanel" columns="2">
@@ -43,6 +43,13 @@
                             <h:outputLabel value="Medien" rendered="#{userBean.wantsCommercials}" for="comMedia" />
                         </h:panelGrid>
                         <h:outputText value="" />
+                        
+                        <h:outputLabel value="AGB akzeptieren" for="termsAccepted" />
+                        <h:selectOneRadio id="termsAccepted" value="#{userBean.termsAccepted}" required="true" validator="#{userBean.validateTermsAccepted}">
+                            <f:selectItem itemLabel="Ja" itemValue="#{true}"/>
+                            <f:selectItem itemLabel="Nein" itemValue="#{false}" />
+                        </h:selectOneRadio>
+                        <h:message for="termsAccepted" class="error" />
 
 
                         <h:commandButton value="Weiter" action="#{userBean.completeRegistration}" />

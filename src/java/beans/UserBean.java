@@ -4,6 +4,7 @@
  */
 package beans;
 
+import com.sun.faces.util.MessageFactory;
 import data.*;
 import exceptions.DuplicateEntryException;
 import exceptions.StorageException;
@@ -12,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.*;
-
 /**
  * @author delbertooo
  */
@@ -94,6 +96,14 @@ public class UserBean implements Serializable {
 
     public void setTermsAccepted(boolean termsAccepted) {
         this.termsAccepted = termsAccepted;
+    }
+    
+    public void validateTermsAccepted(FacesContext context, UIComponent component, Object value) {
+        if (value instanceof Boolean && ((Boolean)value.equals(Boolean.FALSE))) {
+            String cId = component.getClientId(context);
+            FacesMessage m = MessageFactory.getMessage(UIInput.REQUIRED_MESSAGE_ID, cId);
+            throw new ValidatorException(m);
+        }
     }
     
     
