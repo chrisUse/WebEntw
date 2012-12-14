@@ -11,10 +11,17 @@
 
 
         <h1> #{msgs.AddNewProductJSF} </h1>
-       
+
         <c:if test="#{sessionBean.currentUserAdmin}"> 
           <h:form id="form">
+            <h:selectOneRadio >
+              <f:selectItem id="si1" itemLabel="Kat1" itemValue="11" />
+              <f:selectItem id="si2" itemLabel="Kat2" itemValue="11" />
+              <f:selectItem id="si3" itemLabel="Kat3" itemValue="11" />
+            </h:selectOneRadio>
             <h:panelGrid id="grid" columns="3">
+
+
               <ui:include src="ProductInput.xhtml" />
             </h:panelGrid>
 
