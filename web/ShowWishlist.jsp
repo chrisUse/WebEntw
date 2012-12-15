@@ -1,5 +1,5 @@
 <%-- 
-    Document   : showWishlist
+    Document   : ShowWishlist
     Created on : 19.11.2012, 12:55:30
     Author     : Marco
 --%>
@@ -71,7 +71,7 @@
                                     <td align="center"> <%= product.getId() %> </td>
                                     <td> <%= product.getName() %> </td>
                                     <td>
-                                        <form action="removeProductFromWishlist.jsp">
+                                        <form action="RemoveProductFromWishlist.jsp">
                                             <input type="hidden" name="productID" value="<%= product.getId() %>" />
                                             <input type="submit" value="Entfernen" />
                                         </form>

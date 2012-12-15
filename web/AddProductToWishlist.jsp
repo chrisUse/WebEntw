@@ -19,7 +19,7 @@
         session.setAttribute("error", ex.getMessage());
     }
 
-    response.sendRedirect("showWishlist.jsp");
+    response.sendRedirect("ShowWishlist.jsp");
 %>
 
 
