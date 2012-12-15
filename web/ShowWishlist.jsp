@@ -10,6 +10,10 @@
 <%
     if(sessionBean.getCurrentUser() == null)
         response.sendRedirect("LoginError.jsp");
+    
+    if (request.getParameter("deleteInvalidProducts") != null) {
+        wishlistBean.removeInvalidProducts(sessionBean.getCurrentUserID());
+    }
 %>
 
 <%@page language="java" import="java.util.*,java.text.*"%>
@@ -76,13 +80,24 @@
                                             <input type="submit" value="Entfernen" />
                                         </form>
                                     </td>
+                                    <td>
+                                        <% if(!wishlistBean.checkForValidProduct(product.getId())) { %>
+                                            <p class="status">Dieser Artikel befindet sich leider nicht mehr in unserem Angebot</p>
+                                            <% wishlistBean.invalidProducts = true; %>
+                                        <% } %>
+                                    </td>
                                 </tr>
                             <% } %>
                         </tbody>
                     </table>
                     <form action="ViewProduct.jsp">
-                        <input type="submit" value="Weitere Artikel hinzufügen" />
+                        <input type="submit" value="Weitere Artikel hinzufügen"/>
                     </form>
+                    <% if(wishlistBean.invalidProducts) { %>
+                    <form action="ShowWishlist.jsp">
+                        <input type="submit" name="deleteInvalidProducts" value="Nicht mehr vorhandene Artikel entfernen"/>
+                    </form>
+                    <% } %>
                 <% } %>
             </div>
         </div>
