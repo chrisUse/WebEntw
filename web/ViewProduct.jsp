@@ -24,8 +24,19 @@
       if (request.getParameter("DeleteAllSelected") != null) {
         for (String t : request.getParameterValues("checked")) {
           //out.print("Data to delete: " + t);
-          caseProduct.deleteProductByID ( Integer.parseInt(t) );
+          caseProduct.deleteProductByID(Integer.parseInt(t));
         }
+      } else if (request.getParameter("AddSelectedProductToWishlist") != null) {
+        // all selected items request.getParameterValues("checked")
+      }
+      
+      
+      List<data.Product> allShowedProducts;
+      if (request.getParameter("showAPartOfPro") != null) {
+        ///TODO: change the bean
+        allShowedProducts = null;
+      } else {
+        allShowedProducts = caseProduct.getAllProducts();
       }
     %>
 
@@ -44,7 +55,7 @@
 
           <form name="outerForm" action="ViewProduct.jsp" method="post">
             <% //counter = 1; %>
-            <% for (data.Product product : caseProduct.getAllProducts()) {%>
+            <% if (allShowedProducts != null) for (data.Product product : allShowedProducts) {%>
             <tr>
               <td><input name="checked" type="checkbox" value="<%=product.getId()%>"/></td>
               <td><%=product.getId()%></td>
@@ -70,6 +81,7 @@
             </tr>
             <% }%>
             <input type="submit" name="DeleteAllSelected" value="Delete all selected" />
+            <input type="submit" name="AddSelectedProductToWishlist" value="Add selected Products to wishlist" />
           </form>
         </table>
         <% if (sessionBean.getCurrentUser() != null && sessionBean.getCurrentUser().isIsAdmin() == true) {%>
