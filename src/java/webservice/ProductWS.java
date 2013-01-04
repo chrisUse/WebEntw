@@ -7,14 +7,14 @@ package webservice;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.ejb.Stateless;
+//import javax.ejb.Stateless;
 
 /**
  *
  * @author christianlinde
  */
 @WebService(serviceName = "ProductWS")
-@Stateless()
+//@Stateless()
 public class ProductWS {
 
   /**
