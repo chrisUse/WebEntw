@@ -20,7 +20,7 @@
     <h:inputText id="price" size="30" maxlength="40" required="true" value="#{caseProduct.price}"  >
       <f:validateDoubleRange  minimum="0" />
       <!-- <f:validateRegex pattern="[-+]?[0-9]*\.[0-9]*?" /> -->
-      <!-- <f:validator validatorId="duplicateMailValidator" /> -->
+      <f:validator validatorId="calculatePriceValidator" />
     </h:inputText>
     <h:outputText id="checkPrice" value=""/>
 
