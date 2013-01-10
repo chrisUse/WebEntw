@@ -89,12 +89,13 @@
                 <table>
                     <tr>
                         <td>
-                            <form action="ViewProduct.jsp">
+                            <form name="viewProducts" action="ViewProduct.jsp">
                                 <input type="submit" value="Continue shopping" />
                             </form>
                         </td>
                         <td>
-                            <form action="">
+                            <form name="clearCart" action="ClearCart.jsp">
+                                <input type="hidden" name="userID" value="<%= tUserID%>" />
                                 <input type="submit" value="Clear cart" />
                             </form>
                         </td>
