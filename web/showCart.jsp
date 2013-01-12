@@ -33,8 +33,8 @@
     </head>
     <body>
         <div>
-            <%@include file="templates/header.xhtml" %>
-            <%@include file="templates/menu.xhtml" %>
+            <jsp:include page="/templates/header.xhtml" />
+            <jsp:include page="/templates/menu.jsp" />
             
             <div id="content" class="left_content">
                 <%
@@ -69,7 +69,7 @@
                                 </form>
                             </td>
                             <td>
-                                <form name="editCartEntry" action="">
+                                <form name="editCartEntry" action="EditProductInCart.jsp">
                                     <input type="hidden" name="productID" value="<%= tProduct.getId() %>" />
                                     <input type="hidden" name="userID" value="<%= tUserID%>" />
                                     <input type="submit" value="Edit" />
@@ -89,12 +89,13 @@
                 <table>
                     <tr>
                         <td>
-                            <form action="ViewProduct.jsp">
+                            <form name="viewProducts" action="ViewProduct.jsp">
                                 <input type="submit" value="Continue shopping" />
                             </form>
                         </td>
                         <td>
-                            <form action="">
+                            <form name="clearCart" action="ClearCart.jsp">
+                                <input type="hidden" name="userID" value="<%= tUserID%>" />
                                 <input type="submit" value="Clear cart" />
                             </form>
                         </td>
