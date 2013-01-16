@@ -30,6 +30,8 @@
         for ( webservice.Product p : testWP.products() ) {
             out.print("Product name: " + p.getName() );
         }
+        
+        out.print("<br />Name of Product 2:" + testWP.productWID(2).getName());
       
       %>
       
