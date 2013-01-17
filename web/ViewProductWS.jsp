@@ -21,18 +21,18 @@
   </head>
   <body>
 
-      RestTest: <% webservice.WebEntwProduct_Service testWS = new webservice.WebEntwProduct_Service();
-      webservice.WebEntwProduct testWP = testWS.getWebEntwProductPort();
+      <% /*webservice.WebEntwProduct_Service testWS = new webservice.WebEntwProduct_Service();
+      webservice.WebEntwProduct testWP = testWS.getWebEntwProductPort();*/
 %>
 
       <%
-      
+      /*
         for ( webservice.Product p : testWP.products() ) {
             out.print("Product name: " + p.getName() );
         }
         
         out.print("<br />Name of Product 2:" + testWP.productWID(2).getName());
-      
+      */
       %>
       
     <%
@@ -53,7 +53,7 @@
         ///TODO: change the bean
         allShowedProducts = null;
       } else {
-        allShowedProducts = caseProduct.getAllProducts();
+        allShowedProducts = caseProduct.getAllProductsWS();
       }
     %>
 
