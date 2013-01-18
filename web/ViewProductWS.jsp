@@ -7,6 +7,7 @@
 <jsp:useBean id="caseProduct" class="beans.caseProduct" scope="page"/>
 <jsp:useBean id="sessionBean" class="beans.SessionBean" scope="session"/>
 
+
 <%@ page language="java" import="java.util.*,java.text.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -20,7 +21,23 @@
   </head>
   <body>
 
+      <% /*webservice.WebEntwProduct_Service testWS = new webservice.WebEntwProduct_Service();
+      webservice.WebEntwProduct testWP = testWS.getWebEntwProductPort();*/
+%>
+
+      <%
+      /*
+        for ( webservice.Product p : testWP.products() ) {
+            out.print("Product name: " + p.getName() );
+        }
+        
+        out.print("<br />Name of Product 2:" + testWP.productWID(2).getName());
+      */
+      %>
+      
     <%
+      
+    
       if (request.getParameter("DeleteAllSelected") != null) {
         for (String t : request.getParameterValues("checked")) {
           //out.print("Data to delete: " + t);
@@ -36,7 +53,7 @@
         ///TODO: change the bean
         allShowedProducts = null;
       } else {
-        allShowedProducts = caseProduct.getAllProducts();
+        allShowedProducts = caseProduct.getAllProductsWS();
       }
     %>
 

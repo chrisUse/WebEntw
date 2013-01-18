@@ -8,6 +8,7 @@ import com.sun.istack.internal.NotNull;
 import data.Product;
 import data.Storage;
 import exceptions.StorageException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -178,5 +179,19 @@ public class caseProduct {
 
   public List<Product> getAllProducts() {
     return data.Storage.getInstance().getAllProducts();
+  }
+  
+  public List<Product> getAllProductsWS() {
+    webservice.WebEntwProduct_Service testWS = new webservice.WebEntwProduct_Service();
+    webservice.WebEntwProduct testWP = testWS.getWebEntwProductPort();
+      
+    List<data.Product> np = new ArrayList<data.Product>();
+    
+    for ( webservice.Product p : testWP.products() ) {
+      data.Product tmpP = new data.Product(p.getName(), p.getPrice(), p.getDescription(), p.getManufacturer());
+      np.add(tmpP);
+    }
+    
+    return np;
   }
 }

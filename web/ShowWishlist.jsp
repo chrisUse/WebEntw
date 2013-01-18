@@ -1,5 +1,5 @@
 <%-- 
-    Document   : showWishlist
+    Document   : ShowWishlist
     Created on : 19.11.2012, 12:55:30
     Author     : Marco
 --%>
@@ -10,6 +10,10 @@
 <%
     if(sessionBean.getCurrentUser() == null)
         response.sendRedirect("LoginError.jsp");
+    
+    if (request.getParameter("deleteInvalidProducts") != null) {
+        wishlistBean.removeInvalidProducts(sessionBean.getCurrentUserID());
+    }
 %>
 
 <%@page language="java" import="java.util.*,java.text.*"%>
@@ -71,18 +75,29 @@
                                     <td align="center"> <%= product.getId() %> </td>
                                     <td> <%= product.getName() %> </td>
                                     <td>
-                                        <form action="removeProductFromWishlist.jsp">
+                                        <form action="RemoveProductFromWishlist.jsp">
                                             <input type="hidden" name="productID" value="<%= product.getId() %>" />
                                             <input type="submit" value="Entfernen" />
                                         </form>
+                                    </td>
+                                    <td>
+                                        <% if(!wishlistBean.checkForValidProduct(product.getId())) { %>
+                                            <p class="status">Dieser Artikel befindet sich leider nicht mehr in unserem Angebot</p>
+                                            <% wishlistBean.invalidProducts = true; %>
+                                        <% } %>
                                     </td>
                                 </tr>
                             <% } %>
                         </tbody>
                     </table>
                     <form action="ViewProduct.jsp">
-                        <input type="submit" value="Weitere Artikel hinzufügen" />
+                        <input type="submit" value="Weitere Artikel hinzufügen"/>
                     </form>
+                    <% if(wishlistBean.invalidProducts) { %>
+                    <form action="ShowWishlist.jsp">
+                        <input type="submit" name="deleteInvalidProducts" value="Nicht mehr vorhandene Artikel entfernen"/>
+                    </form>
+                    <% } %>
                 <% } %>
             </div>
         </div>

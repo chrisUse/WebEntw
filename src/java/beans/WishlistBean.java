@@ -20,6 +20,8 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class WishlistBean {
     
+    public boolean invalidProducts = false;
+    
     public WishlistBean() {
     }    
             
@@ -56,6 +58,26 @@ public class WishlistBean {
             }
         }
         throw new ProductDoesNotExistException("pdne");
+    }
+    
+    
+    public boolean checkForValidProduct(int productID){
+        if(data.Storage.getInstance().getProductById(productID) == null)
+            return false;
+        return true;
+    }
+    
+    public void removeInvalidProducts(int userID){
+        List<Product> tProducts = getProducts(userID);
+        for(data.Product item : tProducts){
+            int tID = item.getId();
+            if(!checkForValidProduct(tID)){
+                try{
+                    removeProduct(userID, tID);
+                }
+                catch(ProductDoesNotExistException ex){}
+            }
+        }
     }
     
 
