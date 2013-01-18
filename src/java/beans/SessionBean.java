@@ -5,6 +5,7 @@
 package beans;
 
 import data.*;
+import java.io.Serializable;
 import javax.faces.bean.*;
 
 /**
@@ -12,7 +13,7 @@ import javax.faces.bean.*;
  */
 @ManagedBean
 @SessionScoped
-public class SessionBean {
+public class SessionBean implements Serializable {
 
     private Integer currentUser = null;
     
